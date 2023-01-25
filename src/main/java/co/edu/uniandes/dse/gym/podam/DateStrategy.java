@@ -1,4 +1,4 @@
-package co.edu.uniandes.dse.ZZZ.podam;
+package co.edu.uniandes.dse.gym.podam;
 
 import java.lang.annotation.Annotation;
 import java.util.Calendar;
