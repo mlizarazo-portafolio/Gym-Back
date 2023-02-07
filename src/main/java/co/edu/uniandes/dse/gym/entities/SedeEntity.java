@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 @Entity
 
-public class Sede {
+public class SedeEntity {
 
     private String nombre;
     private String direccion;
