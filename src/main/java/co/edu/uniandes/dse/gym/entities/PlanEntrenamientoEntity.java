@@ -3,7 +3,7 @@ package co.edu.uniandes.dse.gym.entities;
 import javax.persistence.Entity;
 
 @Entity
-public class PlanEntrenamientoEntity {
+public class PlanEntrenamientoEntity extends  BaseEntity{
 
     private String objetivoBasico;
     private String nombre;
