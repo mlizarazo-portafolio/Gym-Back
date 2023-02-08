@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 @Entity
 
-public class AtletaEntity {
+public class AtletaEntity extends BaseEntity {
     private String nombre;
     private int edad;
     private String sexo;
