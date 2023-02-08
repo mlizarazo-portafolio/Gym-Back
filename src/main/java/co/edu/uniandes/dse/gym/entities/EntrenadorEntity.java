@@ -9,7 +9,7 @@ public class EntrenadorEntity extends BaseEntity{
     private String nombreEntrenador;
     private String imagenEntrenador;
     private String trayectoriaProfesional;
-    //@OneToOne
-    //private ActividadEntity actividad;
+    @OneToOne
+    private ActividadEntity actividad;
     
 }
