@@ -11,4 +11,5 @@ public class ActividadEntity extends BaseEntity{
     private String ubicacion;
     private String cupos;
     
+    
 }
