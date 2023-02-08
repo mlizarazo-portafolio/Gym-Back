@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 
 @Entity
 
-public class Atleta {
+public class AtletaEntity {
     private String nombre;
     private int edad;
     private String sexo;
@@ -17,6 +17,5 @@ public class Atleta {
     private String documento;
     private String fechaNacimiento;
     private String planAdquirido;
-    
 
 }
