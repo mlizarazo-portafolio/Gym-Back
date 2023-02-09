@@ -14,7 +14,7 @@ import lombok.Setter;
 public class SedeEntity extends BaseEntity {
 
     private PlanEntrenamientoEntity planEntrenamiento;
-    @OneToMany(mappedBy = "planEntrenamiento")
+    //@OneToMany(mappedBy = "sede")
 
     private String nombre;
     private String direccion;
