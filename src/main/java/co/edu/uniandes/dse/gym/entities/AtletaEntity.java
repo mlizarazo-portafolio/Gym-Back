@@ -5,25 +5,22 @@ import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.sql.Array;
+import java.sql.Date;
 
 @Entity
 
 public class AtletaEntity extends BaseEntity {
     private String nombre;
-    private int edad;
-    private String sexo;
+    private String login;
     private String tipoSangre;
-    // private String alergias
-
     private String direccion;
-    private String telefono;
-    private String correo;
-    private String documento;
-    private String fechaNacimiento;
-    private PlanEntrenamientoEntity planAdquirido;
-    private SedeEntity sede;
+    private Date fechaNacimiento;
+    private Integer altura;
+    private Integer peso;
+    // private PlanEntrenamientoEntity planEntrenamiento;
+    // private SedeEntity sedeGimnasio;
     // private DeportologoEntity deportologo;
-    private ArrayList<ActividadEntity> clasesInscritas;
+    // private ArrayList<ActividadEntity> clasesInscritas;
 
     public String getNombre() {
         return nombre;
@@ -31,22 +28,6 @@ public class AtletaEntity extends BaseEntity {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getTipoSangre() {
@@ -65,35 +46,11 @@ public class AtletaEntity extends BaseEntity {
         this.direccion = direccion;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(String documento) {
-        this.documento = documento;
-    }
-
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
