@@ -11,9 +11,10 @@ import lombok.Setter;
 @Entity
 public class EntrenadorEntity extends BaseEntity{
 
-    private String nombreEntrenador;
-    private String imagenEntrenador;
-    private String trayectoriaProfesional;
+    private String nombre;
+    private String foto;
+    private String trayectoria;
+
     @OneToOne
     private ActividadEntity actividad;
     

@@ -17,6 +17,7 @@ public class ActividadEntity extends BaseEntity{
     private Date fecha;
     private String ubicacion;
     private String cupos;
+    
     @OneToOne(mappedBy = "actividad")
     private EntrenadorEntity entrenador; 
 
