@@ -10,6 +10,6 @@ import co.edu.uniandes.dse.gym.entities.ServicioEntity;
 @Repository
 public interface ServicioRepository extends JpaRepository<ServicioEntity, Long>{
 
-    List<ServicioEntity> findByNombre(String nombre);
+    List<ServicioEntity> findByServicio(String servicio);
     
 }
