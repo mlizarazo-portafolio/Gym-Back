@@ -27,7 +27,7 @@ public class SedeEntity extends BaseEntity {
     @OneToMany(mappedBy = "sede")
     private List<ReseniaEntity> resenias = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "sede")
-    private List<PlanEntrenamientoEntity> panes = new ArrayList<>();
+    @ManyToMany(mappedBy = "sedes")
+    private List<PlanEntrenamientoEntity> planes = new ArrayList<>();
 
 }
