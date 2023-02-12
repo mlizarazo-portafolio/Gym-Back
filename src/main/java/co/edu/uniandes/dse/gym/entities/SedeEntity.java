@@ -1,14 +1,15 @@
 package co.edu.uniandes.dse.gym.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 import java.util.ArrayList;
-// import java.util.ArrayList;
-// import java.sql.Array; 
+
 
 @Getter
 @Setter
@@ -26,6 +27,7 @@ public class SedeEntity extends BaseEntity {
     @OneToMany(mappedBy = "sede")
     private List<ReseniaEntity> resenias = new ArrayList<>();
 
-
+    @ManyToMany(mappedBy = "sede")
+    private List<PlanEntrenamientoEntity> panes = new ArrayList<>();
 
 }

@@ -1,6 +1,7 @@
 package co.edu.uniandes.dse.gym.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,5 +17,7 @@ public class PlanEntrenamientoEntity extends BaseEntity{
     private Double duracion;
     private Double costo;
     
+    @ManyToMany
+    private SedeEntity sede;
 
 }
