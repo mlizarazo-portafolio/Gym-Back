@@ -6,6 +6,9 @@ import javax.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Setter
 @Getter
 @Entity
@@ -18,6 +21,6 @@ public class PlanEntrenamientoEntity extends BaseEntity{
     private Double costo;
     
     @ManyToMany
-    private SedeEntity sede;
+    private List<SedeEntity> sedes = new ArrayList<>();
 
 }
