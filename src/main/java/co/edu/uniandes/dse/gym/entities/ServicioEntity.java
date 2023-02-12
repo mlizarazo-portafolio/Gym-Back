@@ -15,4 +15,7 @@ public class ServicioEntity extends BaseEntity {
     private String servicio;
     private Boolean disponible;
 
+    @ManyToOne
+    private SedeEntity sede;
+    
 }
