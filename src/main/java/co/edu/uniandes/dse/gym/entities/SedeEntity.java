@@ -10,15 +10,11 @@ import lombok.Setter;
 import java.util.List;
 import java.util.ArrayList;
 
-
 @Getter
 @Setter
 @Entity
 
 public class SedeEntity extends BaseEntity {
-
-    //private PlanEntrenamientoEntity planEntrenamiento;
-    //@OneToMany(mappedBy = "sede")
 
     private String nombre;
     private String direccion;

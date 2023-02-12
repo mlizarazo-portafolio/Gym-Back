@@ -12,6 +12,7 @@ import java.util.ArrayList;
 @Setter
 @Getter
 @Entity
+
 public class PlanEntrenamientoEntity extends BaseEntity{
 
     private String objetivoBasico;
