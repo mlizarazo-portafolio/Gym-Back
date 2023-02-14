@@ -6,19 +6,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import lombok.Getter;
+
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.sql.Array;
 import java.sql.Date;
+import java.util.ArrayList;
 
+@Setter
+@Getter
+@Entity
 public class DeportologoEntity extends BaseEntity {
     private String nombre;
     private String login;
     private String experiencia;
     private String foto;
+    
+
     @OneToOne
-    public SedeEntity sede;
+    private SedeEntity sede;
     @OneToMany(mappedBy = "deportologo")
-    public List<AtletaEntity> valoracionAtletas;
+    private List<AtletaEntity> valoracionAtletas = new ArrayList<>();
 }

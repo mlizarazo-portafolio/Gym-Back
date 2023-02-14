@@ -41,5 +41,7 @@ public class AtletaEntity extends BaseEntity {
     private PlanEntrenamientoEntity plan;
     @ManyToMany(mappedBy = "atletasInscritos")
     private List<ActividadEntity> actividadesInscritas = new ArrayList<>();
+    @ManyToOne
+    private DeportologoEntity deportologo;
 
 }
