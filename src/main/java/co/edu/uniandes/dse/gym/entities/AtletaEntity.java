@@ -6,6 +6,7 @@ import javax.persistence.ManyToOne;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.sql.Array;
 import java.sql.Date;
 
@@ -28,8 +29,6 @@ public class AtletaEntity extends BaseEntity {
     @ManyToOne
     public PlanEntrenamientoEntity plan;
     @ManyToMany(mappedBy = "atletasInscritos")
-    public ArrayList<ActividadEntity> actividadesInscritas;
-    // @ManyToOne
-    // public DeportologoEntity deportologo;
+    public List<ActividadEntity> actividadesInscritas;
 
 }
