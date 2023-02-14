@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-public class ConvenioEntity {
+public class ConvenioEntity extends  BaseEntity{
 /** 
     @ManyToOne 
     private PlanEntrenamientoEntity plan;
