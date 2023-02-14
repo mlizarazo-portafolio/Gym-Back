@@ -2,11 +2,7 @@ package co.edu.uniandes.dse.gym.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
-import lombok.Getter;
-import lombok.Setter;
 import javax.persistence.ManyToMany;
 
 import lombok.Getter;
@@ -18,6 +14,7 @@ import java.util.ArrayList;
 @Setter
 @Getter
 @Entity
+
 public class PlanEntrenamientoEntity extends  BaseEntity{
 
 
@@ -28,10 +25,8 @@ private List<SedeEntity> sedes = new ArrayList<>();
 @OneToMany (mappedBy = "plan",  cascade = CascadeType.PERSIST, orphanRemoval = true)
 private List<ConvenioEntity> convenios = new ArrayList<>();
   
-/*  
 @OneToMany (mappedBy = "plan", cascade = CascadeType.PERSIST, orphanRemoval = true)
 private List<AtletaEntity> atletasInscritos = new ArrayList<>();
-*/
  
  
     
