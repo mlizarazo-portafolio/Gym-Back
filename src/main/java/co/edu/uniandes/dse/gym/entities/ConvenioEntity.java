@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 @Entity
 public class ConvenioEntity extends  BaseEntity{
-/** 
+ 
     @ManyToOne 
     private PlanEntrenamientoEntity plan;
-*/    
+ 
  
     private String nombre;
     private Double descuento;

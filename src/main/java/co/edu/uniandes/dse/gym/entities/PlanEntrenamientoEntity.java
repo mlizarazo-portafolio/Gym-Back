@@ -20,18 +20,19 @@ import java.util.ArrayList;
 @Entity
 public class PlanEntrenamientoEntity extends  BaseEntity{
 
-/* 
+
 @ManyToMany
 private List<SedeEntity> sedes = new ArrayList<>();
-  
+
+
 @OneToMany (mappedBy = "plan",  cascade = CascadeType.PERSIST, orphanRemoval = true)
 private List<ConvenioEntity> convenios = new ArrayList<>();
   
- 
+/*  
 @OneToMany (mappedBy = "plan", cascade = CascadeType.PERSIST, orphanRemoval = true)
 private List<AtletaEntity> atletasInscritos = new ArrayList<>();
-
-*/ 
+*/
+ 
  
     
                   
