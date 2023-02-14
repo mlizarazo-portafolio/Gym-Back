@@ -3,32 +3,43 @@ package co.edu.uniandes.dse.gym.entities;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import co.edu.uniandes.dse.gym.podam.DateStrategy;
+
+import uk.co.jemos.podam.common.PodamStrategyValue;
+
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
-import java.sql.Array;
-import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Date;
 
+
+@Getter
+@Setter
 @Entity
 
 public class AtletaEntity extends BaseEntity {
+
+    @Temporal(TemporalType.DATE)
+    @PodamStrategyValue(DateStrategy.class)
+    private Date fechaNacimiento;
+
     private String nombre;
     private String login;
     private String tipoSangre;
     private String direccion;
-    private Date fechaNacimiento;
     private Integer altura;
     private Integer peso;
-    // private PlanEntrenamientoEntity planEntrenamiento;
-    // private SedeEntity sedeGimnasio;
-    // private DeportologoEntity deportologo;
-    // private ArrayList<ActividadEntity> clasesInscritas;
+
     @ManyToOne
-    public SedeEntity sede;
+    private SedeEntity sede;
     @ManyToOne
-    public PlanEntrenamientoEntity plan;
+    private PlanEntrenamientoEntity plan;
     @ManyToMany(mappedBy = "atletasInscritos")
-    public List<ActividadEntity> actividadesInscritas;
+    private List<ActividadEntity> actividadesInscritas = new ArrayList<>();
 
 }

@@ -1,6 +1,5 @@
 package co.edu.uniandes.dse.gym.entities;
 
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,10 +14,11 @@ import lombok.Setter;
 @Entity
 
 public class ActividadEntity extends BaseEntity {
+    
     private String nombre;
-    private Date fecha;
     private String ubicacion;
     private String cupos;
+    private String horario;
 
     @OneToOne(mappedBy = "actividad")
     private EntrenadorEntity entrenador;
