@@ -5,6 +5,7 @@ import javax.persistence.OneToOne;
 
 import lombok.Getter;
 import lombok.Setter;
+import uk.co.jemos.podam.common.PodamExclude;
 
 @Setter
 @Getter
@@ -15,6 +16,7 @@ public class EntrenadorEntity extends BaseEntity{
     private String foto;
     private String trayectoria;
 
+    @PodamExclude
     @OneToOne
     private ActividadEntity actividad;
     
