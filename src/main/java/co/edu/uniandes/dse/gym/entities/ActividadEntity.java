@@ -21,4 +21,7 @@ public class ActividadEntity extends BaseEntity{
     @OneToOne(mappedBy = "actividad")
     private EntrenadorEntity entrenador; 
 
+    @OneToOne(mappedBy = "actividad")
+    private RestriccionEntity restriccion;
+
 }
