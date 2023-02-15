@@ -7,6 +7,8 @@ import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
+import uk.co.jemos.podam.common.PodamExclude;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -20,12 +22,15 @@ public class SedeEntity extends BaseEntity {
     private String direccion;
     private String telefono;
 
+    @PodamExclude
     @OneToMany(mappedBy = "sede")
     private List<ReseniaEntity> resenias = new ArrayList<>();
 
+    @PodamExclude
     @ManyToMany(mappedBy = "sedes")
     private List<PlanEntrenamientoEntity> planes = new ArrayList<>();
 
+    @PodamExclude
     @OneToMany(mappedBy = "sede")
     private List<ServicioEntity> serviciosDisponibles = new ArrayList<>();
     

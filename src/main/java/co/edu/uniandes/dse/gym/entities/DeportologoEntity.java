@@ -7,6 +7,7 @@ import javax.persistence.OneToOne;
 import lombok.Getter;
 
 import lombok.Setter;
+import uk.co.jemos.podam.common.PodamExclude;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class DeportologoEntity extends BaseEntity {
     private String login;
     private String experiencia;
     private String foto;
-    
+
+    @PodamExclude
 
     @OneToOne
     private SedeEntity sede;
