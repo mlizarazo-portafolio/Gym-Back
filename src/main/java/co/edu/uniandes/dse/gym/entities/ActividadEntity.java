@@ -17,9 +17,9 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ActividadEntity extends BaseEntity {
     
     private String nombre;
-    private String ubicacion;
-    private String cupos;
+    private Integer maxParticipantes;
     private String horario;
+    private String tipo;
 
     @PodamExclude
     @OneToOne(mappedBy = "actividad")
