@@ -7,7 +7,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import co.edu.uniandes.dse.gym.podam.DateStrategy;
-
+import uk.co.jemos.podam.common.PodamExclude;
 import uk.co.jemos.podam.common.PodamStrategyValue;
 
 import lombok.Getter;
@@ -16,7 +16,6 @@ import lombok.Setter;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Date;
-
 
 @Getter
 @Setter
@@ -34,6 +33,8 @@ public class AtletaEntity extends BaseEntity {
     private String direccion;
     private Integer altura;
     private Integer peso;
+
+    @PodamExclude
 
     @ManyToOne
     private SedeEntity sede;
