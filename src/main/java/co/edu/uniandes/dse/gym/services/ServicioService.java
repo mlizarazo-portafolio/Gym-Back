@@ -56,9 +56,8 @@ public class ServicioService {
         log.info("Inicia proceso de consultar el Servicio con id = {0}", servicioId);
         Optional<ServicioEntity> servicioEntity = servicioRepository.findById(servicioId);
 
-        if(servicioEntity.isEmpty()) {
-            throw new EntityNotFoundException(ErrorMessage.SERVICIO_NOT_FOUND);
-        }
+        if(servicioEntity.isEmpty()) throw new EntityNotFoundException(ErrorMessage.SERVICIO_NOT_FOUND);
+
         log.info("Finaliza proceso de consultar el Servicio con id = {0}", servicioId);
         return servicioEntity.get();
     }
@@ -87,7 +86,7 @@ public class ServicioService {
         if (servicioEntity.isEmpty()) throw new EntityNotFoundException(ErrorMessage.SERVICIO_NOT_FOUND);
 
         servicioRepository.deleteById(servicioId);
-        
+
         log.info("Termina proceso de borrar el servicio con id = {0}", servicioId);
     }
 

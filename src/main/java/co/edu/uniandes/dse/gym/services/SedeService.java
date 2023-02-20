@@ -47,9 +47,7 @@ public class SedeService {
         log.info("Inicia proceso de consultar la Sede con id = {0}", sedeId);
         Optional<SedeEntity> sedeEntity = sedeRepository.findById(sedeId);
 
-        if(sedeEntity.isEmpty()) {
-            throw new EntityNotFoundException("SEDE NOT FOUND");
-        }
+        if(sedeEntity.isEmpty()) throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
 
         log.info("Finaliza proceso de consultar la Sede con id = {0}", sedeId);
         return sedeEntity.get();
