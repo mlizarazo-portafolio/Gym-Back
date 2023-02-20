@@ -13,7 +13,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class RestriccionEntity extends BaseEntity
 {
     private Integer edad;
-    private Integer condFisica;
+    private String condFisica;
 
     @PodamExclude
     @OneToOne
