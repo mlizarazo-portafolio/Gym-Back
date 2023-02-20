@@ -82,9 +82,8 @@ public class ServicioService {
         log.info("Inicia proceso de borrar el servicio con id = {0}", servicioId);
 
         Optional<ServicioEntity> servicioEntity = servicioRepository.findById(servicioId);
-
         if (servicioEntity.isEmpty()) throw new EntityNotFoundException(ErrorMessage.SERVICIO_NOT_FOUND);
-
+        
         servicioRepository.deleteById(servicioId);
 
         log.info("Termina proceso de borrar el servicio con id = {0}", servicioId);
