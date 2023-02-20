@@ -28,7 +28,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @DataJpaTest
 @Transactional
 @Import(ActividadService.class)
-public class ActividadServiceTest {
+class ActividadServiceTest {
     
     @Autowired
     private ActividadService actividadService;
