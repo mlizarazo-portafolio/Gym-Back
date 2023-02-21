@@ -129,6 +129,13 @@ public class SedeServiceTest {
     }
 
     @Test
+    void testGetInvalidSedeById() {
+        assertThrows(EntityNotFoundException.class,()->{
+                sedeService.getSedeById(0L);
+        });
+    }
+
+    @Test
     void testUpdateSede() throws EntityNotFoundException, IllegalOperationException {
         SedeEntity entity = sedeList.get(0);
         SedeEntity pojoEntity = factory.manufacturePojo(SedeEntity.class);
@@ -141,6 +148,15 @@ public class SedeServiceTest {
         assertEquals(pojoEntity.getNombre(), resp.getNombre());
         assertEquals(pojoEntity.getDireccion(), resp.getDireccion());
         assertEquals(pojoEntity.getTelefono(), resp.getTelefono());
+    }
+
+    @Test
+    void testUpdateSedeInvalidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+                SedeEntity pojoEntity = factory.manufacturePojo(SedeEntity.class);
+                pojoEntity.setId(0L);
+                sedeService.updateSede(0L, pojoEntity);
+        });
     }
 
     @Test

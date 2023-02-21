@@ -150,6 +150,13 @@ public class ServicioServiceTest {
     }
 
     @Test
+    void testGetInvalidServicioById() {
+        assertThrows(EntityNotFoundException.class,()->{
+                servicioService.getServicioById(0L);
+        });
+    }
+
+    @Test
     void testUpdateServicio() throws EntityNotFoundException, IllegalOperationException {
         ServicioEntity entity = servicioList.get(0);
         ServicioEntity pojoEntity = factory.manufacturePojo(ServicioEntity.class);
@@ -161,6 +168,15 @@ public class ServicioServiceTest {
         assertEquals(pojoEntity.getId(), resp.getId());
         assertEquals(pojoEntity.getServicio(), resp.getServicio());
         assertEquals(pojoEntity.getDisponible(), resp.getDisponible());
+    }
+
+    @Test
+    void testUpdateServicioInvalidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+                ServicioEntity pojoEntity = factory.manufacturePojo(ServicioEntity.class);
+                pojoEntity.setId(0L);
+                servicioService.updateServicio(0L, pojoEntity);
+        });
     }
 
     @Test
