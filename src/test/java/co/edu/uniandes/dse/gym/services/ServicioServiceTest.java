@@ -123,6 +123,16 @@ public class ServicioServiceTest {
         });
     }
 
+    // @Test
+    // void testCreateServicioEmptySede() {
+    //     assertThrows(IllegalOperationException.class, () -> {
+    //             ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+    //             SedeEntity sedeEntity = new SedeEntity();
+    //             newEntity.setSede(sedeEntity);
+    //             servicioService.createServicio(newEntity);
+    //     });
+    // }
+
     @Test
     void testGetServicios() {
         List<ServicioEntity> list = servicioService.getServicios();
@@ -185,6 +195,13 @@ public class ServicioServiceTest {
         servicioService.deleteServicio(entity.getId());
         ServicioEntity deleted = entityManager.find(ServicioEntity.class, entity.getId());
         assertNull(deleted);
+    }
+
+    @Test
+    void testDeleteInvalidServicio() {
+        assertThrows(EntityNotFoundException.class, ()->{
+                servicioService.deleteServicio(0L);
+        });
     }
 
 }
