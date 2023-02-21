@@ -73,6 +73,7 @@ public class ServicioServiceTest {
     @Test
     void testCreateServicio() throws EntityNotFoundException, IllegalOperationException {
         ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+        newEntity.setSede(sedeList.get(0));
         ServicioEntity result = servicioService.createServicio(newEntity);
         assertNotNull(result);
 
