@@ -115,6 +115,15 @@ public class ReseniaServiceTest {
     }
 
     @Test
+    void testCreateReseniaWithNoValidPuntuacion1(){
+        assertThrows(IllegalOperationException.class, () ->{
+            ReseniaEntity newEntity = factory.manufacturePojo(ReseniaEntity.class);
+            newEntity.setPuntuacion(-1);
+            reseniaService.createResenia(newEntity);
+        });
+    }
+
+    @Test
     void testCreateReseniaWithNoValidPuntuacion2(){
         assertThrows(IllegalOperationException.class, () ->{
             ReseniaEntity newEntity = factory.manufacturePojo(ReseniaEntity.class);
@@ -248,6 +257,17 @@ public class ReseniaServiceTest {
                 ReseniaEntity entity = reseniaList.get(0);
                 ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
                 pojoEntity.setPuntuacion(-1);
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
+
+    @Test
+    void testUpdateReseniaWithNoValidPuntuacion1() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setPuntuacion(6);
                 pojoEntity.setId(entity.getId());
                 reseniaService.updateResenia(entity.getId(), pojoEntity);
         });
