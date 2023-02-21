@@ -13,7 +13,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 public class ReseniaEntity extends BaseEntity {
 
     private String usuario;
-    private Double puntuacion;
+    private Integer puntuacion;
     private String comentario;
 
     @PodamExclude
