@@ -27,6 +27,8 @@ public class ReseniaService {
     @Autowired
     SedeRepository sedeRepository;
 
+    private String invalidPuntuacion = "Puntuacion no es valida";
+
     @Transactional
     public ReseniaEntity createResenia (ReseniaEntity reseniaEntity) throws EntityNotFoundException, IllegalOperationException{
         log.info("Inicia proceso de creacion de Resenia");
@@ -42,10 +44,10 @@ public class ReseniaService {
             throw new IllegalOperationException("Usuario no es valido");
         }
         if (reseniaEntity.getPuntuacion() == null){
-            throw new IllegalOperationException("Puntuacion no es valida");
+            throw new IllegalOperationException(invalidPuntuacion);
         }
         if (reseniaEntity.getPuntuacion()<0 || reseniaEntity.getPuntuacion()>5){
-            throw new IllegalOperationException("Puntuacion no es valida");
+            throw new IllegalOperationException(invalidPuntuacion);
         }
         if (!validateString(reseniaEntity.getComentario())){
             throw new IllegalOperationException("Comentario no es valido");
@@ -85,10 +87,10 @@ public class ReseniaService {
             throw new IllegalOperationException("Usuario no es valido");
         }
         if (resenia.getPuntuacion() == null){
-            throw new IllegalOperationException("Puntuacion no es valida");
+            throw new IllegalOperationException(invalidPuntuacion);
         }
         if (resenia.getPuntuacion()<0 || resenia.getPuntuacion()>5){
-            throw new IllegalOperationException("Puntuacion no es valida");
+            throw new IllegalOperationException(invalidPuntuacion);
         }
         if (!validateString(resenia.getComentario())){
             throw new IllegalOperationException("Comentario no es valido");
