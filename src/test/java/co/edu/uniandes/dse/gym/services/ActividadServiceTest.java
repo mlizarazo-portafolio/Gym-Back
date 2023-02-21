@@ -29,7 +29,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @Transactional
 @Import(ActividadService.class)
 class ActividadServiceTest {
-    
+
     @Autowired
     private ActividadService actividadService;
 
@@ -40,10 +40,10 @@ class ActividadServiceTest {
 
     private List<ActividadEntity> actividadList = new ArrayList<>();
     private List<EntrenadorEntity> entrenadorList = new ArrayList<>();
-    
+
     /**
-    * Configuración inicial de la prueba.
-    */
+     * Configuración inicial de la prueba.
+     */
     @BeforeEach
     void setUp() {
         clearData();
@@ -53,42 +53,36 @@ class ActividadServiceTest {
     /**
      * Limpia las tablas que están implicadas en la prueba.
      */
-    private void clearData() 
-    {
-            entityManager.getEntityManager().createQuery("delete from ActividadEntity");
-            entityManager.getEntityManager().createQuery("delete from EntrenadorEntity");
+    private void clearData() {
+        entityManager.getEntityManager().createQuery("delete from ActividadEntity");
+        entityManager.getEntityManager().createQuery("delete from EntrenadorEntity");
     }
+
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
-    private void insertData()
-    {
-        for(int i = 0; i<3; i++)
-        {
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
             EntrenadorEntity entrenadorEntity = factory.manufacturePojo(EntrenadorEntity.class);
             entityManager.persist(entrenadorEntity);
             entrenadorList.add(entrenadorEntity);
         }
 
-        for(int i=0; i<3; i++)
-        {
+        for (int i = 0; i < 3; i++) {
             ActividadEntity actividadEntity = factory.manufacturePojo(ActividadEntity.class);
             actividadEntity.setEntrenador(entrenadorList.get(0));
             entityManager.persist(actividadEntity);
             actividadList.add(actividadEntity);
-            
 
         }
 
     }
 
     @Test
-    void testCreateActividad() throws EntityNotFoundException, IllegalOperationException
-    {
+    void testCreateActividad() throws EntityNotFoundException, IllegalOperationException {
         ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
         newEntity.setEntrenador(entrenadorList.get(0));
         ActividadEntity result = actividadService.createActividad(newEntity);
-        assertNotNull(result);
         ActividadEntity entity = entityManager.find(ActividadEntity.class, result.getId());
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
@@ -97,32 +91,59 @@ class ActividadServiceTest {
         assertEquals(newEntity.getAtletasInscritos(), entity.getAtletasInscritos());
         assertEquals(newEntity.getMaxParticipantes(), entity.getMaxParticipantes());
         assertEquals(newEntity.getRestriccion(), entity.getRestriccion());
-        
+
     }
 
     @Test
-    void testGetActividades()
+    void testCreateActividadWithNoValidName()
     {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(entrenadorList.get(0));
+            newEntity.setNombre(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
+    void testCreateActividadWithNoValidTipo()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(entrenadorList.get(0));
+            newEntity.setTipo(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
+    void testCreateActividadWithNoValidEntrenador()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
+    void testGetActividades() {
         List<ActividadEntity> list = actividadService.getActividades();
         assertEquals(actividadList.size(), list.size());
-        for(ActividadEntity entity: list)
-        {
+        for (ActividadEntity entity : list) {
             boolean found = false;
-            for(ActividadEntity storedEntity: actividadList)
-            {
-                if(entity.getId().equals(storedEntity.getId()))
-                {
+            for (ActividadEntity storedEntity : actividadList) {
+                if (entity.getId().equals(storedEntity.getId())) {
                     found = true;
                 }
-                
+
             }
             assertTrue(found);
         }
     }
 
     @Test
-    void testGetActividad() throws EntityNotFoundException
-    {
+    void testGetActividad() throws EntityNotFoundException {
         ActividadEntity entity = actividadList.get(0);
         ActividadEntity resultEntity = actividadService.getActividad(entity.getId());
         assertNotNull(resultEntity);
@@ -137,16 +158,14 @@ class ActividadServiceTest {
     }
 
     @Test
-    void testGetInvalidActividad()
-    {
-        assertThrows(EntityNotFoundException.class,()->{
+    void testGetInvalidActividad() {
+        assertThrows(EntityNotFoundException.class, () -> {
             actividadService.getActividad(0L);
         });
     }
 
     @Test
-    void testUpdateActividad()throws EntityNotFoundException
-    {
+    void testUpdateActividad() throws EntityNotFoundException {
         ActividadEntity entity = actividadList.get(0);
         ActividadEntity pojoEntity = factory.manufacturePojo(ActividadEntity.class);
         pojoEntity.setId(entity.getId());
@@ -164,14 +183,31 @@ class ActividadServiceTest {
     }
 
     @Test
-    void testDeleteActividad() throws EntityNotFoundException
+    void testUpdateActividadInvalid()
     {
+        assertThrows(EntityNotFoundException.class, () -> {
+            ActividadEntity pojoEntity = factory.manufacturePojo(ActividadEntity.class);
+            pojoEntity.setId(0L);
+            actividadService.updateActividad(0L, pojoEntity);
+    });
+
+    }
+
+    @Test
+    void testDeleteActividad() throws EntityNotFoundException {
         ActividadEntity entity = actividadList.get(1);
         actividadService.deleteActividad(entity.getId());
         ActividadEntity deleted = entityManager.find(ActividadEntity.class, entity.getId());
         assertNull(deleted);
     }
 
-    
+    @Test
+    void testDeleteInvalidActividad()
+    {
+        assertThrows(EntityNotFoundException.class, ()->{
+            actividadService.deleteActividad(0L);
+    });
+
+    }
 
 }
