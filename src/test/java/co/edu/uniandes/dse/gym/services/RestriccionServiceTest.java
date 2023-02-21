@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
@@ -87,7 +88,16 @@ class RestriccionServiceTest {
     }
 
     @Test
+    void testCreateRestriccionWithNotValidEdad()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            RestriccionEntity newEntity = factory.manufacturePojo(RestriccionEntity.class);
+            newEntity.setEdad(-20);
+            restriccionService.createRestriccion(newEntity);
+    });
+    }
 
+    @Test
     void testGetRestricciones()
     {
         List<RestriccionEntity> list = restriccionService.getRestricciones();
@@ -123,6 +133,14 @@ class RestriccionServiceTest {
     }
 
     @Test
+    void testGetInvalidRestriccion()
+    {
+        assertThrows(EntityNotFoundException.class,()->{
+            restriccionService.getRestriccion(0L);
+    });
+    }
+
+    @Test
     void testUpdateRestriccion() throws EntityNotFoundException
     {
         RestriccionEntity entity = restriccionList.get(0);
@@ -141,6 +159,16 @@ class RestriccionServiceTest {
     }
 
     @Test
+    void testUpdateRestriccionInvalid()
+    {
+        assertThrows(EntityNotFoundException.class, () -> {
+            RestriccionEntity pojoEntity = factory.manufacturePojo(RestriccionEntity.class);
+            pojoEntity.setId(0L);
+            restriccionService.updateRestriccion(0L, pojoEntity);
+    });
+    }
+
+    @Test
     void testDeleteRestriccion() throws EntityNotFoundException
     {
         RestriccionEntity entity = restriccionList.get(1);
@@ -150,6 +178,13 @@ class RestriccionServiceTest {
 
     }
 
+    @Test
+    void testDeleteInvalidRestriccion()
+    {
+        assertThrows(EntityNotFoundException.class, ()->{
+            restriccionService.deleteRestriccion(0L);
+    });
+    }
 
 
 
