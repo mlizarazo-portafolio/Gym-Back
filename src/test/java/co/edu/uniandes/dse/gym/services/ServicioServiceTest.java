@@ -83,4 +83,52 @@ public class ServicioServiceTest {
         assertEquals(newEntity.getDisponible(), entity.getDisponible());
     }
 
+    @Test
+    void testGetServicios() {
+        List<ServicioEntity> list = servicioService.getServicios();
+        assertEquals(servicioList.size(), list.size());
+        for (ServicioEntity entity : list) {
+            boolean found = false;
+            for (ServicioEntity storedEntity : servicioList) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+                    }
+            assertTrue(found);
+        }
+    }
+
+    @Test
+    void testGetServicioById() throws EntityNotFoundException {
+        ServicioEntity entity = servicioList.get(0);
+        ServicioEntity resultEntity = servicioService.getServicioById(entity.getId());
+
+        assertNotNull(resultEntity);
+        assertEquals(entity.getId(), resultEntity.getId());
+        assertEquals(entity.getServicio(), resultEntity.getServicio());
+        assertEquals(entity.getDisponible(), resultEntity.getDisponible());
+    }
+
+    @Test
+    void testUpdateServicio() throws EntityNotFoundException, IllegalOperationException {
+        ServicioEntity entity = servicioList.get(0);
+        ServicioEntity pojoEntity = factory.manufacturePojo(ServicioEntity.class);
+        pojoEntity.setId(entity.getId());
+        servicioService.updateServicio(entity.getId(), pojoEntity);
+
+        ServicioEntity resp = entityManager.find(ServicioEntity.class, entity.getId());
+
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getServicio(), resp.getServicio());
+        assertEquals(pojoEntity.getDisponible(), resp.getDisponible());
+    }
+
+    @Test
+    void testDeleteServicio() throws EntityNotFoundException, IllegalOperationException {
+        ServicioEntity entity = servicioList.get(1);
+        servicioService.deleteServicio(entity.getId());
+        ServicioEntity deleted = entityManager.find(ServicioEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
 }
