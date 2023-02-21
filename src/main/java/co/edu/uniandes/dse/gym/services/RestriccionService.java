@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import co.edu.uniandes.dse.gym.entities.RestriccionEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
+import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
 import co.edu.uniandes.dse.gym.repositories.RestriccionRepository;
 
@@ -52,7 +53,7 @@ public class RestriccionService{
 
         if(restriccionEntity.isEmpty())
         {
-            throw new EntityNotFoundException("RESTRICCION_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.RESTRICCION_NOT_FOUND);
         }
 
         log.info("Termina proceso de consultar la restriccion con id = {0}", restriccionId);

@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.uniandes.dse.gym.entities.ActividadEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
+import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public class ActividadService {
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
 
         if (actividadEntity.isEmpty()) {
-            throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
         }
 
         return actividadEntity.get();
@@ -74,7 +75,7 @@ public class ActividadService {
 
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
         if (actividadEntity.isEmpty()) {
-            throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
         }
 
         actividad.setId(actividadId);
