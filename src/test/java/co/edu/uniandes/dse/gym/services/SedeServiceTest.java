@@ -167,4 +167,11 @@ public class SedeServiceTest {
         assertNull(deleted);
     }
 
+    @Test
+    void testDeleteInvalidSede() {
+        assertThrows(EntityNotFoundException.class, ()->{
+                sedeService.deleteSede(0L);
+        });
+    }
+
 }
