@@ -20,6 +20,9 @@ public class ConvenioEntity extends  BaseEntity{
     private String nombre;
     private Double descuento;
 
+    public void setConvenio(ConvenioEntity convenioEntity) {
+    }
+
 
 
 }

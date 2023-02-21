@@ -10,5 +10,7 @@ import co.edu.uniandes.dse.gym.entities.PlanEntrenamientoEntity;
 @Repository
 public interface PlanEntrenamientoRepository extends JpaRepository<PlanEntrenamientoEntity, Long> {
     List<PlanEntrenamientoEntity> findByNombre(String nombre);
+
+    PlanEntrenamientoEntity save(Long planId);
     
 }
