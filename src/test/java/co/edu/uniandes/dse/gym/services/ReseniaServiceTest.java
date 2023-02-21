@@ -220,9 +220,71 @@ public class ReseniaServiceTest {
         });        
     }
 
+    @Test
+    void testUpdateReseniaWithNoValidUsuario() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setUsuario("");
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
 
+    @Test
+    void testUpdateReseniaWithNoValidUsuario2() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setUsuario(null);
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
 
-    
+    @Test
+    void testUpdateReseniaWithNoValidPuntuacion() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setPuntuacion(-1);
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
+
+    @Test
+    void testUpdateReseniaWithNoValidPuntuacion2() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setPuntuacion(null);
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
+
+    @Test
+    void testUpdateReseniaWithNoValidComentario() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setComentario("");
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
+
+    @Test
+    void testUpdateReseniaWithNoValidComentario2() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ReseniaEntity entity = reseniaList.get(0);
+                ReseniaEntity pojoEntity = factory.manufacturePojo(ReseniaEntity.class);
+                pojoEntity.setComentario(null);
+                pojoEntity.setId(entity.getId());
+                reseniaService.updateResenia(entity.getId(), pojoEntity);
+        });
+    }
 
     @Test
     void testDeleteResenia() throws EntityNotFoundException, IllegalOperationException {

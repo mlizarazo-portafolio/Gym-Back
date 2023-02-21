@@ -79,7 +79,7 @@ public class AtletaService {
             throw new IllegalOperationException("El peso no es válido");
         }
 
-        if (atleta.getNombre() != "" && atleta.getNombre() != null) {
+        if (!atleta.getNombre().equals("") || atleta.getNombre() != null) {
             throw new IllegalOperationException("Tiene que tener un nombre");
         }
         log.info("Termina proceso de creación del atleta");
