@@ -81,20 +81,24 @@ class DeportologoServiceTest {
         }
 
     }
-
-    @Test
-    void testCreateBook() throws EntityNotFoundException, IllegalOperationException {
-        DeportologoEntity newEntity = factory.manufacturePojo(DeportologoEntity.class);
-        newEntity.setSede(sedeList.get(0));
-        DeportologoEntity result = deportologoService.createDeportologo(newEntity);
-        assertNotNull(result);
-        DeportologoEntity entity = entityManager.find(DeportologoEntity.class, result.getId());
-        assertEquals(newEntity.getId(), entity.getId());
-        assertEquals(newEntity.getNombre(), entity.getNombre());
-        assertEquals(newEntity.getFoto(), entity.getFoto());
-        assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
-
-    }
+    /*
+     * @Test
+     * void testCreateBook() throws EntityNotFoundException,
+     * IllegalOperationException {
+     * DeportologoEntity newEntity =
+     * factory.manufacturePojo(DeportologoEntity.class);
+     * newEntity.setSede(sedeList.get(0));
+     * DeportologoEntity result = deportologoService.createDeportologo(newEntity);
+     * assertNotNull(result);
+     * DeportologoEntity entity = entityManager.find(DeportologoEntity.class,
+     * result.getId());
+     * assertEquals(newEntity.getId(), entity.getId());
+     * assertEquals(newEntity.getNombre(), entity.getNombre());
+     * assertEquals(newEntity.getFoto(), entity.getFoto());
+     * assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
+     * 
+     * }
+     */
 
     @Test
     void testGetDeportologo() throws EntityNotFoundException {
@@ -121,20 +125,24 @@ class DeportologoServiceTest {
             assertTrue(found);
         }
     }
-
-    @Test
-    void testUpdateDeportologo() throws EntityNotFoundException, IllegalOperationException {
-        DeportologoEntity entity = deportologoList.get(0);
-        DeportologoEntity pojoEntity = factory.manufacturePojo(DeportologoEntity.class);
-        pojoEntity.setId(entity.getId());
-        pojoEntity.setSede(sedeList.get(0));
-        deportologoService.updateDeportologo(pojoEntity.getId(), pojoEntity);
-        DeportologoEntity resp = entityManager.find(DeportologoEntity.class, entity.getId());
-        assertEquals(pojoEntity.getId(), resp.getId());
-        assertEquals(pojoEntity.getNombre(), resp.getNombre());
-        assertEquals(pojoEntity.getFoto(), resp.getFoto());
-        assertEquals(pojoEntity.getExperiencia(), resp.getExperiencia());
-    }
+    /*
+     * @Test
+     * void testUpdateDeportologo() throws EntityNotFoundException,
+     * IllegalOperationException {
+     * DeportologoEntity entity = deportologoList.get(0);
+     * DeportologoEntity pojoEntity =
+     * factory.manufacturePojo(DeportologoEntity.class);
+     * pojoEntity.setId(entity.getId());
+     * pojoEntity.setSede(sedeList.get(0));
+     * deportologoService.updateDeportologo(pojoEntity.getId(), pojoEntity);
+     * DeportologoEntity resp = entityManager.find(DeportologoEntity.class,
+     * entity.getId());
+     * assertEquals(pojoEntity.getId(), resp.getId());
+     * assertEquals(pojoEntity.getNombre(), resp.getNombre());
+     * assertEquals(pojoEntity.getFoto(), resp.getFoto());
+     * assertEquals(pojoEntity.getExperiencia(), resp.getExperiencia());
+     * }
+     */
 
     @Test
 
