@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
+import co.edu.uniandes.dse.gym.repositories.DeportologoRepository;
+import co.edu.uniandes.dse.gym.repositories.SedeRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -29,10 +31,10 @@ public class AtletaService {
     AtletaRepository atletaRepository;
 
     @Autowired
-    SedeService sedeService;
+    SedeRepository sedeRepository;
 
     @Autowired
-    DeportologoService deportologoService;
+    DeportologoRepository deportologoRepository;
 
     @Transactional
     public List<AtletaEntity> getAtletas() {
@@ -59,7 +61,7 @@ public class AtletaService {
             // sedeService.getSede(atleta.getSede().getId());
         }
         if (atleta.getDeportologo() != null) {
-            deportologoService.getDeportologo(atleta.getDeportologo().getId());
+            throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
         }
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
@@ -94,7 +96,7 @@ public class AtletaService {
             // sedeService.getSede(atleta.getSede().getId());
         }
         if (atleta.getDeportologo() != null) {
-            deportologoService.getDeportologo(atleta.getDeportologo().getId());
+            throw new IllegalOperationException("No se puede actualizar un atleta sin un deportologo");
         }
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");

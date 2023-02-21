@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import co.edu.uniandes.dse.gym.entities.DeportologoEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
+import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
 import co.edu.uniandes.dse.gym.repositories.DeportologoRepository;
+import co.edu.uniandes.dse.gym.repositories.SedeRepository;
 
 @Service
 public class DeportologoService {
@@ -19,10 +21,10 @@ public class DeportologoService {
     DeportologoRepository deportologoRepository;
 
     @Autowired
-    SedeService sedeService;
+    SedeRepository sedeRepository;
 
     @Autowired
-    AtletaService atletaService;
+    AtletaRepository atletaRepository;
 
     @Transactional
     public List<DeportologoEntity> getDeportologos() {
@@ -47,12 +49,11 @@ public class DeportologoService {
             throw new IllegalOperationException("No se puede crear un deportologo sin un id");
         }
         if (deportologo.getSede() != null) {
-            // sedeService.getSede(deportologo.getSede().getId());
+            throw new IllegalOperationException("No se puede crear un deportologo sin una sede");
         }
         if (deportologo.getValoracionAtletas() != null) {
-            for (int i = 0; i < deportologo.getValoracionAtletas().size(); i++) {
-                atletaService.getAtleta(deportologo.getValoracionAtletas().get(i).getId());
-            }
+
+            throw new IllegalOperationException("No se puede crear un deportologo sin una valoracion de atletas");
         }
         if (deportologo.getExperiencia() != null) {
 
@@ -81,12 +82,10 @@ public class DeportologoService {
             throw new IllegalOperationException("No se puede actualizar el id de un deportologo");
         }
         if (deportologo.getSede() != null) {
-            // sedeService.getSede(deportologo.getSede().getId());
+            throw new IllegalOperationException("No se puede crear un deportologo sin una sede");
         }
         if (deportologo.getValoracionAtletas() != null) {
-            for (int i = 0; i < deportologo.getValoracionAtletas().size(); i++) {
-                atletaService.getAtleta(deportologo.getValoracionAtletas().get(i).getId());
-            }
+            throw new IllegalOperationException("No se puede crear un deportologo sin una valoracion de atletas");
         }
         if (deportologo.getExperiencia() != null) {
 
