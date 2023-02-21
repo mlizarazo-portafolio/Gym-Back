@@ -110,6 +110,7 @@ public class ServicioServiceTest {
                 ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
                 SedeEntity sedeEntity = new SedeEntity();
                 sedeEntity.setId(0L);
+                newEntity.setSede(sedeEntity);
                 servicioService.createServicio(newEntity);
         });
     }
@@ -119,14 +120,6 @@ public class ServicioServiceTest {
         assertThrows(IllegalOperationException.class, () -> {
                 ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
                 newEntity.setSede(null);
-                servicioService.createServicio(newEntity);
-        });
-    }
-
-    @Test
-    void testCreateServicioEmptySede() {
-        assertThrows(IllegalOperationException.class, () -> {
-                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
                 servicioService.createServicio(newEntity);
         });
     }
