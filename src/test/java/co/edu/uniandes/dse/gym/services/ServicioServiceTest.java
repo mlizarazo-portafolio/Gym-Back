@@ -7,6 +7,13 @@ import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -15,6 +22,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import co.edu.uniandes.dse.gym.entities.ServicioEntity;
 import co.edu.uniandes.dse.gym.entities.SedeEntity;
+import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
+import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
 
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -25,7 +34,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @Import(ServicioService.class)
 public class ServicioServiceTest {
     @Autowired
-    private ServicioService ServicioService;
+    private ServicioService servicioService;
 
     @Autowired
     private TestEntityManager entityManager;
@@ -59,6 +68,18 @@ public class ServicioServiceTest {
             entityManager.persist(servicioEntity);
             servicioList.add(servicioEntity);
         }
+    }
+
+    @Test
+    void testCreateServicio() throws EntityNotFoundException, IllegalOperationException {
+        ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+        ServicioEntity result = servicioService.createServicio(newEntity);
+        assertNotNull(result);
+
+        ServicioEntity entity = entityManager.find(ServicioEntity.class, result.getId());
+        assertEquals(newEntity.getId(), entity.getId());
+        assertEquals(newEntity.getServicio(), entity.getServicio());
+        assertEquals(newEntity.getDisponible(), entity.getDisponible());
     }
 
 }
