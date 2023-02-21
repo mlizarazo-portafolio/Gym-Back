@@ -76,6 +76,7 @@ class ActividadServiceTest {
             actividadEntity.setEntrenador(entrenadorList.get(0));
             entityManager.persist(actividadEntity);
             actividadList.add(actividadEntity);
+            
 
         }
 
@@ -87,6 +88,7 @@ class ActividadServiceTest {
         ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
         newEntity.setEntrenador(entrenadorList.get(0));
         ActividadEntity result = actividadService.createActividad(newEntity);
+        assertNotNull(result);
         ActividadEntity entity = entityManager.find(ActividadEntity.class, result.getId());
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());

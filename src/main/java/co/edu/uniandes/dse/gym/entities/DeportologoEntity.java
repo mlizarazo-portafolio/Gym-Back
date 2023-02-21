@@ -3,6 +3,7 @@ package co.edu.uniandes.dse.gym.entities;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.transaction.Transactional;
 
 import lombok.Getter;
 
@@ -28,4 +29,5 @@ public class DeportologoEntity extends BaseEntity {
     private SedeEntity sede;
     @OneToMany(mappedBy = "deportologo")
     private List<AtletaEntity> valoracionAtletas = new ArrayList<>();
+
 }
