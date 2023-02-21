@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -71,6 +72,33 @@ public class SedeServiceTest {
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getDireccion(), entity.getDireccion());
         assertEquals(newEntity.getTelefono(), entity.getTelefono());
+    }
+
+    @Test
+    void testCreateSedeInvalidNombre() {
+        assertThrows(IllegalOperationException.class, () -> {
+                SedeEntity newEntity = factory.manufacturePojo(SedeEntity.class);
+                newEntity.setNombre(null);
+                sedeService.createSede(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateSedeInvaliDireccion() {
+        assertThrows(IllegalOperationException.class, () -> {
+                SedeEntity newEntity = factory.manufacturePojo(SedeEntity.class);
+                newEntity.setDireccion(null);
+                sedeService.createSede(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateSedeInvalidTelefono() {
+        assertThrows(IllegalOperationException.class, () -> {
+                SedeEntity newEntity = factory.manufacturePojo(SedeEntity.class);
+                newEntity.setTelefono(null);
+                sedeService.createSede(newEntity);
+        });
     }
 
     @Test

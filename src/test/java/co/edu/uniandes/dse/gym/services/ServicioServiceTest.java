@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -81,6 +82,45 @@ public class ServicioServiceTest {
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getServicio(), entity.getServicio());
         assertEquals(newEntity.getDisponible(), entity.getDisponible());
+    }
+
+    @Test
+    void testCreateServicioInvalidServicio() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+                newEntity.setSede(sedeList.get(0));
+                newEntity.setServicio(null);
+                servicioService.createServicio(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateServicioInvalidDisponible() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+                newEntity.setSede(sedeList.get(0));
+                newEntity.setDisponible(null);
+                servicioService.createServicio(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateServicioInvalidSede() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+                SedeEntity sedeEntity = new SedeEntity();
+                sedeEntity.setId(0L);
+                servicioService.createServicio(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateServicioNullSede() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+                newEntity.setSede(null);
+                servicioService.createServicio(newEntity);
+        });
     }
 
     @Test
