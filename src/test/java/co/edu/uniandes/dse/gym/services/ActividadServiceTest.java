@@ -95,6 +95,38 @@ class ActividadServiceTest {
     }
 
     @Test
+    void testCreateActividadWithNoValidName()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(entrenadorList.get(0));
+            newEntity.setNombre(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
+    void testCreateActividadWithNoValidTipo()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(entrenadorList.get(0));
+            newEntity.setTipo(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
+    void testCreateActividadWithNoValidEntrenador()
+    {
+        assertThrows(IllegalOperationException.class, () -> {
+            ActividadEntity newEntity = factory.manufacturePojo(ActividadEntity.class);
+            newEntity.setEntrenador(null);
+            actividadService.createActividad(newEntity);
+    });
+    }
+
+    @Test
     void testGetActividades() {
         List<ActividadEntity> list = actividadService.getActividades();
         assertEquals(actividadList.size(), list.size());
@@ -151,11 +183,31 @@ class ActividadServiceTest {
     }
 
     @Test
+    void testUpdateActividadInvalid()
+    {
+        assertThrows(EntityNotFoundException.class, () -> {
+            ActividadEntity pojoEntity = factory.manufacturePojo(ActividadEntity.class);
+            pojoEntity.setId(0L);
+            actividadService.updateActividad(0L, pojoEntity);
+    });
+
+    }
+
+    @Test
     void testDeleteActividad() throws EntityNotFoundException {
         ActividadEntity entity = actividadList.get(1);
         actividadService.deleteActividad(entity.getId());
         ActividadEntity deleted = entityManager.find(ActividadEntity.class, entity.getId());
         assertNull(deleted);
+    }
+
+    @Test
+    void testDeleteInvalidActividad()
+    {
+        assertThrows(EntityNotFoundException.class, ()->{
+            actividadService.deleteActividad(0L);
+    });
+
     }
 
 }
