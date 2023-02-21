@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -31,4 +32,23 @@ public class SedeServiceTest {
     private PodamFactory factory = new PodamFactoryImpl();
     
     private List<SedeEntity> sedeList = new ArrayList<>();
+
+    @BeforeEach
+    void setUp() {
+        clearData();
+        insertData();
+    }
+
+    private void clearData() {
+        entityManager.getEntityManager().createQuery("delete from SedeEntity");
+    }
+
+    private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            SedeEntity sedeEntity = factory.manufacturePojo(SedeEntity.class);
+            entityManager.persist(sedeEntity);
+            sedeList.add(sedeEntity);
+        }
+    }
+
 }
