@@ -16,74 +16,64 @@ import java.util.Optional;
 @Slf4j
 @Service
 public class ActividadService {
-    
+
     @Autowired
     ActividadRepository actividadRepository;
 
     @Transactional
-    public ActividadEntity createActividad(ActividadEntity actividadEntity) throws IllegalOperationException
-    {
+    public ActividadEntity createActividad(ActividadEntity actividadEntity) throws IllegalOperationException {
         log.info("Inicia proceso de creación de la actividad");
-        
-        //Una actividad no puede existir si no tiene nombre
-        if(actividadEntity.getNombre()== null)
-        {
+
+        // Una actividad no puede existir si no tiene nombre
+        if (actividadEntity.getNombre() == null) {
             throw new IllegalOperationException("La actividad no es valida");
         }
 
-        //Una actividad no puede existir si no tiene un tipo
-        if(actividadEntity.getTipo()== null)
-        {
+        // Una actividad no puede existir si no tiene un tipo
+        if (actividadEntity.getTipo() == null) {
             throw new IllegalOperationException("La actividad no es valida");
         }
 
-         //Una actividad no puede existir si no tiene un entrenador
-        if(actividadEntity.getEntrenador()== null)
-        {
+        // Una actividad no puede existir si no tiene un entrenador
+        if (actividadEntity.getEntrenador() == null) {
             throw new IllegalOperationException("La actividad no es valida");
         }
-        
+
         log.info("Termina el proceso de creación de actividad");
-        
+
         return actividadRepository.save(actividadEntity);
 
     }
 
-
-    //Obtener todas las actividades
+    // Obtener todas las actividades
     @Transactional
-    public List<ActividadEntity> getActividades(){
+    public List<ActividadEntity> getActividades() {
 
         log.info("Inicia el proceso de consultar todas las actividades");
         return actividadRepository.findAll();
     }
 
-
-    //Obterner por id
+    // Obterner por id
     @Transactional
-    public ActividadEntity getActividad(Long actividadId) throws EntityNotFoundException
-    {
+    public ActividadEntity getActividad(Long actividadId) throws EntityNotFoundException {
         log.info("Inicia proceso de consultar la actvidad con id = {0}", actividadId);
 
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
 
-        if(actividadEntity.isEmpty())
-        {
+        if (actividadEntity.isEmpty()) {
             throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
         }
-     
-        return actividadEntity.get(); 
+
+        return actividadEntity.get();
     }
 
-    //Actualizar
+    // Actualizar
     @Transactional
-    public ActividadEntity updateActividad(Long actividadId, ActividadEntity actividad)throws EntityNotFoundException
-    {
+    public ActividadEntity updateActividad(Long actividadId, ActividadEntity actividad) throws EntityNotFoundException {
         log.info("Inicia proceso de actualizar la actividad con id = {0}", actividadId);
-        
+
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
-        if(actividadEntity.isEmpty())
-        {
+        if (actividadEntity.isEmpty()) {
             throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
         }
 
@@ -92,23 +82,19 @@ public class ActividadService {
         return actividadRepository.save(actividad);
     }
 
-    //Borrar
+    // Borrar
     @Transactional
-    public void deleteActividad(Long actividadId)throws EntityNotFoundException
-    {
+    public void deleteActividad(Long actividadId) throws EntityNotFoundException {
         log.info("Inicia proceso de borrar la actividad con id = {0}", actividadId);
 
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
-        
-        if(actividadEntity.isEmpty())
-        {
+
+        if (actividadEntity.isEmpty()) {
             throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
         }
-        
+
         actividadRepository.deleteById(actividadId);
         log.info("Termina proceso de borrar la actividad con id = {0}", actividadId);
     }
-
-
 
 }
