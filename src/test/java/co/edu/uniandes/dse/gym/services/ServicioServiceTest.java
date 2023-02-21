@@ -123,15 +123,13 @@ public class ServicioServiceTest {
         });
     }
 
-    // @Test
-    // void testCreateServicioEmptySede() {
-    //     assertThrows(IllegalOperationException.class, () -> {
-    //             ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
-    //             SedeEntity sedeEntity = new SedeEntity();
-    //             newEntity.setSede(sedeEntity);
-    //             servicioService.createServicio(newEntity);
-    //     });
-    // }
+    @Test
+    void testCreateServicioEmptySede() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ServicioEntity newEntity = factory.manufacturePojo(ServicioEntity.class);
+                servicioService.createServicio(newEntity);
+        });
+    }
 
     @Test
     void testGetServicios() {
