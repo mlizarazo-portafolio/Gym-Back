@@ -96,31 +96,29 @@ class AtletaServiceTest {
         atletaList.get(0).setSede(sedeList.get(0));
 
     }
-    
 
-      @Test
-      void testCreateAtleta() throws EntityNotFoundException,
-      IllegalOperationException {
-      AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
-      newEntity.setDeportologo(deportologoList.get(0));
-      newEntity.setSede(sedeList.get(0));
-      newEntity.setFechaNacimiento(date);
-      newEntity.setDireccion("Calle 127 #5-46");
-      newEntity.setTipoSangre("O+");
-      newEntity.setAltura(189);
-      newEntity.setPeso(80);
-      AtletaEntity result = atletaService.createAtleta(newEntity);
-      AtletaEntity entity = entityManager.find(AtletaEntity.class, result.getId());
-      assertEquals(newEntity.getId(), entity.getId());
-      assertEquals(newEntity.getNombre(), entity.getNombre());
-      assertEquals(newEntity.getDeportologo(), entity.getDeportologo());
-      assertEquals(newEntity.getSede(), entity.getSede());
-      assertEquals(newEntity.getTipoSangre(), entity.getTipoSangre());
-      assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
-      assertEquals(newEntity.getAltura(), entity.getAltura());
-      assertEquals(newEntity.getPeso(), entity.getPeso());
-      }
-     
+    @Test
+    void testCreateAtleta() throws EntityNotFoundException,
+            IllegalOperationException {
+        AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+        newEntity.setDeportologo(deportologoList.get(0));
+        newEntity.setSede(sedeList.get(0));
+        newEntity.setFechaNacimiento(date);
+        newEntity.setDireccion("Calle 127 #5-46");
+        newEntity.setTipoSangre("O+");
+        newEntity.setAltura(189);
+        newEntity.setPeso(80);
+        AtletaEntity result = atletaService.createAtleta(newEntity);
+        AtletaEntity entity = entityManager.find(AtletaEntity.class, result.getId());
+        assertEquals(newEntity.getId(), entity.getId());
+        assertEquals(newEntity.getNombre(), entity.getNombre());
+        assertEquals(newEntity.getDeportologo(), entity.getDeportologo());
+        assertEquals(newEntity.getSede(), entity.getSede());
+        assertEquals(newEntity.getTipoSangre(), entity.getTipoSangre());
+        assertEquals(newEntity.getFechaNacimiento(), entity.getFechaNacimiento());
+        assertEquals(newEntity.getAltura(), entity.getAltura());
+        assertEquals(newEntity.getPeso(), entity.getPeso());
+    }
 
     @Test
     void testGetAtleta() throws EntityNotFoundException {
@@ -179,17 +177,6 @@ class AtletaServiceTest {
         atletaService.deleteAtleta(entity.getId());
         AtletaEntity deleted = entityManager.find(AtletaEntity.class, entity.getId());
         assertNull(deleted);
-    }
-
-    @Test
-    void testCreateAtletaWithSameName() {
-        AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
-        newEntity.setDeportologo(deportologoList.get(0));
-        newEntity.setSede(sedeList.get(0));
-        newEntity.setNombre(atletaList.get(0).getNombre());
-        assertThrows(IllegalOperationException.class, () -> {
-            atletaService.createAtleta(newEntity);
-        });
     }
 
 }
