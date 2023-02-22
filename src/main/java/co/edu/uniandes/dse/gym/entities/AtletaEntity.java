@@ -35,15 +35,17 @@ public class AtletaEntity extends BaseEntity {
     private Integer peso;
 
     @PodamExclude
-
     @ManyToOne
     private SedeEntity sede;
+
     @PodamExclude
     @ManyToOne
     private PlanEntrenamientoEntity plan;
+
     @PodamExclude
     @ManyToMany(mappedBy = "atletasInscritos")
     private List<ActividadEntity> actividadesInscritas = new ArrayList<>();
+    
     @PodamExclude
     @ManyToOne
     private DeportologoEntity deportologo;
