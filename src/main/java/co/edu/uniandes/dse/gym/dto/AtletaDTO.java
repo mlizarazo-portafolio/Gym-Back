@@ -14,4 +14,7 @@ public class AtletaDTO {
     private Integer altura;
     private Integer peso;
 
+    private PlanEntrenamientoDTO plan;
+    private DeportologoDTO deportologo;
+
 }

@@ -6,4 +6,6 @@ public class DeportologoDTO {
     private String experiencia;
     private String foto;
 
+    private SedeDTO sede;
+
 }
