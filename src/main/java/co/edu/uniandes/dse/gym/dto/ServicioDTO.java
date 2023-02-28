@@ -9,4 +9,5 @@ public class ServicioDTO {
     private Long id;
     private String servicio;
     private Boolean disponible;
+    private SedeDTO sede;
 }
