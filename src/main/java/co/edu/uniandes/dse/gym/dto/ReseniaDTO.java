@@ -10,5 +10,7 @@ public class ReseniaDTO {
     private String usuario;
     private Integer puntuacion;
     private String comentario;
+
+    private SedeDTO sede;
     
 }

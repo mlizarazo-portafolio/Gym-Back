@@ -11,5 +11,7 @@ public class EntrenadorDTO {
     private String nombre;
     private String foto;
     private String trayectoria;
+
+    private ActividadDTO actividad;
     
 }
