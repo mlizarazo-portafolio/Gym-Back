@@ -9,4 +9,5 @@ public class RestriccionDTO {
     private Long id;
     private Integer edad;
     private String condFisica;
+    private ActividadDTO actividad;
 }
