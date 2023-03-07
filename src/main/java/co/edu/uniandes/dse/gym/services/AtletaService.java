@@ -60,15 +60,18 @@ public class AtletaService {
         if (atleta.getSede() != null) {
             // sedeService.getSede(atleta.getSede().getId());
         }
-        if (atleta.getDeportologo() != null) {
+        if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
         }
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
-        if (!validateDireccion(atleta.getDireccion())) {
+        if (atleta.getDireccion()==null){
             throw new IllegalOperationException("La dirección no es válida");
         }
+        //if (!validateDireccion(atleta.getDireccion())) {
+        //    throw new IllegalOperationException("La dirección no es válida");
+        //}
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -79,7 +82,7 @@ public class AtletaService {
             throw new IllegalOperationException("El peso no es válido");
         }
 
-        if (atleta.getNombre() != "" && atleta.getNombre() != null) {
+        if (atleta.getNombre().equals("") || atleta.getNombre() == null) {
             throw new IllegalOperationException("Tiene que tener un nombre");
         }
         log.info("Termina proceso de creación del atleta");
@@ -95,15 +98,18 @@ public class AtletaService {
         if (atleta.getSede() != null) {
             // sedeService.getSede(atleta.getSede().getId());
         }
-        if (atleta.getDeportologo() != null) {
+        if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede actualizar un atleta sin un deportologo");
         }
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
-        if (!validateDireccion(atleta.getDireccion())) {
+        if (atleta.getDireccion()==null){
             throw new IllegalOperationException("La dirección no es válida");
         }
+        //if (!validateDireccion(atleta.getDireccion())) {
+        //    throw new IllegalOperationException("La dirección no es válida");
+        //}
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -129,8 +135,8 @@ public class AtletaService {
     }
 
     private boolean validatePeso(Integer peso) {
-        String weight = "75.3";
-        String regex = "^([1-9][0-9]{0,2}|0)(\\.[0-9]{1,2})?kg$";
+        String weight = Integer.toString(peso);
+        String regex = "^([1-9][0-9]{0,2}|0)(\\.[0-9]{1,2})?$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(weight);
         if (matcher.matches()) {
@@ -143,7 +149,7 @@ public class AtletaService {
 
     private boolean validateAltura(Integer altura) {
         String s = Integer.toString(altura);
-        String regex = "^(1[0-9]{2}|[5-9][0-9])cm|^(1\\.[0-9]{2}|[5-9]\\.[0-9]{1,2})m$";
+        String regex = "^(1[0-9]{2}|[5-9][0-9])|^(1\\.[0-9]{2}|[5-9]\\.[0-9]{1,2})$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(s);
         if (matcher.matches()) {
@@ -177,7 +183,6 @@ public class AtletaService {
             // System.out.println("The address is not valid.");
             return false;
         }
-
     }
 
     private boolean validateNacimiento(Date birthdate) {

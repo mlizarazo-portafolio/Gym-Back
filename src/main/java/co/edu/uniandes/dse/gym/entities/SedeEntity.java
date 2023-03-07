@@ -33,5 +33,9 @@ public class SedeEntity extends BaseEntity {
     @PodamExclude
     @OneToMany(mappedBy = "sede")
     private List<ServicioEntity> serviciosDisponibles = new ArrayList<>();
+
+    @PodamExclude
+    @OneToMany(mappedBy = "sede")
+    private List<AtletaEntity> atletas = new ArrayList<>();
     
 }
