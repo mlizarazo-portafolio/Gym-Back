@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.logging.log4j.message.Message;
+
 import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

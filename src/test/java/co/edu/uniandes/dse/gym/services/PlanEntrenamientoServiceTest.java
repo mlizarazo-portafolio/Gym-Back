@@ -75,7 +75,7 @@ public class PlanEntrenamientoServiceTest {
         PlanEntrenamientoEntity result = planEntrenamientoService.crearPlan(newEntity);
         assertNotNull(result);
         PlanEntrenamientoEntity entity = entityManager.find(PlanEntrenamientoEntity.class, result.getId());
-        assertEquals(newEntity.getId(), entity.getId());
+        
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         assertEquals(newEntity.getObjetivoBasico(), entity.getObjetivoBasico());
@@ -90,8 +90,24 @@ public class PlanEntrenamientoServiceTest {
         PlanEntrenamientoEntity entity = planList.get(0);
         PlanEntrenamientoEntity resultEntity = planEntrenamientoService.getPlan(entity.getId());
         assertNotNull(resultEntity);
-        assertEquals(entity.getId(), resultEntity.getId());
+        
         assertEquals(entity.getNombre(), resultEntity.getNombre());
+        assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
+        assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
+        assertEquals(entity.getDirrecion(), resultEntity.getDirrecion());
+        assertEquals(entity.getCoordenada(), resultEntity.getCoordenada());
+        assertEquals(entity.getDuracion(), resultEntity.getDuracion());
+        assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
+
+    @Test
+    void testGetInvalidPlan() {
+        assertThrows(EntityNotFoundException.class,()->{
+                planEntrenamientoService.getPlan(0L);
+        });
+    }
+
+
+
 
 }

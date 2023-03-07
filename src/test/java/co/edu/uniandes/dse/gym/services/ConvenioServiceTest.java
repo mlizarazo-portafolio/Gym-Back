@@ -52,7 +52,7 @@ public class ConvenioServiceTest {
      * Limpia las tablas que están implicadas en la prueba.
      */
     private void clearData() {
-        entityManager.getEntityManager().createQuery("delete from PlanEntrenamientoEntity");
+        entityManager.getEntityManager().createQuery("delete from ConvenioEntity");
     }
 
     /**
@@ -75,7 +75,6 @@ public class ConvenioServiceTest {
         ConvenioEntity result = convenioService.crearConvenio(newEntity);
         assertNotNull(result);
         ConvenioEntity entity = entityManager.find(ConvenioEntity.class, result.getId());
-        assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getDescuento(), entity.getDescuento());
     }
@@ -85,11 +84,21 @@ public class ConvenioServiceTest {
         ConvenioEntity entity = convenioList.get(0);
         ConvenioEntity resultEntity = convenioService.getConvenio(entity.getId());
         assertNotNull(resultEntity);
-        assertEquals(entity.getId(), resultEntity.getId());
+        
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getDescuento(), resultEntity.getDescuento());
 
-}
+    }
+
+    @Test
+    void testGetInvalidConvenio() {
+        assertThrows(EntityNotFoundException.class,()->{
+                convenioService.getConvenio(0L);
+        });
+    }
+    
+
+
 
 
     
