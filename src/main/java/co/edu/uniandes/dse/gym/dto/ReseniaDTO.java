@@ -12,5 +12,5 @@ public class ReseniaDTO {
     private String comentario;
 
     private SedeDTO sede;
-    
+     
 }
