@@ -1,0 +1,641 @@
+{
+	"info": {
+		"_postman_id": "ddfcca18-0e5f-4d99-b407-cdaa161908c8",
+		"name": "ReseniaTests.postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "25565466-ddfcca18-0e5f-4d99-b407-cdaa161908c8"
+	},
+	"item": [
+		{
+			"name": "createSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c96e93a9-46b4-49e5-8468-2ebbe439b317",
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ff25eba9-07e1-4d72-940c-0dda653c5542",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"12 st\",\r\n  \"telefono\": \"6242245\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "74680042-670a-45bf-a6a6-8002bbe074be",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "87e58485-5cda-4d6e-8d9c-9aeb82f5db5d",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"4\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "2dce5e82-4d32-4a87-b57c-2e05cc9923d0",
+					"name": "createResenia",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resenias",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "getResenias",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e7ab94a-7209-41ca-aa44-f1368a820735",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "0b8c6b7d-93a5-48a1-ad9d-84709233a32f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "a198367c-0ea3-4ef0-9f42-06a5381030de",
+					"name": "getResenias",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}]"
+				}
+			]
+		},
+		{
+			"name": "getReseniaById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "951d9bcf-3ee0-4589-a73f-83168dcff6ab",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "e5a3b483-bb47-45ff-b120-c15c7ef10403",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "338007b1-f469-40b0-817b-b3581d9f4db3",
+					"name": "getReseniaById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "getInvalidResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93dff0c7-e380-4263-aea0-40c6b85958df",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "4450e049-97ac-49ba-8748-19da5c1df9fd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "34520a69-14a6-4913-97ca-dcfcd0d5958f",
+					"name": "getInvalidResenia",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:01:09\",\r\n        \"message\": \"La resenia con el ID dado no existe\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "updateInvalidResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "62661295-85c3-4880-a4ee-6fbea0fd8b0d",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "920ba7cf-a60f-4451-8726-18bd2cb5dd75",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"4\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "5e36408f-18ad-4ff4-b313-0b703f8c6323",
+					"name": "updateInvalidResenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:04:10\",\r\n        \"message\": \"La resenia con el ID dado no fue encontrada\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "updateResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b01cadc2-279f-4cf4-a4be-47ed75393730",
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "da5b53e0-629e-4197-9b76-42397250ab77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"5\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "a735eb7b-ec91-46c7-b218-b60a43a52147",
+					"name": "updateResenia",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenia/{{resenia_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenia",
+								"{{resenia_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"usuario\": \"rroullier0\",\r\n    \"puntuacion\": \"3\",\r\n    \"comentario\": \"Lorem ipsum\",\r\n    \"Sede\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Bacata\",\r\n        \"direccion\": \"Calle 2 #3 - 19\",\r\n        \"telefono\": 6242245\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "deleteInvalidResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "62ac9828-11e4-4e64-aa3f-7c7158cb3a2b",
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5b2c096f-f2be-4b26-ae0c-e6cd31725ea9",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "56417f11-ee04-4915-bc1c-3ce9ab123687",
+					"name": "deleteInvalidResenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:05:19\",\r\n        \"message\": \"La resenia con el ID dado no fue encontrada\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "deleteResenia",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e1058b97-973b-42a3-9bdc-c0e0201704a3",
+						"exec": [
+							"console.log(responseBody);\r",
+							"tests[\"Se borra sin error\"] = responseCode.code === 204;\r",
+							"var id = +pm.globals.get(\"resenia_id_1\");\r",
+							"pm.globals.set(\"resenia_id_1\", ++id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "49a294eb-1ecf-4994-8572-839ef38bd6b0",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resenias",
+						"{{resenia_id_1}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "e15293a9-585e-45e1-9f31-0c22a295ad77",
+					"name": "deleteResenia",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resenias",
+								"{{resenia_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"cookie": []
+				}
+			]
+		}
+	]
+}
