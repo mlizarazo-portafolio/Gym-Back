@@ -14,9 +14,12 @@
 					"script": {
 						"id": "c96e93a9-46b4-49e5-8468-2ebbe439b317",
 						"exec": [
-							"var data = JSON.parse(responseBody);\r",
-							"postman.setGlobalVariable(\"new_id_sede\",data.id);\r",
-							"tests[\"no genera error en el Post\"] = responseCode.code === 201;"
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"new_id_sede\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -46,9 +49,45 @@
 					"path": [
 						"sedes"
 					]
-				}
+				},
+				"description": "Crea una sede en la base de datos con los atributos dados."
 			},
-			"response": []
+			"response": [
+				{
+					"id": "776065dc-13c8-4f77-8100-eff0cead4efa",
+					"name": "createSede",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/sedes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"sedes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"name": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"12 st\",\r\n  \"telefono\": \"6242245\"\r\n}"
+				}
+			]
 		},
 		{
 			"name": "createResenia",
@@ -59,10 +98,11 @@
 						"id": "74680042-670a-45bf-a6a6-8002bbe074be",
 						"exec": [
 							"var data = pm.response.json()\r",
+							"pm.globals.set(\"resenia_id_1\", data.id);\r",
 							"\r",
-							"pm.test(\"Status code is 201\", function(){\r",
-							"    pm.response.to.have.status(201);\r",
-							"}); "
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -92,7 +132,8 @@
 					"path": [
 						"resenias"
 					]
-				}
+				},
+				"description": "Crea una resenia en la base de datos con los atributos dados."
 			},
 			"response": [
 				{
@@ -111,11 +152,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/resenias",
+							"raw": "http://localhost:8080/api/resenias",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias"
 							]
 						}
@@ -145,10 +189,13 @@
 					"script": {
 						"id": "9e7ab94a-7209-41ca-aa44-f1368a820735",
 						"exec": [
-							"var data = pm.response.json()\r",
+							"pm.test('Numero de resenias > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
 							"\r",
-							"pm.test(\"Status code is 200\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -170,7 +217,8 @@
 					"path": [
 						"resenias"
 					]
-				}
+				},
+				"description": "Devuelve la lista de todas las resenias en la base de datos."
 			},
 			"response": [
 				{
@@ -180,11 +228,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias",
+							"raw": "http://localhost:8080/api/resenias",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias"
 							]
 						}
@@ -214,10 +265,8 @@
 					"script": {
 						"id": "951d9bcf-3ee0-4589-a73f-83168dcff6ab",
 						"exec": [
-							"var data = pm.response.json()\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -240,7 +289,8 @@
 						"resenias",
 						"{{resenia_id_1}}"
 					]
-				}
+				},
+				"description": "Devuelve la resenia con el id dado."
 			},
 			"response": [
 				{
@@ -250,11 +300,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+							"raw": "http://localhost:8080/api/resenias/{{resenia_id_1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias",
 								"{{resenia_id_1}}"
 							]
@@ -311,7 +364,8 @@
 						"resenias",
 						"0"
 					]
-				}
+				},
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -321,11 +375,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/0",
+							"raw": "http://localhost:8080/api/resenias/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias",
 								"0"
 							]
@@ -391,7 +448,8 @@
 						"resenias",
 						"0"
 					]
-				}
+				},
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -401,11 +459,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/0",
+							"raw": "http://localhost:8080/api/resenias/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias",
 								"0"
 							]
@@ -436,9 +497,9 @@
 					"script": {
 						"id": "b01cadc2-279f-4cf4-a4be-47ed75393730",
 						"exec": [
-							"console.log(responseBody);\r",
-							"var data = JSON.parse(responseBody);\r",
-							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -469,7 +530,8 @@
 						"resenias",
 						"{{resenia_id_1}}"
 					]
-				}
+				},
+				"description": "Actualiza la resenia con el id dado."
 			},
 			"response": [
 				{
@@ -479,11 +541,14 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenia/{{resenia_id_1}}",
+							"raw": "http://localhost:8080/api/resenia/{{resenia_id_1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenia",
 								"{{resenia_id_1}}"
 							]
@@ -540,7 +605,8 @@
 						"resenias",
 						"0"
 					]
-				}
+				},
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -550,11 +616,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/0",
+							"raw": "http://localhost:8080/api/resenias/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias",
 								"0"
 							]
@@ -585,10 +654,9 @@
 					"script": {
 						"id": "e1058b97-973b-42a3-9bdc-c0e0201704a3",
 						"exec": [
-							"console.log(responseBody);\r",
-							"tests[\"Se borra sin error\"] = responseCode.code === 204;\r",
-							"var id = +pm.globals.get(\"resenia_id_1\");\r",
-							"pm.globals.set(\"resenia_id_1\", ++id);"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -610,7 +678,8 @@
 						"resenias",
 						"{{resenia_id_1}}"
 					]
-				}
+				},
+				"description": "Borra a la resenia con el id dado, devuelve el código 204."
 			},
 			"response": [
 				{
@@ -620,11 +689,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+							"raw": "http://localhost:8080/api/resenias/{{resenia_id_1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"resenias",
 								"{{resenia_id_1}}"
 							]

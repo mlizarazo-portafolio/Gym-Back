@@ -15,10 +15,11 @@
 						"id": "b4afcb1d-34b5-4751-8580-e15cb9ff72e0",
 						"exec": [
 							"var data = pm.response.json()\r",
+							"pm.globals.set(\"entrenador_id_1\", data.id);\r",
 							"\r",
-							"pm.test(\"Status code is 201\", function(){\r",
-							"    pm.response.to.have.status(201);\r",
-							"}); "
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -96,10 +97,13 @@
 					"script": {
 						"id": "33576628-fa5a-4e1e-aa89-289a3a54583e",
 						"exec": [
-							"var data = pm.response.json()\r",
+							"pm.test('Numero de entrenadores > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
 							"\r",
-							"pm.test(\"Status code is 200\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -131,7 +135,7 @@
 						"entrenadores"
 					]
 				},
-				"description": "Devuelve la lista de todos los entrenadores en la base de datos.\n\nStartFragment\n\n\\[{  \n\"id\": 1,  \n\"nombre\": \"Drake De Giovanni\",  \n\"foto\": \"http://dummyimage.com/195x100.png/5fa2dd/ffffff\",  \n\"trayetoria\": \"7d2cb55707bb71426214a46079b041f6345fe43802821848b5e35672605da2d7\"  \n}\\]\n\nEndFragment"
+				"description": "Devuelve la lista de todos los entrenadores en la base de datos."
 			},
 			"response": [
 				{
@@ -178,10 +182,8 @@
 					"script": {
 						"id": "4dc11fa7-f62f-4b97-8db1-6c75d3022d17",
 						"exec": [
-							"var data = pm.response.json()\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function(){\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -214,7 +216,7 @@
 						"{{entrenador_id_1}}"
 					]
 				},
-				"description": "Devuelve el entrenador con el id dado"
+				"description": "Devuelve el entrenador con el id dado."
 			},
 			"response": [
 				{
@@ -314,7 +316,7 @@
 						"0"
 					]
 				},
-				"description": "Devuelve error 404 not found"
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -398,7 +400,7 @@
 						"0"
 					]
 				},
-				"description": "Devuelve error 404 not found"
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -437,9 +439,9 @@
 					"script": {
 						"id": "c32bff78-5cf4-48e7-8491-85041bad2512",
 						"exec": [
-							"console.log(responseBody);\r",
-							"var data = JSON.parse(responseBody);\r",
-							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -471,7 +473,7 @@
 						"{{entrenador_id_1}}"
 					]
 				},
-				"description": "Actualiza al entrenador con el id dado"
+				"description": "Actualiza al entrenador con el id dado."
 			},
 			"response": [
 				{
@@ -546,7 +548,7 @@
 						"0"
 					]
 				},
-				"description": "Devuelve error 404 not found"
+				"description": "Devuelve error 404 not found."
 			},
 			"response": [
 				{
@@ -585,10 +587,9 @@
 					"script": {
 						"id": "b5b2ec24-f0cd-4e51-8a94-000b6b1cc7e5",
 						"exec": [
-							"console.log(responseBody);\r",
-							"tests[\"Se borra sin error\"] = responseCode.code === 204;\r",
-							"var id = +pm.globals.get(\"entrenador_id_1\");\r",
-							"pm.globals.set(\"entrenador_id_1\", ++id);"
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
 						],
 						"type": "text/javascript"
 					}
@@ -611,7 +612,7 @@
 						"{{entrenador_id_1}}"
 					]
 				},
-				"description": "Borra al entrenador con el id dado"
+				"description": "Borra al entrenador con el id dado, devuelve el código 204."
 			},
 			"response": [
 				{
