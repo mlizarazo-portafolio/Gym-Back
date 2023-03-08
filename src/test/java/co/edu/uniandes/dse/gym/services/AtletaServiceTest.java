@@ -192,4 +192,13 @@ class AtletaServiceTest {
         });
     }
 
+    @Test
+    void testCreateAtletaWithNoValidDate() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setFechaNacimiento(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
 }
