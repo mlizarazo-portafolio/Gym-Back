@@ -66,12 +66,12 @@ public class AtletaService {
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
-        if (atleta.getDireccion()==null){
+        if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        //if (!validateDireccion(atleta.getDireccion())) {
-        //    throw new IllegalOperationException("La dirección no es válida");
-        //}
+        // if (!validateDireccion(atleta.getDireccion())) {
+        // throw new IllegalOperationException("La dirección no es válida");
+        // }
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -104,12 +104,12 @@ public class AtletaService {
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
-        if (atleta.getDireccion()==null){
+        if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        //if (!validateDireccion(atleta.getDireccion())) {
-        //    throw new IllegalOperationException("La dirección no es válida");
-        //}
+        // if (!validateDireccion(atleta.getDireccion())) {
+        // throw new IllegalOperationException("La dirección no es válida");
+        // }
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }

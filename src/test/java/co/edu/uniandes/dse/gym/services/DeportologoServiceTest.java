@@ -68,6 +68,12 @@ class DeportologoServiceTest {
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() {
+        for (int i = 0; i < 3; i++) {
+            SedeEntity sedeEntity = factory.manufacturePojo(SedeEntity.class);
+
+            entityManager.persist(sedeEntity);
+            atletaList.add(sedeEntity);
+        }
 
         for (int i = 0; i < 3; i++) {
             DeportologoEntity deportologoEntity = factory.manufacturePojo(DeportologoEntity.class);

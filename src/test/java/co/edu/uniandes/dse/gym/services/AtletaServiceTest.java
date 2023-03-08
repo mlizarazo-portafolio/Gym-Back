@@ -183,4 +183,13 @@ class AtletaServiceTest {
         assertNull(deleted);
     }
 
+    @Test
+    void testCreateAtletaWithNoValidName() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setNombre("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
 }
