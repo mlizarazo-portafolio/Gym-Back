@@ -249,4 +249,47 @@ class AtletaServiceTest {
         });
     }
 
+    @Test
+    void testCreateAtletaWithNoValidDeportologo() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDeportologo(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidSede() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setSede(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testGetAtletaWithNoValidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+            atletaService.getAtleta(-1L);
+        });
+    }
+
+    @Test
+    void testUpdateAtletaWithNoValidId() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setId(-1L);
+            atletaService.updateAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testUpdateAtletaWithNoValidName() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setNombre("");
+            atletaService.updateAtleta(newEntity);
+        });
+    }
 }
