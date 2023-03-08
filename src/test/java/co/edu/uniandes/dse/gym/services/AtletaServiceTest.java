@@ -201,4 +201,52 @@ class AtletaServiceTest {
         });
     }
 
+    @Test
+    void testCreateAtletaWithNoValidAddress() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDireccion("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidBloodType() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setTipoSangre("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidHeight() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setAltura(-3);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidWeight() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setPeso(-3);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidDireccion() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDireccion("98e76");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
 }
