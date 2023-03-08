@@ -21,6 +21,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.entities.DeportologoEntity;
 import co.edu.uniandes.dse.gym.entities.SedeEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
@@ -44,7 +45,7 @@ class DeportologoServiceTest {
     private PodamFactory factory = new PodamFactoryImpl();
 
     private List<DeportologoEntity> deportologoList = new ArrayList<>();
-    private List<SedeEntity> sedeList = new ArrayList<>();
+    private List<SedeEntity> atletaList = new ArrayList<>();
 
     /**
      * Configuración inicial de la prueba.
@@ -67,38 +68,33 @@ class DeportologoServiceTest {
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      */
     private void insertData() {
-        for (int i = 0; i < 3; i++) {
-            SedeEntity sedeEntity = factory.manufacturePojo(SedeEntity.class);
-            entityManager.persist(sedeEntity);
-            sedeList.add(sedeEntity);
-        }
 
         for (int i = 0; i < 3; i++) {
             DeportologoEntity deportologoEntity = factory.manufacturePojo(DeportologoEntity.class);
-            deportologoEntity.setSede(sedeList.get(0));
+
             entityManager.persist(deportologoEntity);
             deportologoList.add(deportologoEntity);
         }
 
     }
-    /*
-     * @Test
-     * void testCreateBook() throws EntityNotFoundException,
-     * IllegalOperationException {
-     * DeportologoEntity newEntity =
-     * factory.manufacturePojo(DeportologoEntity.class);
-     * newEntity.setSede(sedeList.get(0));
-     * DeportologoEntity result = deportologoService.createDeportologo(newEntity);
-     * assertNotNull(result);
-     * DeportologoEntity entity = entityManager.find(DeportologoEntity.class,
-     * result.getId());
-     * assertEquals(newEntity.getId(), entity.getId());
-     * assertEquals(newEntity.getNombre(), entity.getNombre());
-     * assertEquals(newEntity.getFoto(), entity.getFoto());
-     * assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
-     * 
-     * }
-     */
+
+    @Test
+    void testCreateDeportologo() throws EntityNotFoundException,
+            IllegalOperationException {
+        DeportologoEntity newEntity = factory.manufacturePojo(DeportologoEntity.class);
+        DeportologoEntity result = deportologoService.createDeportologo(newEntity);
+        result.setExperiencia("4");
+        result.setFoto("foto");
+        result.setNombre("Andres");
+        assertNotNull(result);
+        DeportologoEntity entity = entityManager.find(DeportologoEntity.class,
+                result.getId());
+        assertEquals(newEntity.getId(), entity.getId());
+        assertEquals(newEntity.getNombre(), entity.getNombre());
+        assertEquals(newEntity.getFoto(), entity.getFoto());
+        assertEquals(newEntity.getExperiencia(), entity.getExperiencia());
+
+    }
 
     @Test
     void testGetDeportologo() throws EntityNotFoundException {
@@ -125,24 +121,26 @@ class DeportologoServiceTest {
             assertTrue(found);
         }
     }
-    /*
-     * @Test
-     * void testUpdateDeportologo() throws EntityNotFoundException,
-     * IllegalOperationException {
-     * DeportologoEntity entity = deportologoList.get(0);
-     * DeportologoEntity pojoEntity =
-     * factory.manufacturePojo(DeportologoEntity.class);
-     * pojoEntity.setId(entity.getId());
-     * pojoEntity.setSede(sedeList.get(0));
-     * deportologoService.updateDeportologo(pojoEntity.getId(), pojoEntity);
-     * DeportologoEntity resp = entityManager.find(DeportologoEntity.class,
-     * entity.getId());
-     * assertEquals(pojoEntity.getId(), resp.getId());
-     * assertEquals(pojoEntity.getNombre(), resp.getNombre());
-     * assertEquals(pojoEntity.getFoto(), resp.getFoto());
-     * assertEquals(pojoEntity.getExperiencia(), resp.getExperiencia());
-     * }
-     */
+
+    @Test
+    void testUpdateDeportologo() throws EntityNotFoundException,
+            IllegalOperationException {
+        DeportologoEntity entity = deportologoList.get(0);
+        DeportologoEntity pojoEntity = factory.manufacturePojo(DeportologoEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setExperiencia("4 años de experiencia");
+        pojoEntity.setFoto("https://www.google.com");
+        pojoEntity.setNombre("Juan");
+
+        deportologoService.updateDeportologo(pojoEntity.getId(), pojoEntity);
+        DeportologoEntity resp = entityManager.find(DeportologoEntity.class,
+                entity.getId());
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getFoto(), resp.getFoto());
+        assertEquals(pojoEntity.getExperiencia(), resp.getExperiencia());
+
+    }
 
     @Test
 

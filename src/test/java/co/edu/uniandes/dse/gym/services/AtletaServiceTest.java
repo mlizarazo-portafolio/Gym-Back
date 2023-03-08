@@ -149,27 +149,31 @@ class AtletaServiceTest {
             assertTrue(found);
         }
     }
-    /*
-     * @Test
-     * void testUpdateAtleta() throws EntityNotFoundException,
-     * IllegalOperationException {
-     * AtletaEntity entity = atletaList.get(0);
-     * AtletaEntity pojoEntity = factory.manufacturePojo(AtletaEntity.class);
-     * pojoEntity.setId(entity.getId());
-     * pojoEntity.setDeportologo(deportologoList.get(0));
-     * pojoEntity.setSede(sedeList.get(0));
-     * atletaService.updateAtleta(pojoEntity);
-     * AtletaEntity resp = entityManager.find(AtletaEntity.class, entity.getId());
-     * assertEquals(pojoEntity.getId(), resp.getId());
-     * assertEquals(pojoEntity.getNombre(), resp.getNombre());
-     * assertEquals(pojoEntity.getDeportologo(), resp.getDeportologo());
-     * assertEquals(pojoEntity.getSede(), resp.getSede());
-     * assertEquals(pojoEntity.getTipoSangre(), resp.getTipoSangre());
-     * assertEquals(pojoEntity.getFechaNacimiento(), resp.getFechaNacimiento());
-     * assertEquals(pojoEntity.getAltura(), resp.getAltura());
-     * assertEquals(pojoEntity.getPeso(), resp.getPeso());
-     * }
-     */
+
+    @Test
+    void testUpdateAtleta() throws EntityNotFoundException,
+            IllegalOperationException {
+        AtletaEntity entity = atletaList.get(0);
+        AtletaEntity pojoEntity = factory.manufacturePojo(AtletaEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setFechaNacimiento(date);
+        pojoEntity.setDireccion("Calle 127 #5-46");
+        pojoEntity.setTipoSangre("O+");
+        pojoEntity.setAltura(189);
+        pojoEntity.setPeso(80);
+        pojoEntity.setDeportologo(deportologoList.get(0));
+        pojoEntity.setSede(sedeList.get(0));
+        atletaService.updateAtleta(pojoEntity);
+        AtletaEntity resp = entityManager.find(AtletaEntity.class, entity.getId());
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getDeportologo(), resp.getDeportologo());
+        assertEquals(pojoEntity.getSede(), resp.getSede());
+        assertEquals(pojoEntity.getTipoSangre(), resp.getTipoSangre());
+        assertEquals(pojoEntity.getFechaNacimiento(), resp.getFechaNacimiento());
+        assertEquals(pojoEntity.getAltura(), resp.getAltura());
+        assertEquals(pojoEntity.getPeso(), resp.getPeso());
+    }
 
     @Test
     void testDeleteAtleta() throws EntityNotFoundException {

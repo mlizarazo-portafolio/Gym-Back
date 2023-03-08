@@ -26,6 +26,8 @@ public class DeportologoEntity extends BaseEntity {
 
     @OneToOne
     private SedeEntity sede;
+
+    @PodamExclude
     @OneToMany(mappedBy = "deportologo")
     private List<AtletaEntity> valoracionAtletas = new ArrayList<>();
 
