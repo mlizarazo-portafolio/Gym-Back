@@ -20,54 +20,55 @@ import org.springframework.http.HttpStatus;
 
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.gym.services.EntrenadorService;
-import co.edu.uniandes.dse.gym.dto.EntrenadorDetailDTO;
-import co.edu.uniandes.dse.gym.dto.EntrenadorDTO;
-import co.edu.uniandes.dse.gym.entities.EntrenadorEntity;
+import co.edu.uniandes.dse.gym.services.ReseniaService;
+import co.edu.uniandes.dse.gym.dto.ReseniaDetailDTO;
+import co.edu.uniandes.dse.gym.dto.ReseniaDTO;
+import co.edu.uniandes.dse.gym.entities.ReseniaEntity;
 
 @RestController
-@RequestMapping("/entrenadores")
-public class EntrenadorController {
+@RequestMapping("/resenias")
+public class ReseniaController {
 
     @Autowired
-    private EntrenadorService entrenadorService;
+    private ReseniaService reseniaService;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public EntrenadorDTO create(@RequestBody EntrenadorDTO entrenadorDTO) throws IllegalOperationException, EntityNotFoundException {
-            EntrenadorEntity entrenadorEntity = entrenadorService.createEntrenador(modelMapper.map(entrenadorDTO, EntrenadorEntity.class));
-            return modelMapper.map(entrenadorEntity, EntrenadorDTO.class);
+    public ReseniaDTO create(@RequestBody ReseniaDTO reseniaDTO) throws IllegalOperationException, EntityNotFoundException {
+            ReseniaEntity reseniaEntity = reseniaService.createResenia(modelMapper.map(reseniaDTO, ReseniaEntity.class));
+            return modelMapper.map(reseniaEntity, ReseniaDTO.class);
     }
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.OK)
-    public List<EntrenadorDetailDTO> findAll(){
-        List<EntrenadorEntity> entrenadores = entrenadorService.getEntrenadores();
-        return modelMapper.map(entrenadores, new TypeToken<List<EntrenadorDetailDTO>>() {
+    public List<ReseniaDetailDTO> findAll(){
+        List<ReseniaEntity> reseniaes = reseniaService.getResenias();
+        return modelMapper.map(reseniaes, new TypeToken<List<ReseniaDetailDTO>>() {
         }.getType());
     }
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public EntrenadorDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException {
-            EntrenadorEntity entrenadorEntity = entrenadorService.getEntrenadorById(id);
-            return modelMapper.map(entrenadorEntity, EntrenadorDetailDTO.class);
+    public ReseniaDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException {
+            ReseniaEntity reseniaEntity = reseniaService.getReseniaById(id);
+            return modelMapper.map(reseniaEntity, ReseniaDetailDTO.class);
     }  
     
     @PutMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public EntrenadorDTO update(@PathVariable("id") Long id, @RequestBody EntrenadorDTO entrenadorDTO)
+    public ReseniaDTO update(@PathVariable("id") Long id, @RequestBody ReseniaDTO reseniaDTO)
                             throws EntityNotFoundException, IllegalOperationException {
-            EntrenadorEntity entrenadorEntity = entrenadorService.updateEntrenador(id, modelMapper.map(entrenadorDTO, EntrenadorEntity.class));
-            return modelMapper.map(entrenadorEntity, EntrenadorDTO.class);
+            ReseniaEntity reseniaEntity = reseniaService.updateResenia(id, modelMapper.map(reseniaDTO, ReseniaEntity.class));
+            return modelMapper.map(reseniaEntity, ReseniaDTO.class);
     }    
     
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) throws EntityNotFoundException, IllegalOperationException {
-            entrenadorService.deleteEntrenador(id);
-    }    
+            reseniaService.deleteResenia(id);
+    }      
+    
 }

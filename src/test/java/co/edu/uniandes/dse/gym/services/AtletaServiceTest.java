@@ -149,27 +149,31 @@ class AtletaServiceTest {
             assertTrue(found);
         }
     }
-    /*
-     * @Test
-     * void testUpdateAtleta() throws EntityNotFoundException,
-     * IllegalOperationException {
-     * AtletaEntity entity = atletaList.get(0);
-     * AtletaEntity pojoEntity = factory.manufacturePojo(AtletaEntity.class);
-     * pojoEntity.setId(entity.getId());
-     * pojoEntity.setDeportologo(deportologoList.get(0));
-     * pojoEntity.setSede(sedeList.get(0));
-     * atletaService.updateAtleta(pojoEntity);
-     * AtletaEntity resp = entityManager.find(AtletaEntity.class, entity.getId());
-     * assertEquals(pojoEntity.getId(), resp.getId());
-     * assertEquals(pojoEntity.getNombre(), resp.getNombre());
-     * assertEquals(pojoEntity.getDeportologo(), resp.getDeportologo());
-     * assertEquals(pojoEntity.getSede(), resp.getSede());
-     * assertEquals(pojoEntity.getTipoSangre(), resp.getTipoSangre());
-     * assertEquals(pojoEntity.getFechaNacimiento(), resp.getFechaNacimiento());
-     * assertEquals(pojoEntity.getAltura(), resp.getAltura());
-     * assertEquals(pojoEntity.getPeso(), resp.getPeso());
-     * }
-     */
+
+    @Test
+    void testUpdateAtleta() throws EntityNotFoundException,
+            IllegalOperationException {
+        AtletaEntity entity = atletaList.get(0);
+        AtletaEntity pojoEntity = factory.manufacturePojo(AtletaEntity.class);
+        pojoEntity.setId(entity.getId());
+        pojoEntity.setFechaNacimiento(date);
+        pojoEntity.setDireccion("Calle 127 #5-46");
+        pojoEntity.setTipoSangre("O+");
+        pojoEntity.setAltura(189);
+        pojoEntity.setPeso(80);
+        pojoEntity.setDeportologo(deportologoList.get(0));
+        pojoEntity.setSede(sedeList.get(0));
+        atletaService.updateAtleta(pojoEntity);
+        AtletaEntity resp = entityManager.find(AtletaEntity.class, entity.getId());
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getDeportologo(), resp.getDeportologo());
+        assertEquals(pojoEntity.getSede(), resp.getSede());
+        assertEquals(pojoEntity.getTipoSangre(), resp.getTipoSangre());
+        assertEquals(pojoEntity.getFechaNacimiento(), resp.getFechaNacimiento());
+        assertEquals(pojoEntity.getAltura(), resp.getAltura());
+        assertEquals(pojoEntity.getPeso(), resp.getPeso());
+    }
 
     @Test
     void testDeleteAtleta() throws EntityNotFoundException {
@@ -179,4 +183,113 @@ class AtletaServiceTest {
         assertNull(deleted);
     }
 
+    @Test
+    void testCreateAtletaWithNoValidName() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setNombre("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidDate() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setFechaNacimiento(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidAddress() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDireccion("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidBloodType() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setTipoSangre("");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidHeight() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setAltura(-3);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testCreateAtletaWithNoValidWeight() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setPeso(-3);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidDireccion() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDireccion("98e76");
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidDeportologo() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setDeportologo(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testCreateAtletaWithNoValidSede() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setSede(null);
+            atletaService.createAtleta(newEntity);
+        });
+    }
+
+    @Test
+    void testGetAtletaWithNoValidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+            atletaService.getAtleta(-1L);
+        });
+    }
+
+    @Test
+    void testUpdateAtletaWithNoValidId() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setId(-1L);
+            atletaService.updateAtleta(newEntity);
+        });
+    }
+
+    @Test
+
+    void testUpdateAtletaWithNoValidName() {
+        assertThrows(IllegalOperationException.class, () -> {
+            AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            newEntity.setNombre("");
+            atletaService.updateAtleta(newEntity);
+        });
+    }
 }

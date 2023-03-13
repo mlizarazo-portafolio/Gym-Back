@@ -48,24 +48,18 @@ public class DeportologoService {
         if (deportologo.getId() != null) {
             throw new IllegalOperationException("No se puede crear un deportologo sin un id");
         }
-        if (deportologo.getSede() != null) {
-            throw new IllegalOperationException("No se puede crear un deportologo sin una sede");
-        }
-        if (deportologo.getValoracionAtletas() != null) {
 
-            throw new IllegalOperationException("No se puede crear un deportologo sin una valoracion de atletas");
-        }
-        if (deportologo.getExperiencia() != null) {
+        if (deportologo.getExperiencia() == null) {
 
             throw new IllegalOperationException("Tiene que tener alguna experiencia");
 
         }
-        if (deportologo.getNombre() != null) {
+        if (deportologo.getNombre() == null) {
 
             throw new IllegalOperationException("Tiene que tener un nombre");
 
         }
-        if (deportologo.getFoto() != null) {
+        if (deportologo.getFoto() == null) {
             throw new IllegalOperationException("Tiene que tener una foto");
         }
 
@@ -81,23 +75,18 @@ public class DeportologoService {
         if (deportologo.getId() != null && !deportologo.getId().equals(id)) {
             throw new IllegalOperationException("No se puede actualizar el id de un deportologo");
         }
-        if (deportologo.getSede() != null) {
-            throw new IllegalOperationException("No se puede crear un deportologo sin una sede");
-        }
-        if (deportologo.getValoracionAtletas() != null) {
-            throw new IllegalOperationException("No se puede crear un deportologo sin una valoracion de atletas");
-        }
-        if (deportologo.getExperiencia() != null) {
+
+        if (deportologo.getExperiencia() == null) {
 
             throw new IllegalOperationException("Tiene que tener alguna experiencia");
 
         }
-        if (deportologo.getNombre() != null) {
+        if (deportologo.getNombre() == null) {
 
             throw new IllegalOperationException("Tiene que tener un nombre");
 
         }
-        if (deportologo.getFoto() != null) {
+        if (deportologo.getFoto() == null) {
             throw new IllegalOperationException("Tiene que tener una foto");
         }
         Optional<DeportologoEntity> deportologoExistente = deportologoRepository.findById(id);
