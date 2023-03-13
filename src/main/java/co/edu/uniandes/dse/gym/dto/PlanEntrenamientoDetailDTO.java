@@ -1,4 +1,8 @@
 package co.edu.uniandes.dse.gym.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,12 +13,9 @@ import lombok.Setter;
 
 public class PlanEntrenamientoDetailDTO extends PlanEntrenamientoDTO{
 
-    private String objetivoBasico;
-    private String nombre;
-    private String descripcion;
-    private String dirrecion;
-    private String coordenada;
-    private Integer duracion;
-    private Integer costo;
+    private List<SedeDTO> sedes = new ArrayList<>();
 
+    private List<ConvenioDTO> convenios = new ArrayList<>();
+
+    private List<AtletaDTO> atletasInscritos = new ArrayList<>();
 }
