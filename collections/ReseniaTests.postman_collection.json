@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ddfcca18-0e5f-4d99-b407-cdaa161908c8",
+		"_postman_id": "b9d40819-5068-470b-b80e-dc35fbcebcd2",
 		"name": "ReseniaTests.postman_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "25565466-ddfcca18-0e5f-4d99-b407-cdaa161908c8"
+		"_exporter_id": "25565466"
 	},
 	"item": [
 		{
@@ -12,7 +12,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "c96e93a9-46b4-49e5-8468-2ebbe439b317",
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"new_id_sede\", data.id);\r",
@@ -25,10 +24,6 @@
 					}
 				}
 			],
-			"id": "ff25eba9-07e1-4d72-940c-0dda653c5542",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -54,7 +49,6 @@
 			},
 			"response": [
 				{
-					"id": "776065dc-13c8-4f77-8100-eff0cead4efa",
 					"name": "createSede",
 					"originalRequest": {
 						"method": "POST",
@@ -78,8 +72,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -95,7 +89,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "74680042-670a-45bf-a6a6-8002bbe074be",
 						"exec": [
 							"var data = pm.response.json()\r",
 							"pm.globals.set(\"resenia_id_1\", data.id);\r",
@@ -108,10 +101,6 @@
 					}
 				}
 			],
-			"id": "87e58485-5cda-4d6e-8d9c-9aeb82f5db5d",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -137,7 +126,6 @@
 			},
 			"response": [
 				{
-					"id": "2dce5e82-4d32-4a87-b57c-2e05cc9923d0",
 					"name": "createResenia",
 					"originalRequest": {
 						"method": "POST",
@@ -170,8 +158,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -187,7 +175,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "9e7ab94a-7209-41ca-aa44-f1368a820735",
 						"exec": [
 							"pm.test('Numero de resenias > ' + 0, function () {\r",
 							"   var data = pm.response.json()\r",
@@ -202,10 +189,6 @@
 					}
 				}
 			],
-			"id": "0b8c6b7d-93a5-48a1-ad9d-84709233a32f",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -222,7 +205,6 @@
 			},
 			"response": [
 				{
-					"id": "a198367c-0ea3-4ef0-9f42-06a5381030de",
 					"name": "getResenias",
 					"originalRequest": {
 						"method": "GET",
@@ -246,8 +228,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -263,7 +245,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "951d9bcf-3ee0-4589-a73f-83168dcff6ab",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"   pm.response.to.have.status(200);\r",
@@ -273,10 +254,6 @@
 					}
 				}
 			],
-			"id": "e5a3b483-bb47-45ff-b120-c15c7ef10403",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -294,7 +271,6 @@
 			},
 			"response": [
 				{
-					"id": "338007b1-f469-40b0-817b-b3581d9f4db3",
 					"name": "getReseniaById",
 					"originalRequest": {
 						"method": "GET",
@@ -319,8 +295,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -336,7 +312,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "93dff0c7-e380-4263-aea0-40c6b85958df",
 						"exec": [
 							"var data = pm.response.json()\r",
 							"\r",
@@ -348,10 +323,6 @@
 					}
 				}
 			],
-			"id": "4450e049-97ac-49ba-8748-19da5c1df9fd",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -369,7 +340,6 @@
 			},
 			"response": [
 				{
-					"id": "34520a69-14a6-4913-97ca-dcfcd0d5958f",
 					"name": "getInvalidResenia",
 					"originalRequest": {
 						"method": "GET",
@@ -394,8 +364,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -411,7 +381,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "62661295-85c3-4880-a4ee-6fbea0fd8b0d",
 						"exec": [
 							"var data = pm.response.json()\r",
 							"\r",
@@ -423,10 +392,6 @@
 					}
 				}
 			],
-			"id": "920ba7cf-a60f-4451-8726-18bd2cb5dd75",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -453,7 +418,6 @@
 			},
 			"response": [
 				{
-					"id": "5e36408f-18ad-4ff4-b313-0b703f8c6323",
 					"name": "updateInvalidResenia",
 					"originalRequest": {
 						"method": "PUT",
@@ -478,8 +442,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -495,7 +459,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b01cadc2-279f-4cf4-a4be-47ed75393730",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"   pm.response.to.have.status(200);\r",
@@ -505,10 +468,6 @@
 					}
 				}
 			],
-			"id": "da5b53e0-629e-4197-9b76-42397250ab77",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -535,7 +494,6 @@
 			},
 			"response": [
 				{
-					"id": "a735eb7b-ec91-46c7-b218-b60a43a52147",
 					"name": "updateResenia",
 					"originalRequest": {
 						"method": "PUT",
@@ -560,8 +518,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -577,7 +535,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "62ac9828-11e4-4e64-aa3f-7c7158cb3a2b",
 						"exec": [
 							"var data = pm.response.json()\r",
 							"\r",
@@ -589,10 +546,6 @@
 					}
 				}
 			],
-			"id": "5b2c096f-f2be-4b26-ae0c-e6cd31725ea9",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -610,7 +563,6 @@
 			},
 			"response": [
 				{
-					"id": "56417f11-ee04-4915-bc1c-3ce9ab123687",
 					"name": "deleteInvalidResenia",
 					"originalRequest": {
 						"method": "DELETE",
@@ -635,8 +587,8 @@
 					"header": [
 						{
 							"key": "Content-Type",
-							"name": "Content-Type",
 							"value": "application/json",
+							"name": "Content-Type",
 							"description": "",
 							"type": "text"
 						}
@@ -652,20 +604,15 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e1058b97-973b-42a3-9bdc-c0e0201704a3",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
 							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"id": "49a294eb-1ecf-4994-8572-839ef38bd6b0",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -683,7 +630,6 @@
 			},
 			"response": [
 				{
-					"id": "e15293a9-585e-45e1-9f31-0c22a295ad77",
 					"name": "deleteResenia",
 					"originalRequest": {
 						"method": "DELETE",
@@ -705,7 +651,9 @@
 					"status": "No Content",
 					"code": 204,
 					"_postman_previewlanguage": "Text",
-					"cookie": []
+					"header": [],
+					"cookie": [],
+					"body": ""
 				}
 			]
 		}
