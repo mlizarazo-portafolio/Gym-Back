@@ -1,7 +1,8 @@
 {
 	"info": {
-		"_postman_id": "b9d40819-5068-470b-b80e-dc35fbcebcd2",
+		"_postman_id": "3ba1251b-d417-4e96-87e9-91b6d2e810b7",
 		"name": "ReseniaTests.postman_collection",
+		"description": "Colección de pruebas sobre el recurso Resenia.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25565466"
 	},
