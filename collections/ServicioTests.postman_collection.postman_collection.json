@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "3ba1251b-d417-4e96-87e9-91b6d2e810b7",
-		"name": "ReseniaTests.postman_collection",
-		"description": "Colección de pruebas sobre el recurso Resenia.",
+		"_postman_id": "48637996-936b-41fe-8866-f977bd0ab97d",
+		"name": "ServicioTests.postman_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25565466"
+		"_exporter_id": "25507796"
 	},
 	"item": [
 		{
@@ -14,12 +13,12 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"new_id_sede\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
+							"var data = pm.response.json()",
+							"pm.globals.set(\"new_id_sede\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function() {",
+							"    pm.response.to.have.status(201);",
+							"}); "
 						],
 						"type": "text/javascript"
 					}
@@ -30,7 +29,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"12 st\",\r\n  \"telefono\": \"6242245\"\r\n}",
+					"raw": "{\n  \"nombre\": \"Central\",\n  \"direccion\": \"21 st\",\n  \"telefono\": \"689493\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -45,8 +44,7 @@
 					"path": [
 						"sedes"
 					]
-				},
-				"description": "Crea una sede en la base de datos con los atributos dados."
+				}
 			},
 			"response": [
 				{
@@ -80,23 +78,23 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n  \"id\": 1,\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"12 st\",\r\n  \"telefono\": \"6242245\"\r\n}"
+					"body": "{\n    \"id\": 1,\n    \"nombre\": \"Bacata\",\n    \"direccion\": \"12 st\",\n    \"telefono\": \"6242245\"\n}"
 				}
 			]
 		},
 		{
-			"name": "createResenia",
+			"name": "createServicio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"pm.globals.set(\"resenia_id_1\", data.id);\r",
-							"\r",
-							"pm.test(\"Status code is 201\", function () {\r",
-							"   pm.response.to.have.status(201);\r",
-							"});"
+							"var data = pm.response.json()",
+							"pm.globals.set(\"servicio_id_1\", data.id);",
+							"",
+							"pm.test(\"Status code is 201\", function(){",
+							"    pm.response.to.have.status(201);",
+							"}); "
 						],
 						"type": "text/javascript"
 					}
@@ -107,7 +105,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"4\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"raw": "{\n  \"servicio\": \"Acondicionamiento\",\n  \"disponible\": true,\n  \"sede\": { \"id\": {{new_id_sede}} }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -115,33 +113,23 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias",
+					"raw": "{{baseUrl}}/servicios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias"
+						"servicios"
 					]
-				},
-				"description": "Crea una resenia en la base de datos con los atributos dados."
+				}
 			},
 			"response": [
 				{
-					"name": "createResenia",
+					"name": "createServicio",
 					"originalRequest": {
 						"method": "POST",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8080/api/resenias",
+							"raw": "http://localhost:8080/api/servicios",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -149,7 +137,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias"
+								"servicios"
 							]
 						}
 					},
@@ -166,24 +154,24 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}"
+					"body": "{\n    \"id\": 1,\n    \"servicio\": \"Acondicionamiento\",\n    \"disponible\": true,\n    \"sede\": {\n        \"id\": 1,\n        \"nombre\": \"Central\",\n        \"direccion\": \"21 st\",\n        \"telefono\": \"689493\"\n    } \n}"
 				}
 			]
 		},
 		{
-			"name": "getResenias",
+			"name": "getServicios",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('Numero de resenias > ' + 0, function () {\r",
-							"   var data = pm.response.json()\r",
-							"   pm.expect(data.length).to.greaterThan(0)\r",
-							"});\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test('Numero de servicios > ' + 0, function () {",
+							"   var data = pm.response.json()",
+							"   pm.expect(data.length).to.greaterThan(0)",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -194,24 +182,30 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias",
+					"raw": "{{baseUrl}}/servicios",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias"
+						"servicios"
 					]
-				},
-				"description": "Devuelve la lista de todas las resenias en la base de datos."
+				}
 			},
 			"response": [
 				{
-					"name": "getResenias",
+					"name": "getServicios",
 					"originalRequest": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias",
+							"raw": "http://localhost:8080/api/servicios",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -219,7 +213,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias"
+								"servicios"
 							]
 						}
 					},
@@ -236,19 +230,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "[{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}]"
+					"body": "[\n    {\n    \"id\": 1,\n    \"servicio\": \"Acondicionamiento\",\n    \"disponible\": true,\n    \"sede\": {\n            \"nombre\": \"Central\",\n            \"direccion\": \"21 st\",\n            \"telefono\": \"689493\"\n            } \n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "getReseniaById",
+			"name": "getServicioById",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 200\", function(){",
+							"    pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -259,25 +253,24 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+					"raw": "{{baseUrl}}/servicios/{{servicio_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id_1}}"
+						"servicios",
+						"{{servicio_id_1}}"
 					]
-				},
-				"description": "Devuelve la resenia con el id dado."
+				}
 			},
 			"response": [
 				{
-					"name": "getReseniaById",
+					"name": "getServicioById",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias/{{resenia_id_1}}",
+							"raw": "http://localhost:8080/api/servicios/{{servicio_id_1}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -285,8 +278,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias",
-								"{{resenia_id_1}}"
+								"servicios",
+								"{{servicio_id_1}}"
 							]
 						}
 					},
@@ -303,21 +296,21 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n    \"id\": 1,\n    \"usuario\": \"rroullier0\",\n    \"puntuacion\": \"4\",\n    \"comentario\": \"Lorem ipsum\",\n    \"Sede\": {\n        \"id\": 1,\n        \"nombre\": \"Bacata\",\n        \"direccion\": \"Calle 2 #3 - 19\",\n        \"telefono\": 6242245\n    }\n}"
+					"body": "{\n    \"id\": 1,\n    \"servicio\": \"Acondicionamiento\",\n    \"disponible\": true,\n    \"sede\": {\n            \"nombre\": \"Central\",\n            \"direccion\": \"21 st\",\n            \"telefono\": \"689493\"\n            } \n}"
 				}
 			]
 		},
 		{
-			"name": "getInvalidResenia",
+			"name": "getInvalidServicio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"\r",
-							"pm.test(\"Status code is 404\", function(){\r",
-							"    pm.response.to.have.status(404);\r",
+							"var data = pm.response.json()",
+							"",
+							"pm.test(\"Status code is 404\", function(){",
+							"    pm.response.to.have.status(404);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -328,25 +321,24 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/0",
+					"raw": "{{baseUrl}}/servicios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"servicios",
 						"0"
 					]
-				},
-				"description": "Devuelve error 404 not found."
+				}
 			},
 			"response": [
 				{
-					"name": "getInvalidResenia",
+					"name": "getInvalidServicio",
 					"originalRequest": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias/0",
+							"raw": "http://localhost:8080/api/servicios/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -354,7 +346,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias",
+								"servicios",
 								"0"
 							]
 						}
@@ -372,21 +364,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:01:09\",\r\n        \"message\": \"La resenia con el ID dado no existe\"\r\n    }\r\n}"
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:04:10\",\n        \"message\": \"El servicio con el id dado no fue encontrado\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "updateInvalidResenia",
+			"name": "updateServicio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"\r",
-							"pm.test(\"Status code is 404\", function(){\r",
-							"    pm.response.to.have.status(404);\r",
+							"pm.test(\"Status code is 200\", function () {",
+							"   pm.response.to.have.status(200);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -398,7 +388,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"4\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"raw": "{\n  \"servicio\": \"Acondicionamiento\",\n  \"disponible\": false,\n  \"sede\": { \"id\": {{new_id_sede}} }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -406,25 +396,24 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/0",
+					"raw": "{{baseUrl}}/servicios/{{servicio_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"0"
+						"servicios",
+						"{{servicio_id_1}}"
 					]
-				},
-				"description": "Devuelve error 404 not found."
+				}
 			},
 			"response": [
 				{
-					"name": "updateInvalidResenia",
+					"name": "updateServicio",
 					"originalRequest": {
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias/0",
+							"raw": "http://localhost:8080/api/servicios/{{servicio_id_1}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -432,84 +421,8 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias",
-								"0"
-							]
-						}
-					},
-					"status": "Not Found",
-					"code": 404,
-					"_postman_previewlanguage": "json",
-					"header": [
-						{
-							"key": "Content-Type",
-							"value": "application/json",
-							"name": "Content-Type",
-							"description": "",
-							"type": "text"
-						}
-					],
-					"cookie": [],
-					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:04:10\",\r\n        \"message\": \"La resenia con el ID dado no fue encontrada\"\r\n    }\r\n}"
-				}
-			]
-		},
-		{
-			"name": "updateResenia",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"   pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"usuario\": \"rroullier0\",\r\n  \"puntuacion\": \"5\",\r\n  \"comentario\": \"Lorem ipsum\",\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"resenias",
-						"{{resenia_id_1}}"
-					]
-				},
-				"description": "Actualiza la resenia con el id dado."
-			},
-			"response": [
-				{
-					"name": "updateResenia",
-					"originalRequest": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/resenia/{{resenia_id_1}}",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"resenia",
-								"{{resenia_id_1}}"
+								"servicios",
+								"{{servicio_id_1}}"
 							]
 						}
 					},
@@ -526,21 +439,21 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"id\": 1,\r\n    \"usuario\": \"rroullier0\",\r\n    \"puntuacion\": \"3\",\r\n    \"comentario\": \"Lorem ipsum\",\r\n    \"Sede\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Bacata\",\r\n        \"direccion\": \"Calle 2 #3 - 19\",\r\n        \"telefono\": 6242245\r\n    }\r\n}"
+					"body": "{\n    \"id\": 1,\n    \"servicio\": \"Acondicionamiento\",\n    \"disponible\": false,\n    \"sede\": {\n        \"nombre\": \"Central\",\n        \"direccion\": \"21 st\",\n        \"telefono\": \"689493\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "deleteInvalidResenia",
+			"name": "updateInvalidServicio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var data = pm.response.json()\r",
-							"\r",
-							"pm.test(\"Status code is 404\", function(){\r",
-							"    pm.response.to.have.status(404);\r",
+							"var data = pm.response.json()",
+							"",
+							"pm.test(\"Status code is 404\", function(){",
+							"    pm.response.to.have.status(404);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -548,28 +461,36 @@
 				}
 			],
 			"request": {
-				"method": "DELETE",
+				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"servicio\": \"Acondicionamiento\",\n  \"disponible\": true,\n  \"sede\": { \"id\": {{new_id_sede}} }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "{{baseUrl}}/resenias/0",
+					"raw": "{{baseUrl}}/servicios/0",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
+						"servicios",
 						"0"
 					]
-				},
-				"description": "Devuelve error 404 not found."
+				}
 			},
 			"response": [
 				{
-					"name": "deleteInvalidResenia",
+					"name": "updateInvalidServicio",
 					"originalRequest": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias/0",
+							"raw": "http://localhost:8080/api/servicios/0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -577,7 +498,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias",
+								"servicios",
 								"0"
 							]
 						}
@@ -595,19 +516,19 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:05:19\",\r\n        \"message\": \"La resenia con el ID dado no fue encontrada\"\r\n    }\r\n}"
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:04:10\",\n        \"message\": \"El servicio con el id dado no fue encontrado\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "deleteResenia",
+			"name": "deleteServicio",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Status code is 204\", function () {\r",
-							"   pm.response.to.have.status(204);\r",
+							"pm.test(\"Status code is 204\", function () {",
+							"   pm.response.to.have.status(204);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -618,25 +539,24 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/resenias/{{resenia_id_1}}",
+					"raw": "{{baseUrl}}/servicios/{{servicio_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"resenias",
-						"{{resenia_id_1}}"
+						"servicios",
+						"{{servicio_id_1}}"
 					]
-				},
-				"description": "Borra a la resenia con el id dado, devuelve el código 204."
+				}
 			},
 			"response": [
 				{
-					"name": "deleteResenia",
+					"name": "deleteServicio",
 					"originalRequest": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/resenias/{{resenia_id_1}}",
+							"raw": "http://localhost:8080/api/servicios/{{servicio_id_1}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -644,17 +564,93 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"resenias",
-								"{{resenia_id_1}}"
+								"servicios",
+								"{{servicio_id_1}}"
 							]
 						}
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": "Text",
-					"header": [],
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
 					"cookie": [],
 					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteInvalidServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()",
+							"",
+							"pm.test(\"Status code is 404\", function(){",
+							"    pm.response.to.have.status(404);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/servicios/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"servicios",
+						"0"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "deleteInvalidServicio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/servicios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"servicios",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:05:19\",\n        \"message\": \"El servicio con el ID dado no fue encontrado\"\n    }\n}"
 				}
 			]
 		}
