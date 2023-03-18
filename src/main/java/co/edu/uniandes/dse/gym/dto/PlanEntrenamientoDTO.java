@@ -8,6 +8,7 @@ import lombok.Setter;
 
 public class PlanEntrenamientoDTO{
 
+    private Long id;
     private String objetivoBasico;
     private String nombre;
     private String descripcion;

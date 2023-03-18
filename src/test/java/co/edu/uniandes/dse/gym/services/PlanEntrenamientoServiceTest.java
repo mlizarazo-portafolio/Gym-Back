@@ -3,6 +3,7 @@ package co.edu.uniandes.dse.gym.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,22 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(newEntity.getDuracion(), entity.getDuracion());
         assertEquals(newEntity.getCosto(), entity.getCosto());
     }
+    
+    @Test
+    void testGetPlanes() {
+        List<PlanEntrenamientoEntity> list = planEntrenamientoService.getPlanes();
+        assertEquals(planList.size(), list.size());
+        for (PlanEntrenamientoEntity entity : list) {
+            boolean found = false;
+            for (PlanEntrenamientoEntity storedEntity : planList) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+
+            }
+            assertTrue(found);
+        }
+    }
 
     @Test
     void testGetPlan() throws EntityNotFoundException {
@@ -108,6 +125,23 @@ public class PlanEntrenamientoServiceTest {
     }
 
 
-    
+    @Test
+    void testUpdatePlan() throws EntityNotFoundException, IllegalOperationException {
+        PlanEntrenamientoEntity entity = planList.get(0);
+        PlanEntrenamientoEntity pojoEntity = factory.manufacturePojo(PlanEntrenamientoEntity.class);
+        pojoEntity.setId(entity.getId());
+        planEntrenamientoService.updatePlan(entity.getId(), pojoEntity);
+        
+        PlanEntrenamientoEntity resp = entityManager.find(PlanEntrenamientoEntity.class, entity.getId());
+  
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
+        assertEquals(pojoEntity.getObjetivoBasico(), resp.getObjetivoBasico());
+        assertEquals(pojoEntity.getDirrecion(), resp.getDirrecion());
+        assertEquals(pojoEntity.getCoordenada(), resp.getCoordenada());
+        assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
+        assertEquals(pojoEntity.getCosto(), resp.getCosto());
+    }
+
 
 }
