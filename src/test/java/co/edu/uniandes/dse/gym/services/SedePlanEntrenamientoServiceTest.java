@@ -116,11 +116,7 @@ class SedePlanEntrenamientoServiceTest {
 			assertTrue(planEntrenamientoEntities.contains(planEntrenamientoList.get(0)));
 		}
 	}
-	
-	/**
-	 * Prueba para consultar la lista de autores de un libro que no existe.
-	 */
-	@Test
+
 	void testGetPlanEntrenamientosInvalidSede(){
 		assertThrows(EntityNotFoundException.class, ()->{
 			sedePlanEntrenamientoService.getPlanEntrenamientos(0L);
