@@ -16,7 +16,7 @@ public class ConvenioEntity extends  BaseEntity{
     @ManyToOne 
     private PlanEntrenamientoEntity plan;
  
-    private Long id;
+ 
     private String nombre;
     private Double descuento;
 

@@ -29,7 +29,6 @@ public class PlanEntrenamientoService {
      * 
      */
     
-     
     @Transactional
     public PlanEntrenamientoEntity crearPlan(PlanEntrenamientoEntity planEntrenamientoEntity) throws IllegalOperationException{
         
@@ -37,12 +36,12 @@ public class PlanEntrenamientoService {
 
         
         if(planEntrenamientoEntity.getNombre() == null) throw new IllegalOperationException("Nombre no es válido");
-        if(planEntrenamientoEntity.getObjetivoBasico() == null) throw new IllegalOperationException("Obje   tivo  no es válida");
-        if(planEntrenamientoEntity.getDescripcion() == null) throw new IllegalOperationException("Descripcion no es válida");
-        if(planEntrenamientoEntity.getDirrecion() == null) throw new IllegalOperationException("Dirreccion no es válida");
-        if(planEntrenamientoEntity.getCoordenada() == null) throw new IllegalOperationException("Coordenada no es válida");
-        if(planEntrenamientoEntity.getDuracion() == null) throw new IllegalOperationException("Duracion no es válida");
-        if(planEntrenamientoEntity.getCosto() == null) throw new IllegalOperationException("Costo    no es válido");
+        if(planEntrenamientoEntity.getObjetivoBasico() == null) throw new IllegalOperationException("Direccion no es válida");
+        if(planEntrenamientoEntity.getDescripcion() == null) throw new IllegalOperationException("Telefono no es válido");
+        if(planEntrenamientoEntity.getDirrecion() == null) throw new IllegalOperationException("Telefono no es válido");
+        if(planEntrenamientoEntity.getCoordenada() == null) throw new IllegalOperationException("Telefono no es válido");
+        if(planEntrenamientoEntity.getDuracion() == null) throw new IllegalOperationException("Telefono no es válido");
+        if(planEntrenamientoEntity.getCosto() == null) throw new IllegalOperationException("Telefono no es válido");
     
         log.info("Termina proceso de creación de Plan de Entrenamiento");
 

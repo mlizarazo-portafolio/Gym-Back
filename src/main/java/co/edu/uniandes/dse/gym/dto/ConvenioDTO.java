@@ -10,6 +10,6 @@ public class ConvenioDTO{
     private String nombre;
     private Double descuento;
 
-   
+    private PlanEntrenamientoDTO plan;
 
 }

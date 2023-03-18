@@ -26,12 +26,12 @@ public class ConvenioService {
     @Transactional
     public ConvenioEntity crearConvenio(ConvenioEntity convenioEntity) throws IllegalOperationException{
         
-        log.info("inicia el proceos de crear Convenio");
+        log.info("inicia el proceos de crear Plan de Entrenamiento");
 
         if(convenioEntity.getNombre() == null) throw new IllegalOperationException("Nombre no es válido");
         if(convenioEntity.getDescuento() == null) throw new IllegalOperationException("Descuento no es válida");
  
-        log.info("Termina proceso de creación de Convenio");
+        log.info("Termina proceso de creación de Plan de Convenio");
 
         return convenioRepository.save(convenioEntity);
     }
