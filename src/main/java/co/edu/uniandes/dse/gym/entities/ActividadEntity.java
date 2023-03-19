@@ -1,6 +1,7 @@
 package co.edu.uniandes.dse.gym.entities;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
@@ -35,6 +36,6 @@ public class ActividadEntity extends BaseEntity {
 
     @PodamExclude
     @ManyToMany
-    private List<SedeEntity> sedes;
+    private List<SedeEntity> sedes = new ArrayList<>();
 
 }

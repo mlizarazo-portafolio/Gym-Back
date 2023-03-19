@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.uniandes.dse.gym.entities.ActividadEntity;
+import co.edu.uniandes.dse.gym.entities.EntrenadorEntity;
+import co.edu.uniandes.dse.gym.repositories.EntrenadorRepository;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
@@ -20,6 +22,9 @@ public class ActividadService {
 
     @Autowired
     ActividadRepository actividadRepository;
+
+    @Autowired
+    EntrenadorRepository entrenadorRepository;
 
     @Transactional
     public ActividadEntity createActividad(ActividadEntity actividadEntity) throws IllegalOperationException {
@@ -37,9 +42,15 @@ public class ActividadService {
 
         // Una actividad no puede existir si no tiene un entrenador
         if (actividadEntity.getEntrenador() == null) {
-            throw new IllegalOperationException("La actividad no es valida");
+            throw new IllegalOperationException("El entrenador no es valido");
         }
 
+        Optional<EntrenadorEntity> entrenadorEntity = entrenadorRepository.findById(actividadEntity.getEntrenador().getId());
+		if (entrenadorEntity.isEmpty())
+			throw new IllegalOperationException("Editorial is not valid");
+
+        actividadEntity.setEntrenador(entrenadorEntity.get());
+        
         log.info("Termina el proceso de creación de actividad");
 
         return actividadRepository.save(actividadEntity);
