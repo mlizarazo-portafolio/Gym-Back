@@ -33,4 +33,8 @@ public class ActividadEntity extends BaseEntity {
     @ManyToMany
     private List<AtletaEntity> atletasInscritos;
 
+    @PodamExclude
+    @ManyToMany
+    private List<SedeEntity> sedes;
+
 }

@@ -13,4 +13,5 @@ public class SedeDetailDTO extends SedeDTO{
     private List<PlanEntrenamientoDTO> planes = new ArrayList<>();
     private List<ServicioDTO> serviciosDisponibles = new ArrayList<>();
     private List<AtletaDTO> atletas = new ArrayList<>();
+    private List<ActividadDTO> actividades = new ArrayList<>();
 }
