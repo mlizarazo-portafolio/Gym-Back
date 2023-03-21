@@ -102,7 +102,7 @@ public class ActividadService {
         Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
 
         if (actividadEntity.isEmpty()) {
-            throw new EntityNotFoundException("ACTIVIDAD_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
         }
 
         actividadRepository.deleteById(actividadId);

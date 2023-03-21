@@ -68,7 +68,7 @@ public class RestriccionService{
         Optional<RestriccionEntity> restriccionEntity = restriccionRepository.findById(restriccionId);
         if(restriccionEntity.isEmpty())
         {
-            throw new EntityNotFoundException("RESTRICCION_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.RESTRICCION_NOT_FOUND);
         }
 
         restriccion.setId(restriccionId);
@@ -85,7 +85,7 @@ public class RestriccionService{
         Optional<RestriccionEntity> restriccionEntity = restriccionRepository.findById(restriccionId);
         if(restriccionEntity.isEmpty())
         {
-            throw new EntityNotFoundException("RESTRICCION_NOT_FOUND");
+            throw new EntityNotFoundException(ErrorMessage.RESTRICCION_NOT_FOUND);
         }
         restriccionRepository.deleteById(restriccionId);
         log.info("Termina proceso de borrar la restriccion con id = {0}", restriccionId);
