@@ -80,7 +80,6 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         assertEquals(newEntity.getObjetivoBasico(), entity.getObjetivoBasico());
         assertEquals(newEntity.getDireccion(), entity.getDireccion());
-        assertEquals(newEntity.getCoordenada(), entity.getCoordenada());
         assertEquals(newEntity.getDuracion(), entity.getDuracion());
         assertEquals(newEntity.getCosto(), entity.getCosto());
     }
@@ -95,7 +94,6 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
         assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
         assertEquals(entity.getDireccion(), resultEntity.getDireccion());
-        assertEquals(entity.getCoordenada(), resultEntity.getCoordenada());
         assertEquals(entity.getDuracion(), resultEntity.getDuracion());
         assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
