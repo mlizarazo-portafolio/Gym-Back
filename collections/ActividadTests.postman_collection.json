@@ -104,11 +104,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/actividades",
+							"raw": "http://localhost:8080/api/actividades",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades"
 							]
 						}
@@ -216,11 +219,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/actividades",
+							"raw": "http://localhost:8080/api/actividades",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades"
 							]
 						}
@@ -303,11 +309,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/actividades/{{actividad_id_1}}",
+							"raw": "http://localhost:8080/api/actividades/{{actividad_id_1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades",
 								"{{actividad_id_1}}"
 							]
@@ -396,11 +405,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/actividades/0",
+							"raw": "http://localhost:8080/api/actividades/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades",
 								"0"
 							]
@@ -486,7 +498,73 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Editar una actividad",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 2,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/actividades/{{actividad_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actividades",
+								"{{actividad_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Mar 2023 22:58:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"nombre\": \"Yoga\",\n    \"maxParticipantes\": 2,\n    \"horario\": null,\n    \"tipo\": \"grupal\",\n    \"entrenador\": null\n}"
+				}
+			]
 		},
 		{
 			"name": "Editar una actividad que no existe",
@@ -547,11 +625,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/actividades/0",
+							"raw": "http://localhost:8080/api/actividades/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades",
 								"0"
 							]
@@ -635,11 +716,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/actividades/{{actividad_id_1}}",
+							"raw": "http://localhost:8080/api/actividades/{{actividad_id_1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades",
 								"{{actividad_id_1}}"
 							]
@@ -721,11 +805,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/actividades/0",
+							"raw": "http://localhost:8080/api/actividades/0",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"api",
 								"actividades",
 								"0"
 							]
