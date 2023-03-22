@@ -40,7 +40,6 @@ private List<AtletaEntity> atletasInscritos = new ArrayList<>();
     private String nombre;
     private String descripcion;
     private String direccion;
-    private String coordenada;
     private Integer duracion;
     private Integer costo;
     public void setPlanDeEntrenamiento(PlanEntrenamientoEntity planEntrenamientoEntity) {
