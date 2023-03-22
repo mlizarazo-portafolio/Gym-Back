@@ -1,0 +1,1144 @@
+{
+	"info": {
+		"_postman_id": "dfbec2ff-8003-4824-a42e-63dcd79ee772",
+		"name": "SedeServiciosTests.postman_collection",
+		"description": "Colección de pruebas sobre el recurso SedeServicio.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25507796"
+	},
+	"item": [
+		{
+			"name": "createSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Central\",\r\n  \"direccion\": \"22 st\",\r\n  \"telefono\": \"679493\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "createSede",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Central\",\r\n    \"direccion\": \"22 st\",\r\n    \"telefono\": \"679493\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "createSede2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede2\",data.id);\r",
+							"tests[\"Status code is 200\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"13 st\",\r\n  \"telefono\": \"5242245\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "createSede2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"id\": 2,\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"13 st\",\r\n  \"telefono\": \"5242245\"\r\n}"
+				}
+			]
+		},
+		{
+			"name": "createServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_servicio\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"servicio\": \"Acondicionamiento\",\r\n  \"disponible\": true,\r\n  \"sede\": { \"id\": {{new_id_sede}} }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/servicios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"servicios"
+					]
+				},
+				"description": "Crea un nuevo servicio. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "createServicio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/servicios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"servicios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"servicio\": \"Acondicionamiento\",\r\n    \"disponible\": true,\r\n    \"Sede\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Central\",\r\n        \"direccion\": \"22 st\",\r\n        \"telefono\": \"679493\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "createServicio2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_servicio2\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"servicio\": \"Seguimiento\",\r\n  \"disponible\": false,\r\n  \"sede\": { \"id\": {{new_id_sede2}} }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/servicios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"servicios"
+					]
+				},
+				"description": "Crea un nuevo servicio. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "createServicio2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/servicios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"servicios"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 2,\r\n    \"servicio\": \"Seguimiento\",\r\n    \"disponible\": false,\r\n    \"Sede\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"Bacata\",\r\n        \"direccion\": \"13 st\",\r\n        \"telefono\": \"5242245\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "addServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios/{{new_id_servicio}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios",
+						"{{new_id_servicio}}"
+					]
+				},
+				"description": "Asocia un servicio a una sede en la aplicación.\n\nSe envía el Id de la sede y el del servicio a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "addServicio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios/{{new_id_servicio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios",
+								"{{new_id_servicio}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 2,\r\n    \"servicio\": \"Seguimiento\",\r\n    \"disponible\": false,\r\n    \"Sede\": {\r\n        \"id\": 1,\r\n        \"nombre\": \"Central\",\r\n        \"direccion\": \"22 st\",\r\n        \"telefono\": \"679493\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "addInvalidServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No agrega un servicio con un id de una sede que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontró el servicio\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios",
+						"0"
+					]
+				},
+				"description": "Asocia un servicio que no existe a una sede en la aplicación.\n\nSe envía el Id de la sede y el del servicio a asociar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro el servicio\".\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "addInvalidServicio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "getServicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data= JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;\r",
+							"tests[\"Sede count with servicios\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios"
+					]
+				},
+				"description": "Consulta los servicios de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "getServicios",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n  \"id\": 2,\r\n  \"nombre\": \"Bacata\",\r\n  \"direccion\": \"13 st\",\r\n  \"telefono\": \"5242245\",\r\n  \"servicios\": [{\r\n    \"id\": 2,\r\n    \"servicio\": \"Seguimiento\",\r\n    \"disponible\": false\r\n  }, {\r\n    \"id\": 1,\r\n    \"servicio\": \"Acondicionamiento\",\r\n    \"disponible\": true\r\n  }]\r\n}"
+				}
+			]
+		},
+		{
+			"name": "getServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios/{{new_id_servicio}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios",
+						"{{new_id_servicio}}"
+					]
+				},
+				"description": "Consulta un servicio de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede y el del servicio a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "getServicio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios/{{new_id_servicio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios",
+								"{{new_id_servicio}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1,\r\n    \"servicio\": \"Acondicionamiento\",\r\n    \"disponible\": true,\r\n    \"Sede\": {\r\n        \"id\": 2,\r\n        \"nombre\": \"Bacata\",\r\n        \"direccion\": \"13 st\",\r\n        \"telefono\": \"5242245\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "getInvalidServicio1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se puede obtener un servicio que no esta asociado\"] = responseCode.code === 412;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"El servicio no esta asociado con la sede\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/servicios/{{new_id_servicio}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"servicios",
+						"{{new_id_servicio}}"
+					]
+				},
+				"description": "Consulta un servicio que no esta asociado a una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje \"El servicio no esta asociado con la sede\".\n\n**Código http esperado: 412**"
+			},
+			"response": [
+				{
+					"name": "getInvalidServicio1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede}}/servicio/{{new_id_servicio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede}}",
+								"servicio",
+								"{{new_id_servicio}}"
+							]
+						}
+					},
+					"status": "Precondition Failed",
+					"code": 412,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"PRECONDITION_FAILED\",\r\n        \"timestamp\": \"21-02-2023 10:19:03\",\r\n        \"message\": \"El servicio no esta asociado con la sede\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "getInvalidServicio2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se puede obtener un servicio que no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/servicios/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"servicios",
+						"0"
+					]
+				},
+				"description": "Consulta un servicio que no existe de una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "getInvalidServicio2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede}}/servicios/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede}}",
+								"servicios",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:17:39\",\r\n        \"message\": \"El servicio no existe\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "replaceServicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{new_id_servicio}},\r\n        \"servicio\": \"Acondicionamiento\",\r\n        \"disponible\": true\r\n    },\r\n    {\r\n        \"id\": {{new_id_servicio2}},\r\n        \"servicio\": \"Seguimiento\",\r\n        \"disponible\": false\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios"
+					]
+				},
+				"description": "Actualiza la lista de servicios de una sede existente.\n\nSe envía el Id de la sede a actualizar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "replaceServicios",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "replaceInvalidServicios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se pueden asociar los servicios ya que estos no existen\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontró el servicio\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n        \"id\": 0,\r\n        \"servicio\": \"Acondicionamiento\",\r\n        \"disponible\": true\r\n    }]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}/servicios",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}",
+						"servicios"
+					]
+				},
+				"description": "Actualiza la lista de una sede existente con servicios que no existen.\n\nSe envía el Id de la sede a actualizar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro el servicio\".\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "replaceInvalidServicios",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/sedes/{{new_id_sede2}}/servicios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"sedes",
+								"{{new_id_sede2}}",
+								"servicios"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\r\n    \"apierror\": {\r\n        \"status\": \"NOT_FOUND\",\r\n        \"timestamp\": \"21-02-2023 10:25:21\",\r\n        \"message\": \"No se encontro el servicio\"\r\n    }\r\n}"
+				}
+			]
+		},
+		{
+			"name": "deleteServicio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/servicios/{{new_id_servicio}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"servicios",
+						"{{new_id_servicio}}"
+					]
+				},
+				"description": "Borra un servicio. Se envía el id del servicio creado en la tercera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "deleteServicio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/servicios/{{new_id_servicio}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"servicios",
+								"{{new_id_servicio}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteServicio2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/servicios/{{new_id_servicio2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"servicios",
+						"{{new_id_servicio2}}"
+					]
+				},
+				"description": "Borra un servicio. Se envía el id del servicio2 creado en la cuarta petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "deleteServicio2",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/api/servicios/{{new_id_servicio2}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"api",
+								"servicios",
+								"{{new_id_servicio2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}"
+					]
+				},
+				"description": "Borra una sede. Se envía el id de la sede creada en la primera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "deleteSede",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/sedes/{{new_id_sede}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"sedes",
+								"{{new_id_sede}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "deleteSede2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede2}}"
+					]
+				},
+				"description": "Borra una sede. Se envía el id de la sede2 creada en la segunda petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "deleteSede2",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/sedes/{{new_id_sede2}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"sedes",
+								"{{new_id_sede2}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	]
+}

@@ -70,7 +70,7 @@ public class SedeServicioService {
 		log.info("Termina proceso de consultar el servicio con id = {0} de la sede con id = " + sedeId, servicioId);
 		
 		if(!sedeEntity.get().getServiciosDisponibles().contains(servicioEntity.get()))
-			throw new IllegalOperationException("The servicio is not associated to the sede");
+			throw new IllegalOperationException("El servicio no esta asociado con la sede");
 		
 		return servicioEntity.get();
 	}
