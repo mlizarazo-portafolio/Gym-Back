@@ -1,11 +1,96 @@
 {
 	"info": {
-		"_postman_id": "de91a7bc-6750-4903-917c-f396dcd6d6ab",
+		"_postman_id": "6fbf2a2c-fad2-4487-a13c-ea60621e0d83",
 		"name": "RestriccionTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25622081"
 	},
 	"item": [
+		{
+			"name": "Crear un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"entrenador_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Ejercicio\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Multi-tiered fresh-thinking leverage\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores"
+					]
+				},
+				"description": "Se crea un entrandor para poder crear una actividad y asi, poder crear una restricción, hay que tener en cuenta, que nuestras reglas de negocio plantean que un entrenador no puede tener el mismo nombre que otro."
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"actividad_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 30,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    },\r\n    \"restriccion\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Crear una restriccion",
 			"event": [
@@ -29,7 +114,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"edad\": \"32\",\r\n    \"condFisica\": \"buena resistencia\",\r\n    \"actividad\": null\r\n}",
+					"raw": "{\r\n    \"edad\": \"32\",\r\n    \"condFisica\": \"buena resistencia\",\r\n    \"actividad\": {\r\n        \"id\": {{actividad_id}}\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -508,10 +593,10 @@
 					},
 					"status": "No Content",
 					"code": 204,
-					"_postman_previewlanguage": null,
-					"header": null,
+					"_postman_previewlanguage": "Text",
+					"header": [],
 					"cookie": [],
-					"body": null
+					"body": ""
 				}
 			]
 		},
