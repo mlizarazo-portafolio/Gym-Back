@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -27,7 +28,7 @@ public class ActividadEntity extends BaseEntity {
     private EntrenadorEntity entrenador;
 
     @PodamExclude
-    @OneToOne(mappedBy = "actividad")
+    @OneToOne(mappedBy = "actividad", fetch = FetchType.LAZY)
     private RestriccionEntity restriccion;
 
     @PodamExclude

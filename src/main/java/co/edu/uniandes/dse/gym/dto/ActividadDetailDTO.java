@@ -9,5 +9,6 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class ActividadDetailDTO extends ActividadDTO{
+    private RestriccionDTO restriccion;
     private List<SedeDTO> sedes = new ArrayList<>();   
 }
