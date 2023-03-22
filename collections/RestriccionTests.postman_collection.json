@@ -232,7 +232,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "[\n    {\n        \"id\": 1,\n        \"edad\": \"32\",\n        \"condFisica\": \"buena resistencia\",\n        \"actividad\": null\n    }\n]"
+					"body": "[\n    {\n        \"id\": 1,\n        \"edad\": 32,\n        \"condFisica\": \"buena resistencia\",\n        \"actividad\": {\n            \"id\": 2,\n            \"nombre\": \"Yoga\",\n            \"maxParticipantes\": 30,\n            \"horario\": null,\n            \"tipo\": \"grupal\",\n            \"entrenador\": null\n        }\n    }\n]"
 				}
 			]
 		},

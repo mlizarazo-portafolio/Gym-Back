@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 30,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    }, \r\n    \"restriccion\": null,\r\n    \"sedes\": null\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 30,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -468,7 +468,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 2,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    }, \r\n    \"restriccion\": null,\r\n    \"sedes\": null\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 2,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -628,7 +628,56 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "Borrar una actividad",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actividades/{{actividad_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"actividades",
+								"{{actividad_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Mar 2023 18:53:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "Borrar una actividad que no existe",
