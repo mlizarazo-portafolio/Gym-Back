@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
+import co.edu.uniandes.dse.gym.entities.ActividadEntity;
 import co.edu.uniandes.dse.gym.entities.RestriccionEntity;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
@@ -41,6 +42,8 @@ class RestriccionServiceTest {
 
     private List<RestriccionEntity> restriccionList = new ArrayList<>();
 
+    private List<ActividadEntity> actividadList = new ArrayList<>();
+
      /**
       * Configuración inicial de la prueba.
       */
@@ -56,7 +59,7 @@ class RestriccionServiceTest {
     private void clearData() 
     {
             entityManager.getEntityManager().createQuery("delete from RestriccionEntity");
-    
+            entityManager.getEntityManager().createQuery("delete from ActividadEntity");    
     }
 
     /**
@@ -70,12 +73,23 @@ class RestriccionServiceTest {
             entityManager.persist(restriccionEntity);
             restriccionList.add(restriccionEntity);
         }
+
+        for(int i = 0; i<3; i++)
+        {
+            ActividadEntity actividadEntity = factory.manufacturePojo(ActividadEntity.class);
+            entityManager.persist(actividadEntity);
+            actividadList.add(actividadEntity);
+        }
+
+
+
     }
 
     @Test
     void testCreateRestriccion()throws EntityNotFoundException, IllegalOperationException
     {
         RestriccionEntity newEntity = factory.manufacturePojo(RestriccionEntity.class);
+        newEntity.setActividad(actividadList.get(0));
         RestriccionEntity result = restriccionService.createRestriccion(newEntity);
         assertNotNull(result);
         
