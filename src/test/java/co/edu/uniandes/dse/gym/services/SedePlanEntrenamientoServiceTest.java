@@ -129,14 +129,14 @@ class SedePlanEntrenamientoServiceTest {
 		PlanEntrenamientoEntity planEntrenamiento = sedePlanEntrenamientoService.getPlanEntrenamiento(sede.getId(), planEntrenamientoEntity.getId());
 		assertNotNull(planEntrenamiento);
 
-		assertEquals(planEntrenamiento.getId(), planEntrenamiento.getId());
-		assertEquals(planEntrenamiento.getObjetivoBasico(), planEntrenamiento.getObjetivoBasico());
-		assertEquals(planEntrenamiento.getNombre(), planEntrenamiento.getNombre());
-		assertEquals(planEntrenamiento.getDescripcion(), planEntrenamiento.getDescripcion());
-		assertEquals(planEntrenamiento.getDirrecion(), planEntrenamiento.getDirrecion());
-        assertEquals(planEntrenamiento.getCoordenada(), planEntrenamiento.getCoordenada());
-        assertEquals(planEntrenamiento.getDuracion(), planEntrenamiento.getDuracion());
-        assertEquals(planEntrenamiento.getCosto(), planEntrenamiento.getCosto());
+		assertEquals(planEntrenamiento.getId(), planEntrenamientoEntity.getId());
+		assertEquals(planEntrenamiento.getObjetivoBasico(), planEntrenamientoEntity.getObjetivoBasico());
+		assertEquals(planEntrenamiento.getNombre(), planEntrenamientoEntity.getNombre());
+		assertEquals(planEntrenamiento.getDescripcion(), planEntrenamientoEntity.getDescripcion());
+		assertEquals(planEntrenamiento.getDirrecion(), planEntrenamientoEntity.getDirrecion());
+        assertEquals(planEntrenamiento.getCoordenada(), planEntrenamientoEntity.getCoordenada());
+        assertEquals(planEntrenamiento.getDuracion(), planEntrenamientoEntity.getDuracion());
+        assertEquals(planEntrenamiento.getCosto(), planEntrenamientoEntity.getCosto());
 	}
 
 	@Test
