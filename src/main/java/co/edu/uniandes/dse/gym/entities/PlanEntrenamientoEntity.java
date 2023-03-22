@@ -13,8 +13,8 @@ import uk.co.jemos.podam.common.PodamExclude;
 import java.util.List;
 import java.util.ArrayList;
 
-@Setter
 @Getter
+@Setter
 @Entity
 
 public class PlanEntrenamientoEntity extends  BaseEntity{
@@ -39,7 +39,7 @@ private List<AtletaEntity> atletasInscritos = new ArrayList<>();
     private String objetivoBasico;
     private String nombre;
     private String descripcion;
-    private String dirrecion;
+    private String direccion;
     private String coordenada;
     private Integer duracion;
     private Integer costo;
