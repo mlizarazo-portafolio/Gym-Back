@@ -58,7 +58,7 @@ public class AtletaService {
             throw new IllegalOperationException("No se puede crear un atleta sin un id");
         }
         if (atleta.getSede() != null) {
-            // sedeService.getSede(atleta.getSede().getId());
+            throw new IllegalOperationException("No se puede crear un atleta con una sede");
         }
         if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
@@ -69,9 +69,9 @@ public class AtletaService {
         if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        // if (!validateDireccion(atleta.getDireccion())) {
-        // throw new IllegalOperationException("La dirección no es válida");
-        // }
+        if (!validateDireccion(atleta.getDireccion())) {
+            throw new IllegalOperationException("La dirección no es válida");
+        }
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -91,12 +91,13 @@ public class AtletaService {
     }
 
     @Transactional
-    public AtletaEntity updateAtleta(AtletaEntity atleta) throws EntityNotFoundException, IllegalOperationException {
+    public AtletaEntity updateAtleta(Long id, AtletaEntity atleta)
+            throws EntityNotFoundException, IllegalOperationException {
         if (atleta.getId() == null) {
             throw new IllegalOperationException("No se puede actualizar un atleta sin un id");
         }
         if (atleta.getSede() != null) {
-            // sedeService.getSede(atleta.getSede().getId());
+            throw new IllegalOperationException("No se puede actualizar un atleta con una sede");
         }
         if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede actualizar un atleta sin un deportologo");
@@ -107,9 +108,9 @@ public class AtletaService {
         if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        // if (!validateDireccion(atleta.getDireccion())) {
-        // throw new IllegalOperationException("La dirección no es válida");
-        // }
+        if (!validateDireccion(atleta.getDireccion())) {
+            throw new IllegalOperationException("La dirección no es válida");
+        }
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }

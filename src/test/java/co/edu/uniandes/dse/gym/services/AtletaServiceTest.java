@@ -163,7 +163,7 @@ class AtletaServiceTest {
         pojoEntity.setPeso(80);
         pojoEntity.setDeportologo(deportologoList.get(0));
         pojoEntity.setSede(sedeList.get(0));
-        atletaService.updateAtleta(pojoEntity);
+        atletaService.updateAtleta(pojoEntity.getId(), pojoEntity);
         AtletaEntity resp = entityManager.find(AtletaEntity.class, entity.getId());
         assertEquals(pojoEntity.getId(), resp.getId());
         assertEquals(pojoEntity.getNombre(), resp.getNombre());
@@ -278,8 +278,9 @@ class AtletaServiceTest {
     void testUpdateAtletaWithNoValidId() {
         assertThrows(IllegalOperationException.class, () -> {
             AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            DeportologoEntity pojoEntity = factory.manufacturePojo(DeportologoEntity.class);
             newEntity.setId(-1L);
-            atletaService.updateAtleta(newEntity);
+            atletaService.updateAtleta(pojoEntity.getId(), newEntity);
         });
     }
 
@@ -288,8 +289,9 @@ class AtletaServiceTest {
     void testUpdateAtletaWithNoValidName() {
         assertThrows(IllegalOperationException.class, () -> {
             AtletaEntity newEntity = factory.manufacturePojo(AtletaEntity.class);
+            DeportologoEntity pojoEntity = factory.manufacturePojo(DeportologoEntity.class);
             newEntity.setNombre("");
-            atletaService.updateAtleta(newEntity);
+            atletaService.updateAtleta(pojoEntity.getId(), newEntity);
         });
     }
 }
