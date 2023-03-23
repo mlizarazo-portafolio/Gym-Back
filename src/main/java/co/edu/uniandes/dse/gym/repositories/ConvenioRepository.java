@@ -10,7 +10,5 @@ import co.edu.uniandes.dse.gym.entities.ConvenioEntity;
 @Repository
 public interface ConvenioRepository extends JpaRepository<ConvenioEntity, Long> {
     List<ConvenioEntity> findByNombre(String nombre);
-
-    ConvenioEntity save(Long convenioId);
     
 }

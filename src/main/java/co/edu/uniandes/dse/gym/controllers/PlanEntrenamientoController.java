@@ -44,7 +44,7 @@ public class PlanEntrenamientoController {
     @GetMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public PlanEntrenamientoDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException{
-        PlanEntrenamientoEntity planEntrenamientoEntity = planEntrenamientoService.getPlan(id);
+        PlanEntrenamientoEntity planEntrenamientoEntity = planEntrenamientoService.getPlanById(id);
         return modelMapper.map(planEntrenamientoEntity, PlanEntrenamientoDetailDTO.class);
     }
 
@@ -65,7 +65,7 @@ public class PlanEntrenamientoController {
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) throws EntityNotFoundException,IllegalOperationException{
-        planEntrenamientoService.deletPlan(id);
+        planEntrenamientoService.deletePlan(id);
     }
 
 

@@ -24,14 +24,14 @@ public class ConvenioService {
 
 
     @Transactional
-    public ConvenioEntity crearConvenio(ConvenioEntity convenioEntity) throws IllegalOperationException{
+    public ConvenioEntity createConvenio(ConvenioEntity convenioEntity) throws IllegalOperationException{
         
-        log.info("inicia el proceos de crear Plan de Entrenamiento");
+        log.info("inicia el proceos de crear un convenio");
 
         if(convenioEntity.getNombre() == null) throw new IllegalOperationException("Nombre no es válido");
         if(convenioEntity.getDescuento() == null) throw new IllegalOperationException("Descuento no es válida");
  
-        log.info("Termina proceso de creación de Plan de Convenio");
+        log.info("Termina proceso de creación de un Convenio");
 
         return convenioRepository.save(convenioEntity);
     }
@@ -43,7 +43,7 @@ public class ConvenioService {
     }
 
     @Transactional
-    public ConvenioEntity getConvenio(Long convenioId) throws EntityNotFoundException{
+    public ConvenioEntity getConvenioById(Long convenioId) throws EntityNotFoundException{
         log.info("Inicia proceso de consultar el Convenio con id = {0}", convenioId);
         Optional < ConvenioEntity > convenioEntity = convenioRepository.findById( convenioId);
 
@@ -66,13 +66,13 @@ public class ConvenioService {
 
         log.info("Termina proceso de actualizar el convenio con id = {0}", convenioId);
             
-        return convenioRepository.save(convenioId);
+        return convenioRepository.save(convenio);
     }
     
 
 
     @Transactional
-    public void deletConvenio(Long convenioId) throws EntityNotFoundException, IllegalOperationException {
+    public void deleteConvenio(Long convenioId) throws EntityNotFoundException, IllegalOperationException {
         log.info("Inicia proceso de borrar el convenio con id = {0}", convenioId);
 
         Optional < ConvenioEntity > convenioEntity = convenioRepository.findById(convenioId);

@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 public class ConvenioDTO{
 
+    private Long id;
     private String nombre;
     private Double descuento;
 

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 public class ConvenioDetailDTO extends ConvenioDTO{
 
+  
     private String nombre;
     private Double descuento;
 
