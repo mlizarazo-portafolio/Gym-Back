@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 
 public class AtletaDTO {
+    private Long id;
     private String nombre;
     private String login;
     private String tipoSangre;
