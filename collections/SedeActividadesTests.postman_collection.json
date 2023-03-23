@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "61188773-6ba9-476e-ae46-6a058442245c",
+		"name": "SedeActividadesTests",
+		"description": "Colección de pruebas sobre el recurso SedeActividad",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25565466"
+	},
+	"item": [
+		{
+			"name": "createEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_entrenador\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Elaina Jencken\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Multi-tiered fresh-thinking leverage\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores"
+					]
+				},
+				"description": "Crea un nuevo entrenador. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "createEntrenador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_entrenador2\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"David Calpa\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Ella no le dió covid pero si le dio brayan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores"
+					]
+				},
+				"description": "Crea un nuevo entrenador2. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "createActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_actividad\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Zumba\",\r\n    \"maxParticipantes\": \"10\",\r\n    \"horario\": \"mañana\",\r\n    \"entrenador\": { \"id\": {{new_id_entrenador}}},\r\n    \"tipo\": \"Grupal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades"
+					]
+				},
+				"description": "Crea una nueva actividad. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "createActividad2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_actividad2\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Spin\",\r\n    \"maxParticipantes\": \"15\",\r\n    \"horario\": \"noche\",\r\n    \"entrenador\": { \"id\": {{new_id_entrenador2}}},\r\n    \"tipo\": \"Grupal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades"
+					]
+				},
+				"description": "Crea una nueva actividad2. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "createSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede\",data.id);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Central\",\r\n  \"direccion\": \"21 st\",\r\n  \"telefono\": \"689493\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.  \nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "addActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/{{new_id_actividad}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"{{new_id_actividad}}"
+					]
+				},
+				"description": "Asocia una actividad a una sede en la aplicación.\n\nSe envía el Id de la sede y el de la actividad a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "addInvalidActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se deberia asociar la sede ya que la actividad no existe.\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro la actividad\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"0"
+					]
+				},
+				"description": "Asocia una actividad que no existe a una sede en la aplicación.\n\nSe envía el Id de la sede y el de la actividad a asociar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro la actividad\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "getActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/{{new_id_actividad}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"{{new_id_actividad}}"
+					]
+				},
+				"description": "Consulta una actividad de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede y de la actividad a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "getInvalidActividad1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se deberia obtener ninguna actividad ya que la actividad no existe.\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro la actividad\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"0"
+					]
+				},
+				"description": "Consulta una actividad que no existe de una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "getInvalidActividad2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se puede obtener una actividad que no esta asociada\"] = responseCode.code === 412;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"La actividad no esta asociada con la sede\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/{{new_id_actividad2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"{{new_id_actividad2}}"
+					]
+				},
+				"description": "Consulta una actividad que no esta asociada a una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje \"La actividad no está asociada a la sede\".\n\n**Código http esperado: 412**"
+			},
+			"response": []
+		},
+		{
+			"name": "replaceActividades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"id\": {{new_id_actividad}},\r\n    \"nombre\": \"Act1\",\r\n    \"maxParticipantes\": \"20\",\r\n    \"horario\": \"tarde\",\r\n    \"entrenador\": { \"id\": {{new_id_entrenador}}},\r\n    \"tipo\": \"Grupal\"\r\n},{\r\n    \"id\": {{new_id_actividad2}},\r\n    \"nombre\": \"Act2\",\r\n    \"maxParticipantes\": \"100\",\r\n    \"horario\": \"mediodia\",\r\n    \"entrenador\": { \"id\": {{new_id_entrenador2}}},\r\n    \"tipo\": \"Grande\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades"
+					]
+				},
+				"description": "Actualiza la lista de actividades a una sede existente.\n\nSe envía el Id en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "getActividades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data= JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;\r",
+							"tests[\"actividades count - sede\"] = data.length >= 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades"
+					]
+				},
+				"description": "Consulta las actividades de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede y el de la actividad a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "replaceInvalidActividades",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se pueden asociar las actividades ya que estas no existen\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro la actividad\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"id\": 0,\r\n    \"nombre\": \"Act3\",\r\n    \"maxParticipantes\": \"20\",\r\n    \"horario\": \"tarde\",\r\n    \"entrenador\": { \"id\": {{new_id_entrenador}}},\r\n    \"tipo\": \"Grupal\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades"
+					]
+				},
+				"description": "Actualiza la lista de actividades de un entrenador existente con actividades que no existen.\n\nSe envía el Id en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro la actividad\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "removeActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/{{new_id_actividad}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"{{new_id_actividad}}"
+					]
+				},
+				"description": "Borra la asociación entre una actividad y una sede. Se envían los ids de la sede y de la actividad creados anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "removeActividad2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/{{new_id_actividad2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"{{new_id_actividad2}}"
+					]
+				},
+				"description": "Borra la asociación entre una actividad2 y una sede. Se envían los ids de la sede y de la actividad creados anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "removeInvalidActividad1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se deberia eliminar ninguna asociacion ya que la sede no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontró la sede\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/0/actividades/{{new_id_actividad}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"0",
+						"actividades",
+						"{{new_id_actividad}}"
+					]
+				},
+				"description": "Borra la asociación entre una actividad y una sede que no existe en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontró la sede\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "removeInvalidActividad2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se deberia eliminar ninguna asociacion ya que la actividad no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro la actividad\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}/actividades/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}",
+						"actividades",
+						"0"
+					]
+				},
+				"description": "Borra la asociación entre un libro que no existe y un autor en la aplicación.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteActividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{new_id_actividad}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{new_id_actividad}}"
+					]
+				},
+				"description": "Borra una actividad. Se envía el id de la actividad creada anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteActividad2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{new_id_actividad2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{new_id_actividad2}}"
+					]
+				},
+				"description": "Borra una actividad2. Se envía el id de la actividad creada anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/sedes/{{new_id_sede}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes",
+						"{{new_id_sede}}"
+					]
+				},
+				"description": "Borra una sede. Se envía el id de la sede creada anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEntrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores/{{new_id_entrenador}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores",
+						"{{new_id_entrenador}}"
+					]
+				},
+				"description": "Borra un entrenador. Se envía el id del entrenador creado anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteEntrenador2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores/{{new_id_entrenador2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores",
+						"{{new_id_entrenador2}}"
+					]
+				},
+				"description": "Borra un entrenador2. Se envía el id del entrenador creado anteriormente.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		}
+	]
+}

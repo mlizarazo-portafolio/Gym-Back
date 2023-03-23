@@ -82,7 +82,7 @@ class SedePlanEntrenamientoServiceTest {
 		assertEquals(planEntrenamiento.getObjetivoBasico(), lastPlanEntrenamiento.getObjetivoBasico());
 		assertEquals(planEntrenamiento.getNombre(), lastPlanEntrenamiento.getNombre());
 		assertEquals(planEntrenamiento.getDescripcion(), lastPlanEntrenamiento.getDescripcion());
-		assertEquals(planEntrenamiento.getDirrecion(), lastPlanEntrenamiento.getDirrecion());
+		assertEquals(planEntrenamiento.getDireccion(), lastPlanEntrenamiento.getDireccion());
         assertEquals(planEntrenamiento.getDuracion(), lastPlanEntrenamiento.getDuracion());
         assertEquals(planEntrenamiento.getCosto(), lastPlanEntrenamiento.getCosto());
 	}
@@ -128,13 +128,13 @@ class SedePlanEntrenamientoServiceTest {
 		PlanEntrenamientoEntity planEntrenamiento = sedePlanEntrenamientoService.getPlanEntrenamiento(sede.getId(), planEntrenamientoEntity.getId());
 		assertNotNull(planEntrenamiento);
 
-		assertEquals(planEntrenamiento.getId(), planEntrenamiento.getId());
-		assertEquals(planEntrenamiento.getObjetivoBasico(), planEntrenamiento.getObjetivoBasico());
-		assertEquals(planEntrenamiento.getNombre(), planEntrenamiento.getNombre());
-		assertEquals(planEntrenamiento.getDescripcion(), planEntrenamiento.getDescripcion());
-		assertEquals(planEntrenamiento.getDirrecion(), planEntrenamiento.getDirrecion());
-        assertEquals(planEntrenamiento.getDuracion(), planEntrenamiento.getDuracion());
-        assertEquals(planEntrenamiento.getCosto(), planEntrenamiento.getCosto());
+		assertEquals(planEntrenamiento.getId(), planEntrenamientoEntity.getId());
+		assertEquals(planEntrenamiento.getObjetivoBasico(), planEntrenamientoEntity.getObjetivoBasico());
+		assertEquals(planEntrenamiento.getNombre(), planEntrenamientoEntity.getNombre());
+		assertEquals(planEntrenamiento.getDescripcion(), planEntrenamientoEntity.getDescripcion());
+		assertEquals(planEntrenamiento.getDireccion(), planEntrenamientoEntity.getDireccion());
+        assertEquals(planEntrenamiento.getDuracion(), planEntrenamientoEntity.getDuracion());
+        assertEquals(planEntrenamiento.getCosto(), planEntrenamientoEntity.getCosto());
 	}
 
 	@Test

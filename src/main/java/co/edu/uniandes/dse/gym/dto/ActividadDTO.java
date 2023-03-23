@@ -13,5 +13,5 @@ public class ActividadDTO {
     private String horario;
     private String tipo;
     private EntrenadorDTO entrenador;
-    private RestriccionDTO restriccion;
+    
 }

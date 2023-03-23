@@ -78,8 +78,7 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getObjetivoBasico(), entity.getObjetivoBasico());
-        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
-        assertEquals(newEntity.getDirrecion(), entity.getDirrecion());
+        assertEquals(newEntity.getDireccion(), entity.getDireccion());
         assertEquals(newEntity.getDuracion(), entity.getDuracion());
         assertEquals(newEntity.getCosto(), entity.getCosto());
     }
@@ -94,7 +93,7 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
         assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
-        assertEquals(entity.getDirrecion(), resultEntity.getDirrecion());
+        assertEquals(entity.getDireccion(), resultEntity.getDireccion());
         assertEquals(entity.getDuracion(), resultEntity.getDuracion());
         assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
@@ -109,8 +108,7 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(entity.getId(), resultEntity.getId());
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
-        assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
-        assertEquals(entity.getDirrecion(), resultEntity.getDirrecion());
+        assertEquals(entity.getDireccion(), resultEntity.getDireccion());
         assertEquals(entity.getDuracion(), resultEntity.getDuracion());
         assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
@@ -135,7 +133,7 @@ public class PlanEntrenamientoServiceTest {
         assertEquals(pojoEntity.getNombre(), resp.getNombre());
         assertEquals(pojoEntity.getObjetivoBasico(), resp.getObjetivoBasico());
         assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
-        assertEquals(pojoEntity.getDirrecion(), resp.getDirrecion());
+        assertEquals(pojoEntity.getDireccion(), resp.getDireccion());
         assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
         assertEquals(pojoEntity.getCosto(), resp.getCosto());
     }

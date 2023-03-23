@@ -25,6 +25,7 @@ public class AtletaEntity extends BaseEntity {
 
     @Temporal(TemporalType.DATE)
     @PodamStrategyValue(DateStrategy.class)
+
     private Date fechaNacimiento;
 
     private String nombre;
@@ -45,7 +46,7 @@ public class AtletaEntity extends BaseEntity {
     @PodamExclude
     @ManyToMany(mappedBy = "atletasInscritos")
     private List<ActividadEntity> actividadesInscritas = new ArrayList<>();
-    
+
     @PodamExclude
     @ManyToOne
     private DeportologoEntity deportologo;

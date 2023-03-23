@@ -1,0 +1,860 @@
+{
+	"info": {
+		"_postman_id": "6fbf2a2c-fad2-4487-a13c-ea60621e0d83",
+		"name": "RestriccionTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25622081"
+	},
+	"item": [
+		{
+			"name": "Crear un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"entrenador_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Juan Ejercicio\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Multi-tiered fresh-thinking leverage\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores"
+					]
+				},
+				"description": "Se crea un entrandor para poder crear una actividad y asi poder crear una restricción, hay que tener en cuenta, que nuestras reglas de negocio plantean que un entrenador no puede tener el mismo nombre que otro.\n\n**Código http esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"actividad_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 30,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    },\r\n    \"restriccion\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades"
+					]
+				},
+				"description": "Crea una nueva actividad. El id es inicializado en por la base de datos, este se guarda en una variable que sera utilizada en otras peticiones.\n\n**Código htttp esperado: 201**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una restriccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"restriccion_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"edad\": \"32\",\r\n    \"condFisica\": \"buena resistencia\",\r\n    \"actividad\": {\r\n        \"id\": {{actividad_id}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restricciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones"
+					]
+				},
+				"description": "Crea una nueva restricción. El id es inicializado en por la base de datos, este se guarda en una variable que sera utilizada en otras peticiones.\n\n**Código htttp esperado: 201**"
+			},
+			"response": [
+				{
+					"name": "Crear una restriccion",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"edad\": \"32\",\n    \"condFisica\": \"buena resistencia\",\n    \"actividad\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Obtener todas las restricciones",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numero de restricciones > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restricciones",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones"
+					]
+				},
+				"description": "Consulta todas las restricciones de la aplicación.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "Obtener todas las restricciones",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"edad\": 32,\n        \"condFisica\": \"buena resistencia\",\n        \"actividad\": {\n            \"id\": 2,\n            \"nombre\": \"Yoga\",\n            \"maxParticipantes\": 30,\n            \"horario\": null,\n            \"tipo\": \"grupal\",\n            \"entrenador\": null\n        }\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una restriccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/{{restriccion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"{{restriccion_id_1}}"
+					]
+				},
+				"description": "Consulta una restricción de la aplicación.\n\nSe envía el id de la restricción deseada por la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "Obtener una restriccion",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/{{restriccion_id_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"{{restriccion_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"id\": 1,\r\n        \"edad\": \"32\",\r\n        \"condFisica\": \"buena resistencia\",\r\n        \"actividad\": null\r\n    }\r\n]"
+				}
+			]
+		},
+		{
+			"name": "Obtener una restriccion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro la restricción\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"0"
+					]
+				},
+				"description": "Consulta una restricción que no existe en la aplicación.\n\nPara la prueba se verifica que genera el error y el mensaje \"No se encontro la restriccion\"\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "Obtener una restriccion que no existe",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:01:09\",\n        \"message\": \"No se encontro la restricción\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Editar una restriccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n    \"edad\": \"32\",\r\n    \"condFisica\": \"buena resistencia y fuerza\",\r\n    \"actividad\": null\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/{{restriccion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"{{restriccion_id_1}}"
+					]
+				},
+				"description": "Actualiza una restricción existente. Se envía el id en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": [
+				{
+					"name": "Editar una restriccion",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/{{restriccion_id_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"{{restriccion_id_1}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"edad\": \"32\",\n    \"condFisica\": \"buena resistencia y fuerza\",\n    \"actividad\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Editar una restriccion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro la restricción\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \r\n    \"edad\": \"32\",\r\n    \"condFisica\": \"buena resistencia\",\r\n    \"actividad\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"0"
+					]
+				},
+				"description": "Actualiza una restricción que no existe. Para la prueba se verifica que se genera el error y el mensaje \"No se encontro la restriccion\"\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "Editar una restriccion que no existe",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:04:10\",\n        \"message\": \"No se encontro la restricción\",\n        \"actividad\": null\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una restriccion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/{{restriccion_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"{{restriccion_id_1}}"
+					]
+				},
+				"description": "Borra una restricción. Se envía el id de la restricción creada anteriormente.\n\n**Código http esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "Borrar una restriccion",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/{{restriccion_id_1}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"{{restriccion_id_1}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "Text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Borrar una restriccion que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro la restricción\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/restricciones/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"restricciones",
+						"0"
+					]
+				},
+				"description": "Borra una restricción que no existe en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje: \"No se encontro la restriccion\"\n\n**Código http esperado: 404**"
+			},
+			"response": [
+				{
+					"name": "Borrar una restriccion que no existe",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/restricciones/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"restricciones",
+								"0"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"apierror\": {\n        \"status\": \"NOT_FOUND\",\n        \"timestamp\": \"21-02-2023 10:05:19\",\n        \"message\": \"No se encontro la restricción\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Borrar una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}"
+					]
+				},
+				"description": "Borra una actividad. Se envía el id de la actividad creada anteriormente.\n\n**Código http esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "Borrar una actividad",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/actividades/{{actividad_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"actividades",
+								"{{actividad_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Mar 2023 00:15:22 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "Borrar un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores/{{entrenador_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores",
+						"{{entrenador_id}}"
+					]
+				},
+				"description": "Borra un entrenador. Se envía el id del entrenador creado anteriormente.\n\n**Código http esperado: 204**"
+			},
+			"response": [
+				{
+					"name": "Borrar un entrenador",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/entrenadores/{{entrenador_id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"entrenadores",
+								"{{entrenador_id}}"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 23 Mar 2023 00:13:48 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": null
+				}
+			]
+		}
+	]
+}
