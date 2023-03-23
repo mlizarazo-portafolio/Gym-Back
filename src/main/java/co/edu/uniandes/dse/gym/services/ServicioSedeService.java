@@ -43,19 +43,4 @@ public class ServicioSedeService {
 		return servicioEntity.get();
 	}
 
-	// @Transactional
-	// public void removeSede(Long servicioId) throws EntityNotFoundException {
-	// 	log.info("Inicia proceso de borrar la sede del servicio con id = {0}", servicioId);
-	// 	Optional<ServicioEntity> servicioEntity = servicioRepository.findById(servicioId);
-	// 	if (servicioEntity.isEmpty())
-	// 		throw new EntityNotFoundException(ErrorMessage.SERVICIO_NOT_FOUND);
-
-	// 	Optional<SedeEntity> sedeEntity = sedeRepository
-	// 			.findById(servicioEntity.get().getSede().getId());
-	// 	sedeEntity.ifPresent(sede -> sede.getServiciosDisponibles().remove(servicioEntity.get()));
-
-	// 	servicioEntity.get().setSede(null);
-	// 	log.info("Termina proceso de borrar la sede del libro con id = {0}", servicioId);
-	// }
-
 }   
