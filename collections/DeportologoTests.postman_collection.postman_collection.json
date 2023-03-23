@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "42138e95-8f8e-479c-b657-66a8abd21194",
+		"name": "DeportologoTests.postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25621840"
+	},
+	"item": [
+		{
+			"name": "createDeportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"deportologo_id_1\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan Alberto Silva\",\r\n    \"login\": \"ja.silva\",\r\n    \"experiencia\": \"5 años de entrenador en SmartFit\",\r\n    \"foto\": \"https://commons.wikimedia.org/wiki/File:Gabriel_Garcia_Marquez.jpg\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDeportologos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numero de deportologos > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getDeportologoById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateDeportologo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"nombre\": \"Juan Alberto Silva\",\r\n    \"login\": \"ja.silva\",\r\n    \"experiencia\": \"5 años de entrenador en SmartFit\",\r\n    \"foto\": \"https://commons.wikimedia.org/wiki/File:Gabriel_Garcia_Marquez.jpg\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteInvalidDeportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologo/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologo",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateInvalidDeportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"nombre\": \"Juan Alberto Silva\",\r\n    \"login\": \"ja.silva\",\r\n    \"experiencia\": \"5 años de entrenador en SmartFit\",\r\n    \"foto\": \"https://commons.wikimedia.org/wiki/File:Gabriel_Garcia_Marquez.jpg\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteDeportologo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
