@@ -7,6 +7,7 @@ import lombok.Setter;
 @Getter
 
 public class DeportologoDTO {
+    private Long id;
     private String nombre;
     private String login;
     private String experiencia;
