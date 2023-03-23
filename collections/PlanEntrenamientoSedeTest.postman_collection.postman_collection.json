@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "c0a86174-a990-46eb-8ea9-0bb771f7c039",
+		"name": "PlanEntrenamientoSedeTest.postman_collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26104139"
+	},
+	"item": [
+		{
+			"name": "createPlan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_plan\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Fuerza intensa principiantes\",\r\n    \"objetivoBasico\":\"Fuerza\",\r\n    \"descripcion\":\"Ejercicios basados en ganar fuerza\",\r\n    \"dirreccion\":\"Carrera tercera\",\r\n    \"duracion\":2,\r\n    \"costo\":2000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/planes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"planes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createSede",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n  \"nombre\": \"Central\",\r\n  \"direccion\": \"21 st\",\r\n  \"telefono\": \"689493\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createSede2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"new_id_sede2\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n  \"nombre\": \"Central\",\r\n  \"direccion\": \"21 st\",\r\n  \"telefono\": \"689493\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"sedes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "replaceInvalidPlan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No actualiza con editorial que no existe\"] = responseCode.code === 404;\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/planes/{{new_id_plan}}/sedes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"planes",
+						"{{new_id_plan}}",
+						"sedes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePlan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/planes/{{new_id_plan}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"planes",
+						"{{new_id_plan}}"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		}
+	]
+}
