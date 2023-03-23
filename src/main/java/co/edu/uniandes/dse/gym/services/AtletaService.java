@@ -57,9 +57,7 @@ public class AtletaService {
         if (atleta.getId() != null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un id");
         }
-        if (atleta.getSede() != null) {
-            throw new IllegalOperationException("No se puede crear un atleta con una sede");
-        }
+    
         if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
         }
@@ -69,9 +67,7 @@ public class AtletaService {
         if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        if (!validateDireccion(atleta.getDireccion())) {
-            throw new IllegalOperationException("La dirección no es válida");
-        }
+  
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -96,9 +92,7 @@ public class AtletaService {
         if (atleta.getId() == null) {
             throw new IllegalOperationException("No se puede actualizar un atleta sin un id");
         }
-        if (atleta.getSede() != null) {
-            throw new IllegalOperationException("No se puede actualizar un atleta con una sede");
-        }
+
         if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede actualizar un atleta sin un deportologo");
         }
@@ -108,9 +102,7 @@ public class AtletaService {
         if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-        if (!validateDireccion(atleta.getDireccion())) {
-            throw new IllegalOperationException("La dirección no es válida");
-        }
+
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -173,18 +165,6 @@ public class AtletaService {
 
     }
 
-    private boolean validateDireccion(String address) {
-        String regex = "\\b(Carrera|Calle)\\s\\d+\\s#\\s?\\d+[-a-cA-C ]*\\s?,\\s\\p{L}+,\\sColombia\\b";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(address);
-        if (matcher.matches()) {
-            // System.out.println("The address is valid.");
-            return true;
-        } else {
-            // System.out.println("The address is not valid.");
-            return false;
-        }
-    }
 
     private boolean validateNacimiento(Date birthdate) {
         LocalDate localBirthdate = birthdate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
