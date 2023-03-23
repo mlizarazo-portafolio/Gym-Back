@@ -2,7 +2,9 @@ package co.edu.uniandes.dse.gym.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,35 +69,104 @@ public class ConvenioServiceTest {
         }
     }
 
+    
     @Test
     void testCreateConvenio() throws EntityNotFoundException, IllegalOperationException {
         ConvenioEntity newEntity = factory.manufacturePojo(ConvenioEntity.class);
-        //newEntity.setPlan(planList.get(0));
-        //newEntity.setId("1-4028-9462-7");
-        ConvenioEntity result = convenioService.crearConvenio(newEntity);
+        ConvenioEntity result = convenioService.createConvenio(newEntity);
         assertNotNull(result);
+
         ConvenioEntity entity = entityManager.find(ConvenioEntity.class, result.getId());
+        assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getDescuento(), entity.getDescuento());
-    }
-
-    @Test
-    void testGetConvenio() throws EntityNotFoundException {
-        ConvenioEntity entity = convenioList.get(0);
-        ConvenioEntity resultEntity = convenioService.getConvenio(entity.getId());
-        assertNotNull(resultEntity);
-        
-        assertEquals(entity.getNombre(), resultEntity.getNombre());
-        assertEquals(entity.getDescuento(), resultEntity.getDescuento());
 
     }
 
     @Test
-    void testGetInvalidConvenio() {
-        assertThrows(EntityNotFoundException.class,()->{
-                convenioService.getConvenio(0L);
+    void testCreateConvenioInvalidNombre() {
+        assertThrows(IllegalOperationException.class, () -> {
+                ConvenioEntity newEntity = factory.manufacturePojo(ConvenioEntity.class);
+                newEntity.setNombre(null);
+                convenioService.createConvenio(newEntity);
         });
     }
+
+
+
+    @Test
+    void testGetConvenios() {
+        List<ConvenioEntity> list = convenioService.getConvenios();
+        assertEquals(convenioList.size(), list.size());
+        for (ConvenioEntity entity : list) {
+            boolean found = false;
+            for (ConvenioEntity storedEntity : convenioList) {
+                if (entity.getId().equals(storedEntity.getId())) {
+                    found = true;
+                }
+                    }
+            assertTrue(found);
+        }
+    }
+
+    @Test
+    void testGetConvenioById() throws EntityNotFoundException {
+        ConvenioEntity entity = convenioList.get(0);
+        ConvenioEntity resultEntity = convenioService.getConvenioById(entity.getId());
+
+        assertNotNull(resultEntity);
+        assertEquals(entity.getId(), resultEntity.getId());
+        assertEquals(entity.getNombre(), resultEntity.getNombre());
+        assertEquals(entity.getDescuento(), resultEntity.getDescuento());
+      
+    }
+
+    @Test
+    void testGetInvalidConvenioById() {
+        assertThrows(EntityNotFoundException.class,()->{
+                convenioService.getConvenioById(0L);
+        });
+    }
+
+    @Test
+    void testUpdateConvenio() throws EntityNotFoundException, IllegalOperationException {
+        ConvenioEntity entity = convenioList.get(0);
+        ConvenioEntity pojoEntity = factory.manufacturePojo(ConvenioEntity.class);
+        pojoEntity.setId(entity.getId());
+        convenioService.updateConvenio(entity.getId(), pojoEntity);
+
+        ConvenioEntity resp = entityManager.find(ConvenioEntity.class, entity.getId());
+
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getDescuento(), resp.getDescuento());
+
+    }
+
+    @Test
+    void testUpdateConvenioInvalidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+                ConvenioEntity pojoEntity = factory.manufacturePojo(ConvenioEntity.class);
+                pojoEntity.setId(0L);
+                convenioService.updateConvenio(0L, pojoEntity);
+        });
+    }
+
+    @Test
+    void testDeleteConvenio() throws EntityNotFoundException, IllegalOperationException {
+        ConvenioEntity entity = convenioList.get(1);
+        convenioService.deleteConvenio(entity.getId());
+        ConvenioEntity deleted = entityManager.find(ConvenioEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    void testDeleteInvalidConvenio() {
+        assertThrows(EntityNotFoundException.class, ()->{
+                convenioService.deleteConvenio(0L);
+        });
+    }
+    
     
 
 

@@ -83,7 +83,6 @@ class SedePlanEntrenamientoServiceTest {
 		assertEquals(planEntrenamiento.getNombre(), lastPlanEntrenamiento.getNombre());
 		assertEquals(planEntrenamiento.getDescripcion(), lastPlanEntrenamiento.getDescripcion());
 		assertEquals(planEntrenamiento.getDirrecion(), lastPlanEntrenamiento.getDirrecion());
-        assertEquals(planEntrenamiento.getCoordenada(), lastPlanEntrenamiento.getCoordenada());
         assertEquals(planEntrenamiento.getDuracion(), lastPlanEntrenamiento.getDuracion());
         assertEquals(planEntrenamiento.getCosto(), lastPlanEntrenamiento.getCosto());
 	}
@@ -134,7 +133,6 @@ class SedePlanEntrenamientoServiceTest {
 		assertEquals(planEntrenamiento.getNombre(), planEntrenamiento.getNombre());
 		assertEquals(planEntrenamiento.getDescripcion(), planEntrenamiento.getDescripcion());
 		assertEquals(planEntrenamiento.getDirrecion(), planEntrenamiento.getDirrecion());
-        assertEquals(planEntrenamiento.getCoordenada(), planEntrenamiento.getCoordenada());
         assertEquals(planEntrenamiento.getDuracion(), planEntrenamiento.getDuracion());
         assertEquals(planEntrenamiento.getCosto(), planEntrenamiento.getCosto());
 	}

@@ -46,14 +46,14 @@ public class ConvenioController {
     @GetMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.OK)
     public ConvenioDetailDTO findOne(@PathVariable("id") Long id) throws EntityNotFoundException{
-        ConvenioEntity convenioEntity = convenioService.getConvenio(id);
+        ConvenioEntity convenioEntity = convenioService.getConvenioById(id);
         return modelMapper.map(convenioEntity, ConvenioDetailDTO.class);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public ConvenioDTO create(@RequestBody ConvenioDTO convenioDTO) throws IllegalOperationException, EntityNotFoundException{
-        ConvenioEntity convenioEntity = convenioService.crearConvenio(modelMapper.map(convenioDTO, ConvenioEntity.class));
+        ConvenioEntity convenioEntity = convenioService.createConvenio(modelMapper.map(convenioDTO, ConvenioEntity.class));
         return modelMapper.map(convenioEntity, ConvenioDTO.class);
     }
 
@@ -67,6 +67,6 @@ public class ConvenioController {
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") Long id) throws EntityNotFoundException,IllegalOperationException{
-        convenioService.deletConvenio(id);
+        convenioService.deleteConvenio(id);
     }
 }

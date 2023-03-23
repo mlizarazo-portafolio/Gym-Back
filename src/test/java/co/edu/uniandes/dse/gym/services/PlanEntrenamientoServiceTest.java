@@ -2,6 +2,7 @@ package co.edu.uniandes.dse.gym.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
@@ -70,17 +71,15 @@ public class PlanEntrenamientoServiceTest {
     @Test
     void testCreatePlan() throws EntityNotFoundException, IllegalOperationException {
         PlanEntrenamientoEntity newEntity = factory.manufacturePojo(PlanEntrenamientoEntity.class);
-        //newEntity.setPlan(planList.get(0));
-        //newEntity.setId("1-4028-9462-7");
         PlanEntrenamientoEntity result = planEntrenamientoService.crearPlan(newEntity);
         assertNotNull(result);
         PlanEntrenamientoEntity entity = entityManager.find(PlanEntrenamientoEntity.class, result.getId());
         
+        assertEquals(newEntity.getId(), entity.getId());
         assertEquals(newEntity.getNombre(), entity.getNombre());
-        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         assertEquals(newEntity.getObjetivoBasico(), entity.getObjetivoBasico());
+        assertEquals(newEntity.getDescripcion(), entity.getDescripcion());
         assertEquals(newEntity.getDirrecion(), entity.getDirrecion());
-        assertEquals(newEntity.getCoordenada(), entity.getCoordenada());
         assertEquals(newEntity.getDuracion(), entity.getDuracion());
         assertEquals(newEntity.getCosto(), entity.getCosto());
     }
@@ -88,26 +87,81 @@ public class PlanEntrenamientoServiceTest {
     @Test
     void testGetPlan() throws EntityNotFoundException {
         PlanEntrenamientoEntity entity = planList.get(0);
-        PlanEntrenamientoEntity resultEntity = planEntrenamientoService.getPlan(entity.getId());
+        PlanEntrenamientoEntity resultEntity = planEntrenamientoService.getPlanById(entity.getId());
         assertNotNull(resultEntity);
+
         
         assertEquals(entity.getNombre(), resultEntity.getNombre());
-        assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
         assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
+        assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
         assertEquals(entity.getDirrecion(), resultEntity.getDirrecion());
-        assertEquals(entity.getCoordenada(), resultEntity.getCoordenada());
+        assertEquals(entity.getDuracion(), resultEntity.getDuracion());
+        assertEquals(entity.getCosto(), resultEntity.getCosto());
+    }
+
+
+    @Test
+    void testGetPlanById() throws EntityNotFoundException {
+        PlanEntrenamientoEntity entity = planList.get(0);
+        PlanEntrenamientoEntity resultEntity = planEntrenamientoService.getPlanById(entity.getId());
+        assertNotNull(resultEntity);
+
+        assertEquals(entity.getId(), resultEntity.getId());
+        assertEquals(entity.getNombre(), resultEntity.getNombre());
+        assertEquals(entity.getObjetivoBasico(), resultEntity.getObjetivoBasico());
+        assertEquals(entity.getDescripcion(), resultEntity.getDescripcion());
+        assertEquals(entity.getDirrecion(), resultEntity.getDirrecion());
         assertEquals(entity.getDuracion(), resultEntity.getDuracion());
         assertEquals(entity.getCosto(), resultEntity.getCosto());
     }
 
     @Test
-    void testGetInvalidPlan() {
+    void testGetInvalidPlanById() {
         assertThrows(EntityNotFoundException.class,()->{
-                planEntrenamientoService.getPlan(0L);
+                planEntrenamientoService.getPlanById(0L);
         });
     }
 
 
-    
+    @Test
+    void testUpdatePlan() throws EntityNotFoundException, IllegalOperationException {
+        PlanEntrenamientoEntity entity = planList.get(0);
+        PlanEntrenamientoEntity pojoEntity = factory.manufacturePojo(PlanEntrenamientoEntity.class);
+        pojoEntity.setId(entity.getId());
+        planEntrenamientoService.updatePlan(entity.getId(), pojoEntity);
+
+        PlanEntrenamientoEntity resp = entityManager.find(PlanEntrenamientoEntity.class, entity.getId());
+        assertEquals(pojoEntity.getId(), resp.getId());
+        assertEquals(pojoEntity.getNombre(), resp.getNombre());
+        assertEquals(pojoEntity.getObjetivoBasico(), resp.getObjetivoBasico());
+        assertEquals(pojoEntity.getDescripcion(), resp.getDescripcion());
+        assertEquals(pojoEntity.getDirrecion(), resp.getDirrecion());
+        assertEquals(pojoEntity.getDuracion(), resp.getDuracion());
+        assertEquals(pojoEntity.getCosto(), resp.getCosto());
+    }
+
+    @Test
+    void testUpdatePlanInvalidId() {
+        assertThrows(EntityNotFoundException.class, () -> {
+                PlanEntrenamientoEntity pojoEntity = factory.manufacturePojo(PlanEntrenamientoEntity.class);
+                pojoEntity.setId(0L);
+                planEntrenamientoService.updatePlan(0L, pojoEntity);
+        });
+    }
+
+    @Test
+    void testDeletePlan() throws EntityNotFoundException, IllegalOperationException {
+        PlanEntrenamientoEntity entity = planList.get(1);
+        planEntrenamientoService.deletePlan(entity.getId());
+        PlanEntrenamientoEntity deleted = entityManager.find(PlanEntrenamientoEntity.class, entity.getId());
+        assertNull(deleted);
+    }
+
+    @Test
+    void testDeleteInvalidSede() {
+        assertThrows(EntityNotFoundException.class, ()->{
+                planEntrenamientoService.deletePlan(0L);
+        });
+    }
 
 }
