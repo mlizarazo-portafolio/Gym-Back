@@ -142,8 +142,8 @@ public class AtletaService {
 
     private boolean validateAltura(Integer altura) {
         String s = Integer.toString(altura);
-        String regex = "^(1[0-9]{2}|[5-9][0-9])|^(1\\.[0-9]{2}|[5-9]\\.[0-9]{1,2})$";
-        Pattern pattern = Pattern.compile(regex);
+        String stringValidador = "^(1[0-9]{2}|[5-9][0-9])|^(1\\.[0-9]{2}|[5-9]\\.[0-9]{1,2})$";
+        Pattern pattern = Pattern.compile(stringValidador);
         Matcher matcher = pattern.matcher(s);
         if (matcher.matches()) {
             return true;
@@ -154,8 +154,8 @@ public class AtletaService {
     }
 
     private boolean validateSangre(String tipoSangre) {
-        String regex = "^(A|B|AB|O)[+-]$";
-        Pattern pattern = Pattern.compile(regex);
+        String stringValidador = "^(A|B|AB|O)[+-]$";
+        Pattern pattern = Pattern.compile(stringValidador);
         Matcher matcher = pattern.matcher(tipoSangre);
         if (matcher.matches()) {
             return true;
