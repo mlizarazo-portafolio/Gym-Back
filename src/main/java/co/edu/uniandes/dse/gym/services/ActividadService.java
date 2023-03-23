@@ -47,7 +47,7 @@ public class ActividadService {
 
         Optional<EntrenadorEntity> entrenadorEntity = entrenadorRepository.findById(actividadEntity.getEntrenador().getId());
 		if (entrenadorEntity.isEmpty())
-			throw new IllegalOperationException("Editorial is not valid");
+			throw new IllegalOperationException("El entrenador no es valido");
 
         actividadEntity.setEntrenador(entrenadorEntity.get());
         

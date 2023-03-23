@@ -7,11 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
-
+import co.edu.uniandes.dse.gym.entities.ActividadEntity;
 import co.edu.uniandes.dse.gym.entities.RestriccionEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
+import co.edu.uniandes.dse.gym.repositories.ActividadRepository;
 import co.edu.uniandes.dse.gym.repositories.RestriccionRepository;
 
 
@@ -22,16 +23,30 @@ public class RestriccionService{
     @Autowired
     RestriccionRepository restriccionRepository;
 
+    @Autowired
+    ActividadRepository actividadRepository;
+
 
     @Transactional
     public RestriccionEntity createRestriccion(RestriccionEntity restriccionEntity) throws IllegalOperationException {
         log.info("Inicia proceso de creación de la restriccion");
+        
         if(restriccionEntity.getEdad()<0)
         {
             throw new IllegalOperationException("Edad no valida");
         }
 
-        log.info("Termina proceso de creación del libro");
+        if (restriccionEntity.getActividad() == null) {
+            throw new IllegalOperationException("La actividad no es valida");
+        }
+
+        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(restriccionEntity.getActividad().getId());
+		if (actividadEntity.isEmpty())
+			throw new IllegalOperationException("La actividad no es valida");
+
+        restriccionEntity.setActividad(actividadEntity.get());
+
+        log.info("Termina proceso de creación de la restriccion");
         return restriccionRepository.save(restriccionEntity);
     }
 
