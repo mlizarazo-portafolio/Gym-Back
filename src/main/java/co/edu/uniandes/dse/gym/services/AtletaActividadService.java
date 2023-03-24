@@ -109,6 +109,4 @@ public class AtletaActividadService {
 		atletaEntity.get().getActividadesInscritas().remove(actividadEntity.get());
 		log.info("Finaliza proceso de borrar una actividad de la atleta con id = {0}", atletaId);
 	}
-
-    
 }
