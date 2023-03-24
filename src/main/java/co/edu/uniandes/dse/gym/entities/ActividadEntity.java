@@ -33,7 +33,7 @@ public class ActividadEntity extends BaseEntity {
 
     @PodamExclude
     @ManyToMany
-    private List<AtletaEntity> atletasInscritos;
+    private List<AtletaEntity> atletasInscritos = new ArrayList<>();
 
     @PodamExclude
     @ManyToMany

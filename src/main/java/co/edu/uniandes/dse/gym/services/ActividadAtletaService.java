@@ -7,104 +7,107 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.entities.ActividadEntity;
+import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
 import co.edu.uniandes.dse.gym.repositories.ActividadRepository;
+import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class ActividadAtletaService {
-
     @Autowired
-    private ActividadRepository actividadRepository;
+	private AtletaRepository atletaRepository;
 
-    @Autowired
-    private AtletaRepository atletaRepository;
+	@Autowired
+	private ActividadRepository actividadRepository;
 
-    @Transactional
-    public AtletaEntity addAtleta(Long actividadId, Long atletaId) throws EntityNotFoundException {
-        log.info("Inicia proceso de asociarle una atleta a la actividad con id = {0}", actividadId);
-        Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
-        if (atletaEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
+	@Transactional
+	public AtletaEntity addAtleta(Long actividadId, Long atletaId) throws EntityNotFoundException {
+		log.info("Inicia proceso de asociarle un atleta a la actividad con id = {0}", actividadId);
+		Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
 
-        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
-        if (actividadEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
+		if (actividadEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-        actividadEntity.get().getAtletasInscritos().add(atletaEntity.get());
-        log.info("Termina proceso de asociarle una atleta a la actividad con id = {0}", actividadId);
-        return atletaEntity.get();
-    }
+		if (atletaEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
 
-    @Transactional
-    public List<AtletaEntity> getAtletas(Long actividadId) throws EntityNotFoundException {
-        log.info("Inicia proceso de consultar todas las atletas de la actividad con id = {0}", actividadId);
-        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
-        if (actividadEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
-        log.info("Finaliza proceso de consultar todas las atletas de la actividad con id = {0}", actividadId);
-        return actividadEntity.get().getAtletasInscritos();
-    }
+		atletaEntity.get().getActividadesInscritas().add(actividadEntity.get());
+		log.info("Termina proceso de asociarle un atleta a la actividad con id = {0}", actividadId);
+		return atletaEntity.get();
+	}
 
-    @Transactional
-    public AtletaEntity getAtleta(Long actividadId, Long atletaId)
-            throws EntityNotFoundException, IllegalOperationException {
-        log.info("Inicia proceso de consultar una atleta de la actividad con id = {0}", actividadId);
-        Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
-        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
 
-        if (atletaEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
+	@Transactional
+	public List<AtletaEntity> getAtletas(Long actividadId) throws EntityNotFoundException {
+		log.info("Inicia proceso de consultar todos los atletas de la actividad con id = {0}", actividadId);
+		Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		if (actividadEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-        if (actividadEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
-        log.info("Termina proceso de consultar una atleta de la actividad con id = {0}", actividadId);
-        if (!actividadEntity.get().getAtletasInscritos().contains(atletaEntity.get()))
-            throw new IllegalOperationException("La atleta no esta asociada con la actividad");
+		log.info("Termina proceso de consultar todos los atletas de la actividad con id = {0}", actividadId);
+		return actividadEntity.get().getAtletasInscritos();
+	}
 
-        return atletaEntity.get();
-    }
 
-    @Transactional
-    public List<AtletaEntity> replaceAtletas(Long actividadId, List<AtletaEntity> list) throws EntityNotFoundException {
-        log.info("Inicia proceso de reemplazar las atletas de la actividad con id = {0}", actividadId);
-        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
-        if (actividadEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
+	@Transactional
+	public AtletaEntity getAtleta(Long actividadId, Long atletaId) throws EntityNotFoundException, IllegalOperationException {
+		log.info("Inicia proceso de consultar el atleta con id = {0} de la actividad con id = " + actividadId, atletaId);
+		Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
 
-        for (AtletaEntity atleta : list) {
-            Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atleta.getId());
-            if (atletaEntity.isEmpty())
-                throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
+		if (actividadEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-            if (!actividadEntity.get().getAtletasInscritos().contains(atletaEntity.get()))
-                actividadEntity.get().getAtletasInscritos().add(atletaEntity.get());
-        }
-        log.info("Termina proceso de reemplazar las atletas de la actividad con id = {0}", actividadId);
-        return getAtletas(actividadId);
-    }
+		if (atletaEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
 
-    @Transactional
-    public void removeAtleta(Long actividadId, Long atletaId) throws EntityNotFoundException {
-        log.info("Inicia proceso de borrar una atleta de la actividad con id = {0}", actividadId);
-        Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
-        Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		log.info("Termina proceso de consultar el atleta con id = {0} de la actividad con id = " + actividadId, atletaId);
+		if (!atletaEntity.get().getActividadesInscritas().contains(actividadEntity.get()))
+			throw new IllegalOperationException("The atleta is not associated to the actividad");
+		
+		return atletaEntity.get();
+	}
 
-        if (atletaEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
 
-        if (actividadEntity.isEmpty())
-            throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
+	@Transactional
+	public List<AtletaEntity> replaceAtletas(Long actividadId, List<AtletaEntity> atletas) throws EntityNotFoundException {
+		log.info("Inicia proceso de reemplazar los atletas asociados a la actividad con id = {0}", actividadId);
+		Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		if (actividadEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-        actividadEntity.get().getAtletasInscritos().remove(atletaEntity.get());
+		for (AtletaEntity atleta : atletas) {
+			Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atleta.getId());
+			if (atletaEntity.isEmpty())
+				throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
 
-        log.info("Termina proceso de borrar una atleta de la actividad con id = {0}", actividadId);
-    }
+			if (!atletaEntity.get().getActividadesInscritas().contains(actividadEntity.get()))
+				atletaEntity.get().getActividadesInscritas().add(actividadEntity.get());
+		}
+		log.info("Finaliza proceso de reemplazar los atletas asociados a la actividad con id = {0}", actividadId);
+		actividadEntity.get().setAtletasInscritos(atletas);
+		return actividadEntity.get().getAtletasInscritos();
+	}
 
+	@Transactional
+	public void removeAtleta(Long actividadId, Long atletaId) throws EntityNotFoundException {
+		log.info("Inicia proceso de borrar un atleta de la actividad con id = {0}", actividadId);
+		Optional<ActividadEntity> actividadEntity = actividadRepository.findById(actividadId);
+		if (actividadEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
+
+		Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
+		if (atletaEntity.isEmpty())
+			throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
+
+		atletaEntity.get().getActividadesInscritas().remove(actividadEntity.get());
+		actividadEntity.get().getAtletasInscritos().remove(atletaEntity.get());
+		log.info("Finaliza proceso de borrar un atleta de la actividad con id = {0}", actividadId);
+	}
 }
