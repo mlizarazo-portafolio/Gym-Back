@@ -46,7 +46,37 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "createConvenio",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"id\": 1,\r\n    \"nombre\" : \"Compensar\",\r\n    \"descuento\" : 14 \r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/convenios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "getConvenios",
@@ -81,7 +111,28 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getConvenios",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/convenios",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "getConvenioById",
@@ -124,7 +175,38 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getConvenioById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/convenios/{{convenio_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"{{convenio_id_1}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "getInvalidConvenio",
@@ -156,7 +238,29 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "getInvalidConvenio",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/convenios/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"0"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "updateInvalidConvenio",
@@ -198,7 +302,38 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "updateInvalidConvenio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"id\": 1,\r\n    \"nombre\" : \"s\",\r\n    \"descuento\" : 14\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/convenios/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"0"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "updateConvenio",
@@ -239,7 +374,38 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "updateConvenio",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"id\": 1,\r\n    \"nombre\" : \"s2\",\r\n    \"descuento\" : 14\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/convenios/{{convenio_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"{{convenio_id_1}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "deleteInvalidConvenio",
@@ -272,7 +438,29 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "deleteInvalidConvenio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/convenios/0",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"0"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		},
 		{
 			"name": "deleteConvenio",
@@ -303,7 +491,29 @@
 					]
 				}
 			},
-			"response": []
+			"response": [
+				{
+					"name": "deleteConvenio",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/convenios/{{convenio_id_1}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"convenios",
+								"{{convenio_id_1}}"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
 		}
 	]
 }

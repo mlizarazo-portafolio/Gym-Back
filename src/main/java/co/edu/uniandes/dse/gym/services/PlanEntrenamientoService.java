@@ -37,10 +37,10 @@ public class PlanEntrenamientoService {
        
         if(planEntrenamientoEntity.getNombre() == null) throw new IllegalOperationException("Nombre no es válido");
         if(planEntrenamientoEntity.getObjetivoBasico() == null) throw new IllegalOperationException("Direccion no es válida");
-        if(planEntrenamientoEntity.getDescripcion() == null) throw new IllegalOperationException("Telefono no es válido");
-        if(planEntrenamientoEntity.getDireccion() == null) throw new IllegalOperationException("Telefono no es válido");
-        if(planEntrenamientoEntity.getDuracion() == null) throw new IllegalOperationException("Telefono no es válido");
-        if(planEntrenamientoEntity.getCosto() == null) throw new IllegalOperationException("Telefono no es válido");
+        if(planEntrenamientoEntity.getDescripcion() == null) throw new IllegalOperationException("Descripción no es válido");
+        if(validateString(planEntrenamientoEntity.getDireccion()) ) throw new IllegalOperationException("Dirección no es válido");
+        if(planEntrenamientoEntity.getDuracion() == null) throw new IllegalOperationException("Duración no es válido");
+        if(planEntrenamientoEntity.getCosto() == null) throw new IllegalOperationException("Costo no es válido");
     
         log.info("Termina proceso de creación de Plan de Entrenamiento");
 

@@ -33,8 +33,8 @@ private List<ConvenioEntity> convenios = new ArrayList<>();
 private List<AtletaEntity> atletasInscritos = new ArrayList<>();
  
  
-    
-                  
+ 
+
     private Long id;
     private String nombre;
     private String objetivoBasico;
@@ -42,9 +42,7 @@ private List<AtletaEntity> atletasInscritos = new ArrayList<>();
     private String direccion;
     private Integer duracion;
     private Integer costo;
-    public void add(PlanEntrenamientoEntity planEntrenamientoEntity) {
-    }
-
+    
     
 
 }

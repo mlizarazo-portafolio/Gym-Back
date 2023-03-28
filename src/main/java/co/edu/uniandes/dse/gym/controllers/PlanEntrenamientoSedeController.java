@@ -60,6 +60,7 @@ public class PlanEntrenamientoSedeController {
 		}.getType());
 	}
 
+
 	@GetMapping(value = "/{planEntrenamientoId}/sedes")
 	@ResponseStatus(code = HttpStatus.OK)
 	public List<SedeDetailDTO> getSedes(@PathVariable("planEntrenamientoId") Long planEntrenamientoId) throws EntityNotFoundException {

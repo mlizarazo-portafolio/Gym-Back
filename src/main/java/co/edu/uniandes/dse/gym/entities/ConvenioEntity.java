@@ -14,9 +14,9 @@ public class ConvenioEntity extends  BaseEntity{
  
     @PodamExclude
     @ManyToOne 
-    private PlanEntrenamientoEntity plan;
+    private ConvenioEntity plan;
  
-    private Long id;
+    
     private String nombre;
     private Double descuento;
 
