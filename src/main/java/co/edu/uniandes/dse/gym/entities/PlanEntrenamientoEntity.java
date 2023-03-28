@@ -35,7 +35,7 @@ private List<AtletaEntity> atletasInscritos = new ArrayList<>();
  
  
 
-    private Long id;
+   
     private String nombre;
     private String objetivoBasico;
     private String descripcion;
