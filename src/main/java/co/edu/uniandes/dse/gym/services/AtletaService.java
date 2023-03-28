@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniandes.dse.gym.entities.AtletaEntity;
+import co.edu.uniandes.dse.gym.entities.DeportologoEntity;
 import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
 import co.edu.uniandes.dse.gym.repositories.DeportologoRepository;
 import co.edu.uniandes.dse.gym.repositories.SedeRepository;
@@ -57,10 +58,11 @@ public class AtletaService {
         if (atleta.getId() != null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un id");
         }
-    
+        
         if (atleta.getDeportologo() == null) {
             throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
         }
+        Optional<DeportologoEntity> deportologoEntity = deportologoRepository.findById(atleta.getDeportologo().getId());
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
@@ -82,7 +84,7 @@ public class AtletaService {
             throw new IllegalOperationException("Tiene que tener un nombre");
         }
         log.info("Termina proceso de creación del atleta");
-
+        atleta.setDeportologo(deportologoEntity.get());
         return atletaRepository.save(atleta);
     }
 
