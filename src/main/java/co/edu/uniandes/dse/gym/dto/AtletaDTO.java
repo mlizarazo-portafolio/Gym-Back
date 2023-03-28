@@ -1,7 +1,5 @@
 package co.edu.uniandes.dse.gym.dto;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +14,7 @@ public class AtletaDTO {
     private String direccion;
     private Integer altura;
     private Integer peso;
-    private Date fechaNacimiento;
+
     private DeportologoDTO deportologo;
     private SedeDTO sede;
 
