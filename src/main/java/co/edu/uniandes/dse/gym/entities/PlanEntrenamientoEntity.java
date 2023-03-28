@@ -42,6 +42,8 @@ private List<AtletaEntity> atletasInscritos = new ArrayList<>();
     private String direccion;
     private Integer duracion;
     private Integer costo;
+    public void setConvenios(ConvenioEntity convenioEntity) {
+    }
     
     
 
