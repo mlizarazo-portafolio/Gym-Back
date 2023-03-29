@@ -62,7 +62,31 @@ public class AtletaService {
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
-        throw new IllegalOperationException("La dirección no es válida");
+        if (atleta.getDireccion() == null) {
+            throw new IllegalOperationException("La dirección no es válida");
+        }
+
+        if (!validateSangre(atleta.getTipoSangre())) {
+            throw new IllegalOperationException("El tipo de sangre no es válido");
+        }
+        if (!validateAltura(atleta.getAltura())) {
+            throw new IllegalOperationException("La altura no es válida");
+        }
+        if (!validatePeso(atleta.getPeso())) {
+            throw new IllegalOperationException("El peso no es válido");
+        }
+        if (atleta.getNombre() != null) {
+            if (atleta.getNombre().equals("")) {
+                throw new IllegalOperationException("Tiene que tener un nombre");
+            }
+        }
+        if (atleta.getNombre() == null) {
+            throw new IllegalOperationException("Tiene que tener un nombre");
+        }
+
+        log.info("Termina proceso de creación del atleta");
+        atleta.setDeportologo(atletaEntity.get());
+        return atletaRepository.save(atleta);
     }
 
     @Transactional
