@@ -176,7 +176,7 @@ class AtletaServiceTest {
     }
 
     @Test
-    void testDeleteAtleta() throws EntityNotFoundException {
+    void testDeleteAtleta() throws EntityNotFoundException, IllegalOperationException {
         AtletaEntity entity = atletaList.get(0);
         atletaService.deleteAtleta(entity.getId());
         AtletaEntity deleted = entityManager.find(AtletaEntity.class, entity.getId());

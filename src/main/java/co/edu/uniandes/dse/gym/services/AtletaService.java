@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
+import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
 
 import javax.transaction.Transactional;
@@ -124,14 +125,14 @@ public class AtletaService {
     }
 
     @Transactional
-    public void deleteAtleta(Long id) throws EntityNotFoundException {
-        Optional<AtletaEntity> atleta = atletaRepository.findById(id);
-        if (atleta.isPresent()) {
-            atletaRepository.delete(atleta.get());
-        } else {
-            throw new EntityNotFoundException("No existe un atleta con el id " + id);
+    public void deleteAtleta(Long atletaId) throws EntityNotFoundException, IllegalOperationException {
+        log.info("Inicia proceso de borrar el atleta con id = {0}", atletaId);
+        Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
+        if (atletaEntity.isEmpty()) {
+            throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
         }
-        log.info("Termina proceso de borrado del atleta con id = " + id);
+        atletaRepository.deleteById(atletaId);
+        log.info("Termina proceso de borrar el atleta con id = {0}", atletaId);
     }
 
     private boolean validatePeso(Integer peso) {
