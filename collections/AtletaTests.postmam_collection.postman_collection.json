@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"fechaNacimiento\": \"1990-05-12T05:00:00.000+00:00\",\r\n    \"name\": \"Fernado Patricio Hernandez\",\r\n    \"login\": \"f.Hernandez\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 127 #5-46\",\r\n    \"altura\": 180,\r\n    \"peso\": 90,\r\n    \"deportologo\": 1\r\n}",
+					"raw": "{\r\n    \"birthdate\": \"1990-05-12T05:00:00.000+00:00\",\r\n    \"nombre\": \"Fernado Patricio Hernandez\",\r\n    \"login\": \"f.Hernandez\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 127 #5-46\",\r\n    \"altura\": 180,\r\n    \"peso\": 90,\r\n    \"deportologo\": {\"id\":{{deportologo_id_1}}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
