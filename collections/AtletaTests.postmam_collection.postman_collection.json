@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0e44790a-a13f-4075-a3d7-a2ecc2af164a",
-		"name": "AtletaTests.postmam_collection",
+		"_postman_id": "7edd571d-05ae-477b-8473-0c6232e0a7e7",
+		"name": "AtletaTests.postmam_collection Copy",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25621840"
 	},
@@ -131,7 +131,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas",
+						"{{atleta_id_1}}"
+					]
 				}
 			},
 			"response": []
