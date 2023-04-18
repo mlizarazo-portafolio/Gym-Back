@@ -173,8 +173,9 @@ public class AtletaService {
 
     }
 
-    private boolean validateNacimiento(Date birthdate) {
-        LocalDate localBirthdate = birthdate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+    private boolean validateNacimiento(Date fechaNacimiento) {
+        LocalDate localBirthdate = fechaNacimiento.toInstant().atZone(java.time.ZoneId.systemDefault())
+                .toLocalDate();
         LocalDate today = LocalDate.now();
         Period age = Period.between(localBirthdate, today);
         if (age.getYears() >= 16) {

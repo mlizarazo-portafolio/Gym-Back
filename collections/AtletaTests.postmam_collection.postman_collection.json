@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6e6ab63d-7559-4580-8739-ae2d8e7db6c8",
+		"_postman_id": "0e44790a-a13f-4075-a3d7-a2ecc2af164a",
 		"name": "AtletaTests.postmam_collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25621840"
@@ -71,7 +71,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"birthdate\": \"1990-05-12T05:00:00.000+00:00\",\r\n    \"nombre\": \"Fernado Patricio Hernandez\",\r\n    \"login\": \"f.Hernandez\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 127 #5-46\",\r\n    \"altura\": 180,\r\n    \"peso\": 90,\r\n    \"deportologo\": {\"id\":{{deportologo_id_1}}}\r\n}",
+					"raw": "{\r\n    \"fechaNacimiento\": \"1990-05-12T05:00:00.000+00:00\",\r\n    \"nombre\": \"Fernado Patricio Hernandez\",\r\n    \"login\": \"f.Hernandez\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 127 #5-46\",\r\n    \"altura\": 180,\r\n    \"peso\": 90,\r\n    \"deportologo\": {\"id\":{{deportologo_id_1}}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,7 +129,10 @@
 			"name": "getAtletaById",
 			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": ""
+				}
 			},
 			"response": []
 		},
@@ -223,7 +226,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Elaina Jencken2\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Multi-tiered fresh-thinking leverage\"\r\n}",
+					"raw": "{\r\n  \"fechaNacimiento\": \"1990-05-12T05:00:00.000+00:00\",\r\n    \"nombre\": \"Fernados Patricio Hernandez\",\r\n    \"login\": \"f.Hernandez\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 127 #5-46\",\r\n    \"altura\": 180,\r\n    \"peso\": 90,\r\n    \"deportologo\": {\"id\":{{deportologo_id_1}}}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -231,13 +234,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/entrenadores/{{entrenador_id_1}}",
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_1}}",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"entrenadores",
-						"{{entrenador_id_1}}"
+						"atletas",
+						"{{atleta_id_1}}"
 					]
 				},
 				"description": "Actualiza al entrenador con el id dado."
