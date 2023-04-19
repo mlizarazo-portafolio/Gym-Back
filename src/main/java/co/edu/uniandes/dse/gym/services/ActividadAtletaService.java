@@ -68,7 +68,7 @@ public class ActividadAtletaService {
 			throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
 
 		log.info("Termina proceso de consultar el atleta con id = {0} de la actividad con id = " + actividadId, atletaId);
-		if (!atletaEntity.get().getActividades().contains(actividadEntity.get()))
+		if (!actividadEntity.get().getAtletas().contains(atletaEntity.get()))
 			throw new IllegalOperationException("The atleta is not associated to the actividad");
 		
 		return atletaEntity.get();

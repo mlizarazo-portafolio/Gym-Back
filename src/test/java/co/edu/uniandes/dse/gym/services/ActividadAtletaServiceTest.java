@@ -84,6 +84,7 @@ public class ActividadAtletaServiceTest {
 		actividadAtletaService.addAtleta(newActividad.getId(), atleta.getId());
 		
 		AtletaEntity lastAtleta = actividadAtletaService.getAtleta(newActividad.getId(), atleta.getId());
+
 		assertEquals(atleta.getId(), lastAtleta.getId());
 		assertEquals(atleta.getAltura(), lastAtleta.getAltura());
         assertEquals(atleta.getDeportologo(), lastAtleta.getDeportologo());
