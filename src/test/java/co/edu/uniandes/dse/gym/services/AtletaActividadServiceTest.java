@@ -67,7 +67,7 @@ public class AtletaActividadServiceTest {
 		for (int i = 0; i < 3; i++) {
 			ActividadEntity entity = factory.manufacturePojo(ActividadEntity.class);
 			entity.setEntrenador(entrenador);
-			entity.getAtletasInscritos().add(atleta);
+			entity.getAtletas().add(atleta);
 			entityManager.persist(entity);
 			actividadList.add(entity);
 			atleta.getActividadesInscritas().add(entity);

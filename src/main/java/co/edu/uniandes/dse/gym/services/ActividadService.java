@@ -3,10 +3,12 @@ package co.edu.uniandes.dse.gym.services;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import co.edu.uniandes.dse.gym.repositories.ActividadRepository;
+import co.edu.uniandes.dse.gym.repositories.AtletaRepository;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.transaction.annotation.Transactional;
 import co.edu.uniandes.dse.gym.entities.ActividadEntity;
+import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.entities.EntrenadorEntity;
 import co.edu.uniandes.dse.gym.repositories.EntrenadorRepository;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
@@ -25,6 +27,9 @@ public class ActividadService {
 
     @Autowired
     EntrenadorRepository entrenadorRepository;
+
+    @Autowired
+    AtletaRepository atletaRepository;
 
     @Transactional
     public ActividadEntity createActividad(ActividadEntity actividadEntity) throws IllegalOperationException {
@@ -49,6 +54,7 @@ public class ActividadService {
 		if (entrenadorEntity.isEmpty())
 			throw new IllegalOperationException("El entrenador no es valido");
 
+        
         actividadEntity.setEntrenador(entrenadorEntity.get());
         
         log.info("Termina el proceso de creación de actividad");

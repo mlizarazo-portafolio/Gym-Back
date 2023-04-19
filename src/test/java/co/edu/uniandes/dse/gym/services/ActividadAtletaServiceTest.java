@@ -68,7 +68,7 @@ public class ActividadAtletaServiceTest {
 			entityManager.persist(entity);
 			entity.getActividadesInscritas().add(actividad);
 			atletaList.add(entity);
-			actividad.getAtletasInscritos().add(entity);	
+			actividad.getAtletas().add(entity);	
 		}
 	}
 
@@ -185,7 +185,7 @@ public class ActividadAtletaServiceTest {
 		for (int i = 0; i < 3; i++) {
 			AtletaEntity entity = factory.manufacturePojo(AtletaEntity.class);
 			entityManager.persist(entity);
-			actividad.getAtletasInscritos().add(entity);
+			actividad.getAtletas().add(entity);
 			nuevaLista.add(entity);
 		}
 		actividadAtletaService.replaceAtletas(actividad.getId(), nuevaLista);

@@ -39,7 +39,7 @@ public class AtletaActividadService {
 		if (actividadEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-		actividadEntity.get().getAtletasInscritos().add(atletaEntity.get());
+		actividadEntity.get().getAtletas().add(atletaEntity.get());
 		log.info("Termina proceso de asociarle una Actividad a la atleta con id = {0}", atletaId);
 		return actividadEntity.get();
 	}
@@ -68,7 +68,7 @@ public class AtletaActividadService {
 			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
 		log.info("Termina proceso de consultar la actividad con id = {0} de la atleta con id = " + atletaId, actividadId);
-		if (!actividadEntity.get().getAtletasInscritos().contains(atletaEntity.get()))
+		if (!actividadEntity.get().getAtletas().contains(atletaEntity.get()))
 			throw new IllegalOperationException("La actividad no esta asociada con la atleta");
 		
 		return actividadEntity.get();
@@ -86,8 +86,8 @@ public class AtletaActividadService {
 			if (actividadEntity.isEmpty())
 				throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-			if (!actividadEntity.get().getAtletasInscritos().contains(atletaEntity.get()))
-				actividadEntity.get().getAtletasInscritos().add(atletaEntity.get());
+			if (!actividadEntity.get().getAtletas().contains(atletaEntity.get()))
+				actividadEntity.get().getAtletas().add(atletaEntity.get());
 		}
 		log.info("Finaliza proceso de reemplazar las actividades asociadas a la atleta con id = {0}", atletaId);
 		atletaEntity.get().setActividadesInscritas(actividades);
@@ -105,7 +105,7 @@ public class AtletaActividadService {
 		if (actividadEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
-		actividadEntity.get().getAtletasInscritos().remove(atletaEntity.get());
+		actividadEntity.get().getAtletas().remove(atletaEntity.get());
 		atletaEntity.get().getActividadesInscritas().remove(actividadEntity.get());
 		log.info("Finaliza proceso de borrar una actividad de la atleta con id = {0}", atletaId);
 	}

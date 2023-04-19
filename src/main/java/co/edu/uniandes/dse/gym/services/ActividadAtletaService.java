@@ -51,7 +51,7 @@ public class ActividadAtletaService {
 			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
 		log.info("Termina proceso de consultar todos los atletas de la actividad con id = {0}", actividadId);
-		return actividadEntity.get().getAtletasInscritos();
+		return actividadEntity.get().getAtletas();
 	}
 
 
@@ -91,8 +91,8 @@ public class ActividadAtletaService {
 				atletaEntity.get().getActividadesInscritas().add(actividadEntity.get());
 		}
 		log.info("Finaliza proceso de reemplazar los atletas asociados a la actividad con id = {0}", actividadId);
-		actividadEntity.get().setAtletasInscritos(atletas);
-		return actividadEntity.get().getAtletasInscritos();
+		actividadEntity.get().setAtletas(atletas);
+		return actividadEntity.get().getAtletas();
 	}
 
 	@Transactional
@@ -107,7 +107,7 @@ public class ActividadAtletaService {
 			throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
 
 		atletaEntity.get().getActividadesInscritas().remove(actividadEntity.get());
-		actividadEntity.get().getAtletasInscritos().remove(atletaEntity.get());
+		actividadEntity.get().getAtletas().remove(atletaEntity.get());
 		log.info("Finaliza proceso de borrar un atleta de la actividad con id = {0}", actividadId);
 	}
 }
