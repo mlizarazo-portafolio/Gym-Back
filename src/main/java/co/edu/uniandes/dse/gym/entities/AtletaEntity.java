@@ -45,7 +45,7 @@ public class AtletaEntity extends BaseEntity {
 
     @PodamExclude
     @ManyToMany(mappedBy = "atletas")
-    private List<ActividadEntity> actividadesInscritas = new ArrayList<>();
+    private List<ActividadEntity> actividades = new ArrayList<>();
 
     @PodamExclude
     @ManyToOne

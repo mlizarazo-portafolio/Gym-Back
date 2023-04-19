@@ -1,0 +1,814 @@
+{
+	"info": {
+		"_postman_id": "b37f188b-0307-4d48-88ef-932943dd258b",
+		"name": "ActividadAtletasTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25622081"
+	},
+	"item": [
+		{
+			"name": "Crear un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"entrenador_id\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Pedro Curl\",\r\n  \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\",\r\n  \"trayectoria\": \"Multi-tiered fresh-thinking leverage\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"deportologo_id\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Pedro Deportes\",\r\n    \"login\": \"PedroJugador\",\r\n    \"experiencia\":\"Experto en salud deportiva\",\r\n    \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un atleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"atleta_id_1\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"deportologo\":{ \"id\": {{deportologo_id}} },\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un atleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"atleta_id_2\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luisa Deportista\",\r\n    \"login\":\"luisa.depor\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 324 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"deportologo\":{ \"id\": {{deportologo_id}} },\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"pm.globals.set(\"actividad_id\", data.id);\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Yoga\",\r\n    \"maxParticipantes\": 30,\r\n    \"horario:\": \"Lunes - 12:30 a 2:30\",\r\n    \"tipo\": \"grupal\",\r\n    \"entrenador\": {\r\n        \"id\": {{entrenador_id}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un atleta a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un atelta que no existe a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro el atleta\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atleta de una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atleta que no existe de una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro el atleta\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atelta no asociado de una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"The atleta is not associated to the actividad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/{{atleta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"{{atleta_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los atletas de una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Number of atletas > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar atletas a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": {{atleta_id_1}}\r\n    },\r\n    {\r\n\r\n        \"id\": {{atleta_id_2}}\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar atletas que no existen a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro el atleta\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 0\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle un atleta a una activdad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle un atleta 2 a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/{{atleta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"{{atleta_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrarle un atleta a una actividad que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro la actividad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/0/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"0",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un atleta que no existe a una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.apierror.message).to.eql(\"No se encontro el atleta\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}/atletas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}",
+						"atletas",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un atleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un atleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas",
+						"{{atleta_id_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar una actividad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/actividades/{{actividad_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"actividades",
+						"{{actividad_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un entrenador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/entrenadores/{{entrenador_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"entrenadores",
+						"{{entrenador_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

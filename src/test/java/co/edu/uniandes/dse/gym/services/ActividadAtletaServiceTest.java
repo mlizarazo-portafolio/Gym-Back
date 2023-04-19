@@ -66,7 +66,7 @@ public class ActividadAtletaServiceTest {
 		for (int i = 0; i < 3; i++) {
 			AtletaEntity entity = factory.manufacturePojo(AtletaEntity.class);
 			entityManager.persist(entity);
-			entity.getActividadesInscritas().add(actividad);
+			entity.getActividades().add(actividad);
 			atletaList.add(entity);
 			actividad.getAtletas().add(entity);	
 		}
@@ -92,7 +92,7 @@ public class ActividadAtletaServiceTest {
 		assertEquals(atleta.getLogin(), lastAtleta.getLogin());
 		assertEquals(atleta.getPeso(), lastAtleta.getPeso());
 		assertEquals(atleta.getPlan(), lastAtleta.getPlan());
-		assertEquals(atleta.getActividadesInscritas(), lastAtleta.getActividadesInscritas());
+		assertEquals(atleta.getActividades(), lastAtleta.getActividades());
 		assertEquals(atleta.getSede(), lastAtleta.getSede());
 	}
 
@@ -148,7 +148,7 @@ public class ActividadAtletaServiceTest {
 		assertEquals(atletaEntity.getLogin(), atleta.getLogin());
 		assertEquals(atletaEntity.getPeso(), atleta.getPeso());
 		assertEquals(atletaEntity.getPlan(), atleta.getPlan());
-		assertEquals(atletaEntity.getActividadesInscritas(), atleta.getActividadesInscritas());
+		assertEquals(atletaEntity.getActividades(), atleta.getActividades());
 		assertEquals(atletaEntity.getSede(), atleta.getSede());
 	}
 
@@ -218,7 +218,7 @@ public class ActividadAtletaServiceTest {
 			List<AtletaEntity> nuevaLista = new ArrayList<>();
 			for (int i = 0; i < 3; i++) {
 				AtletaEntity entity = factory.manufacturePojo(AtletaEntity.class);
-				entity.getActividadesInscritas().add(actividad);		
+				entity.getActividades().add(actividad);		
 				entityManager.persist(entity);
 				nuevaLista.add(entity);
 			}
@@ -243,7 +243,7 @@ public class ActividadAtletaServiceTest {
 			List<AtletaEntity> nuevaLista = new ArrayList<>();
 			for (int i = 0; i < 3; i++) {
 				AtletaEntity entity = factory.manufacturePojo(AtletaEntity.class);
-				entity.getActividadesInscritas().add(actividad);		
+				entity.getActividades().add(actividad);		
 				entityManager.persist(entity);
 				nuevaLista.add(entity);
 			}

@@ -52,7 +52,7 @@ public class AtletaActividadService {
 			throw new EntityNotFoundException(ErrorMessage.SEDE_NOT_FOUND);
 
 		log.info("Termina proceso de consultar todas las actividades de la atleta con id = {0}", atletaId);
-		return atletaEntity.get().getActividadesInscritas();
+		return atletaEntity.get().getActividades();
 	}
 
     @Transactional
@@ -90,8 +90,8 @@ public class AtletaActividadService {
 				actividadEntity.get().getAtletas().add(atletaEntity.get());
 		}
 		log.info("Finaliza proceso de reemplazar las actividades asociadas a la atleta con id = {0}", atletaId);
-		atletaEntity.get().setActividadesInscritas(actividades);
-		return atletaEntity.get().getActividadesInscritas();
+		atletaEntity.get().setActividades(actividades);
+		return atletaEntity.get().getActividades();
 	}
 
     @Transactional
@@ -106,7 +106,7 @@ public class AtletaActividadService {
 			throw new EntityNotFoundException(ErrorMessage.ACTIVIDAD_NOT_FOUND);
 
 		actividadEntity.get().getAtletas().remove(atletaEntity.get());
-		atletaEntity.get().getActividadesInscritas().remove(actividadEntity.get());
+		atletaEntity.get().getActividades().remove(actividadEntity.get());
 		log.info("Finaliza proceso de borrar una actividad de la atleta con id = {0}", atletaId);
 	}
 }

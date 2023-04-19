@@ -70,7 +70,7 @@ public class AtletaActividadServiceTest {
 			entity.getAtletas().add(atleta);
 			entityManager.persist(entity);
 			actividadList.add(entity);
-			atleta.getActividadesInscritas().add(entity);
+			atleta.getActividades().add(entity);
 		}
 	}
 
@@ -189,7 +189,7 @@ public class AtletaActividadServiceTest {
 		
 		atletaActividadService.addActividades(atleta.getId(), nuevaLista);
 		
-		List<ActividadEntity> actividadEntities = entityManager.find(AtletaEntity.class, atleta.getId()).getActividadesInscritas();
+		List<ActividadEntity> actividadEntities = entityManager.find(AtletaEntity.class, atleta.getId()).getActividades();
 		for (ActividadEntity item : nuevaLista) {
 			assertTrue(actividadEntities.contains(item));
 		}
