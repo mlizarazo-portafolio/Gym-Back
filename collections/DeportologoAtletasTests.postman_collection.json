@@ -388,7 +388,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{deportologo_id_1}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n},\r\n   {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{deportologo_id_2}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}\r\n]",
+					"raw": "[\r\n    {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{atleta_id_1}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n},\r\n   {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{atleta_id_2}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
