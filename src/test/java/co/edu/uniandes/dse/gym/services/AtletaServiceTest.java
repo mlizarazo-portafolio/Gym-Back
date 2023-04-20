@@ -90,7 +90,7 @@ class AtletaServiceTest {
 
         }
 
-        deportologoList.get(0).getValoracionAtletas().add(atletaList.get(0));
+        deportologoList.get(0).getAtletas().add(atletaList.get(0));
         sedeList.get(0).getAtletas().add(atletaList.get(0));
         atletaList.get(0).setDeportologo(deportologoList.get(0));
         atletaList.get(0).setSede(sedeList.get(0));

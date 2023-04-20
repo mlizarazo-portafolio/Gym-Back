@@ -66,7 +66,7 @@ class DeportologoAtletaServiceTest {
 			deportologosList.add(entity);
 			if (i == 0) {
 				atletasList.get(i).setDeportologo(entity);
-				entity.getValoracionAtletas().add(atletasList.get(i));
+				entity.getAtletas().add(atletasList.get(i));
 			}
 		}
 	}

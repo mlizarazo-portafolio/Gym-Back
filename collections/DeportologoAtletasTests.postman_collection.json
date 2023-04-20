@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "52f219ca-d2c9-473b-98f6-b42eeb3e69b3",
+		"name": "DeportologoAtletasTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25622081",
+		"_collection_link": "https://restless-meteor-704926.postman.co/workspace/Team-Workspace~f2969fd4-21e9-4679-8123-d6007959ef8e/collection/25622081-52f219ca-d2c9-473b-98f6-b42eeb3e69b3?action=share&creator=25622081&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Crear un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"deportologo_id_1\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Pedro Deportes\",\r\n    \"login\": \"PedroJugador\",\r\n    \"experiencia\":\"Experto en salud deportiva\",\r\n    \"foto\": \"http://dummyimage.com/195x100.png/ff4444/ffffff\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un deportologo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"deportologo_id_2\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Juan Mancuernas\",\r\n    \"login\": \"JuanJugador\",\r\n    \"experiencia\":\"Experto en salud\",\r\n    \"foto\": \"http://dummyimage.com/195x100.png/ffffff\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos"
+					]
+				},
+				"description": "Crea una nueva sede. El Id es inicializado por la BD y se debe ver en la respuesta.\n\nPara la prueba, se guarda el id en una variable que será utilizada en otras peticiones de la colección.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un atleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"atleta_id_1\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"deportologo\":{ \"id\": {{deportologo_id_1}} },\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear un atleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"atleta_id_2\",data.id);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 201;\r",
+							"console.log(data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Luisa Deportista\",\r\n    \"login\":\"luisa.depor\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 324 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"deportologo\":{ \"id\": {{deportologo_id_1}} },\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un atleta a un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"no genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				},
+				"description": "Asocia una resenia a una sede en la aplicación.\n\nSe envía el Id de la sede y el de la resenia a asociar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Agregar un atleta que no existe a un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No agrega un atleta que no existe\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro el atleta\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas",
+						"0"
+					]
+				},
+				"description": "Asocia una resenia que no existe a una sede en la aplicación.\n\nSe envía el Id de la sede y el de la resenia a asociar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro la resenia\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener los atletas de un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data= JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get all\"] = responseCode.code === 200;\r",
+							"tests[\"Sede count with resenias\"] = data.length >= 0;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas"
+					]
+				},
+				"description": "Consulta las resenias de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atleta de un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Get\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				},
+				"description": "Consulta una resenia de una sede en la aplicación.  \nLa petición no tiene cuerpo.\n\nSe envía el Id de la sede y el de la resenia a consultar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atleta no asociado a un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se puede obtener un atleta que no este asociado\"] = responseCode.code === 412;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"The atleta is not associated to the deportologo\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}",
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				},
+				"description": "Consulta una resenia que no esta asociada a una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error y el mensaje \"La resenia no esta asociada con la sede\".\n\n**Código http esperado: 412**"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un atleta que no existe de un deportlogo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se puede obtener un atleta que no existe\"] = responseCode.code === 404;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}/atletas/0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}",
+						"atletas",
+						"0"
+					]
+				},
+				"description": "Consulta una resenia que no existe de una sede en la aplicación.\n\nPara la prueba se verifica que se genera el error.\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar atletas a un deportolgo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"console.log(responseBody);\r",
+							"var data = JSON.parse(responseBody);\r",
+							"tests[\"No genera error en el Put\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{deportologo_id_1}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n},\r\n   {\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": {{deportologo_id_2}},\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas"
+					]
+				},
+				"description": "Actualiza la lista de resenias de una sede existente.\n\nSe envía el Id de la sede a actualizar en la URL de la petición.\n\n**Código http esperado: 200**"
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar atletas que no existen a un deportolgo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No se pueden asociar los atletas ya que estos no existen\"] = responseCode.code === 404;\r",
+							"tests[\"Mensaje correcto de error\"] = responseBody.has(\"No se encontro el atleta\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\r\n    \"nombre\":\"Juan Corredor\",\r\n    \"login\":\"Juancorre\",\r\n    \"tipoSangre\": \"O+\",\r\n    \"direccion\": \"Calle 124 #5-54\",\r\n    \"altura\": 186,\r\n    \"peso\":82,\r\n    \"id\": 0,\r\n    \"sede\": null,\r\n    \"fechaNacimiento\": \"2001-03-27\"\r\n}]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}/atletas",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}",
+						"atletas"
+					]
+				},
+				"description": "Actualiza la lista de una sede existente con resenias que no existen.\n\nSe envía el Id de la sede a actualizar en la URL de la petición.\n\nPara la prueba se verifica que se genera el error y el mensaje \"No se encontro la reseña\".\n\n**Código http esperado: 404**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un atleta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas",
+						"{{atleta_id_1}}"
+					]
+				},
+				"description": "Borra una resenia. Se envía el id de la resenia creada en la tercera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un atleta 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"No genera error en el Delete\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/atletas/{{atleta_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"atletas",
+						"{{atleta_id_2}}"
+					]
+				},
+				"description": "Borra una resenia. Se envía el id de la resenia2 creada en la cuarta petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un deportologo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_1}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_1}}"
+					]
+				},
+				"description": "Borra una sede. Se envía el id de la sede creada en la primera petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar un deportologo 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code is 204\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/deportologos/{{deportologo_id_2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"deportologos",
+						"{{deportologo_id_2}}"
+					]
+				},
+				"description": "Borra una sede. Se envía el id de la sede2 creada en la segunda petición.\n\n**Código HTTP esperado: 204**"
+			},
+			"response": []
+		}
+	]
+}
