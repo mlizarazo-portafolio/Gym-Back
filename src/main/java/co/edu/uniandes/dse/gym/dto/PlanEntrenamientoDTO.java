@@ -1,6 +1,6 @@
 package co.edu.uniandes.dse.gym.dto;
 
-
+import co.edu.uniandes.dse.gym.entities.PlanEntrenamientoEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +17,5 @@ public class PlanEntrenamientoDTO{
     private Integer duracion;
     private Integer costo;
 
-    private PlanEntrenamientoDTO plan;
     
 }

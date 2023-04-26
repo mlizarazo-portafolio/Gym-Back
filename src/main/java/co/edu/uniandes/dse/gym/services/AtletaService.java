@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
+import co.edu.uniandes.dse.gym.exceptions.ErrorMessage;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
 
 import javax.transaction.Transactional;
@@ -55,21 +56,17 @@ public class AtletaService {
 
     @Transactional
     public AtletaEntity createAtleta(AtletaEntity atleta) throws EntityNotFoundException, IllegalOperationException {
-        if (atleta.getId() != null) {
-            throw new IllegalOperationException("No se puede crear un atleta sin un id");
-        }
-        
         if (atleta.getDeportologo() == null) {
-            throw new IllegalOperationException("No se puede crear un atleta sin un deportologo");
+            throw new IllegalOperationException("No se puede crear un atleta sin un atleta");
         }
-        Optional<DeportologoEntity> deportologoEntity = deportologoRepository.findById(atleta.getDeportologo().getId());
+        Optional<DeportologoEntity> atletaEntity = deportologoRepository.findById(atleta.getDeportologo().getId());
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
         }
         if (atleta.getDireccion() == null) {
             throw new IllegalOperationException("La dirección no es válida");
         }
-  
+
         if (!validateSangre(atleta.getTipoSangre())) {
             throw new IllegalOperationException("El tipo de sangre no es válido");
         }
@@ -79,24 +76,28 @@ public class AtletaService {
         if (!validatePeso(atleta.getPeso())) {
             throw new IllegalOperationException("El peso no es válido");
         }
-
-        if (atleta.getNombre().equals("") || atleta.getNombre() == null) {
+        if (atleta.getNombre() != null) {
+            if (atleta.getNombre().equals("")) {
+                throw new IllegalOperationException("Tiene que tener un nombre");
+            }
+        }
+        if (atleta.getNombre() == null) {
             throw new IllegalOperationException("Tiene que tener un nombre");
         }
+
         log.info("Termina proceso de creación del atleta");
-        atleta.setDeportologo(deportologoEntity.get());
+        atleta.setDeportologo(atletaEntity.get());
         return atletaRepository.save(atleta);
     }
 
     @Transactional
     public AtletaEntity updateAtleta(Long id, AtletaEntity atleta)
             throws EntityNotFoundException, IllegalOperationException {
-        if (atleta.getId() == null) {
-            throw new IllegalOperationException("No se puede actualizar un atleta sin un id");
+        if (atleta.getId() != null && !atleta.getId().equals(id)) {
+            throw new IllegalOperationException("No se puede actualizar el id de un atleta");
         }
-
         if (atleta.getDeportologo() == null) {
-            throw new IllegalOperationException("No se puede actualizar un atleta sin un deportologo");
+            throw new IllegalOperationException("No se puede actualizar un atleta sin un atleta");
         }
         if (!validateNacimiento(atleta.getFechaNacimiento())) {
             throw new IllegalOperationException("La fecha de nacimiento no es válida");
@@ -114,19 +115,24 @@ public class AtletaService {
         if (!validatePeso(atleta.getPeso())) {
             throw new IllegalOperationException("El peso no es válido");
         }
-        log.info("Termina proceso de actualización del atleta");
-        return atletaRepository.save(atleta);
-    }
-
-    @Transactional
-    public void deleteAtleta(Long id) throws EntityNotFoundException {
-        Optional<AtletaEntity> atleta = atletaRepository.findById(id);
-        if (atleta.isPresent()) {
-            atletaRepository.delete(atleta.get());
+        Optional<AtletaEntity> atletaExistente = atletaRepository.findById(id);
+        if (atletaExistente.isPresent()) {
+            return atletaRepository.save(atleta);
         } else {
             throw new EntityNotFoundException("No existe un atleta con el id " + id);
         }
-        log.info("Termina proceso de borrado del atleta con id = " + id);
+
+    }
+
+    @Transactional
+    public void deleteAtleta(Long atletaId) throws EntityNotFoundException, IllegalOperationException {
+        log.info("Inicia proceso de borrar el atleta con id = {0}", atletaId);
+        Optional<AtletaEntity> atletaEntity = atletaRepository.findById(atletaId);
+        if (atletaEntity.isEmpty()) {
+            throw new EntityNotFoundException(ErrorMessage.ATLETA_NOT_FOUND);
+        }
+        atletaRepository.deleteById(atletaId);
+        log.info("Termina proceso de borrar el atleta con id = {0}", atletaId);
     }
 
     private boolean validatePeso(Integer peso) {
@@ -167,9 +173,9 @@ public class AtletaService {
 
     }
 
-
-    private boolean validateNacimiento(Date birthdate) {
-        LocalDate localBirthdate = birthdate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+    private boolean validateNacimiento(Date fechaNacimiento) {
+        LocalDate localBirthdate = fechaNacimiento.toInstant().atZone(java.time.ZoneId.systemDefault())
+                .toLocalDate();
         LocalDate today = LocalDate.now();
         Period age = Period.between(localBirthdate, today);
         if (age.getYears() >= 16) {

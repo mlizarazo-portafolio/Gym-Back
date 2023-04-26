@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AtletaDetailDTO extends AtletaDTO {
-    private List<ActividadDTO> actividadesInscritas = new ArrayList<>();
+    private List<ActividadDTO> actividades = new ArrayList<>();
 
 }

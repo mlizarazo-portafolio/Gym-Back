@@ -88,7 +88,7 @@ class ActividadServiceTest {
         assertEquals(newEntity.getNombre(), entity.getNombre());
         assertEquals(newEntity.getEntrenador(), entity.getEntrenador());
         assertEquals(newEntity.getTipo(), entity.getTipo());
-        assertEquals(newEntity.getAtletasInscritos(), entity.getAtletasInscritos());
+        assertEquals(newEntity.getAtletas(), entity.getAtletas());
         assertEquals(newEntity.getMaxParticipantes(), entity.getMaxParticipantes());
         assertEquals(newEntity.getRestriccion(), entity.getRestriccion());
 
@@ -151,7 +151,7 @@ class ActividadServiceTest {
         assertEquals(entity.getNombre(), resultEntity.getNombre());
         assertEquals(entity.getEntrenador(), resultEntity.getEntrenador());
         assertEquals(entity.getTipo(), resultEntity.getTipo());
-        assertEquals(entity.getAtletasInscritos(), resultEntity.getAtletasInscritos());
+        assertEquals(entity.getAtletas(), resultEntity.getAtletas());
         assertEquals(entity.getMaxParticipantes(), resultEntity.getMaxParticipantes());
         assertEquals(entity.getRestriccion(), resultEntity.getRestriccion());
 
@@ -177,7 +177,7 @@ class ActividadServiceTest {
         assertEquals(pojoEntity.getNombre(), resp.getNombre());
         assertEquals(pojoEntity.getEntrenador(), resp.getEntrenador());
         assertEquals(pojoEntity.getTipo(), resp.getTipo());
-        assertEquals(pojoEntity.getAtletasInscritos(), resp.getAtletasInscritos());
+        assertEquals(pojoEntity.getAtletas(), resp.getAtletas());
         assertEquals(pojoEntity.getMaxParticipantes(), resp.getMaxParticipantes());
         assertEquals(pojoEntity.getRestriccion(), resp.getRestriccion());
     }

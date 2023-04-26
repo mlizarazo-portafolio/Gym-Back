@@ -90,7 +90,7 @@ class AtletaServiceTest {
 
         }
 
-        deportologoList.get(0).getValoracionAtletas().add(atletaList.get(0));
+        deportologoList.get(0).getAtletas().add(atletaList.get(0));
         sedeList.get(0).getAtletas().add(atletaList.get(0));
         atletaList.get(0).setDeportologo(deportologoList.get(0));
         atletaList.get(0).setSede(sedeList.get(0));
@@ -176,7 +176,7 @@ class AtletaServiceTest {
     }
 
     @Test
-    void testDeleteAtleta() throws EntityNotFoundException {
+    void testDeleteAtleta() throws EntityNotFoundException, IllegalOperationException {
         AtletaEntity entity = atletaList.get(0);
         atletaService.deleteAtleta(entity.getId());
         AtletaEntity deleted = entityManager.find(AtletaEntity.class, entity.getId());

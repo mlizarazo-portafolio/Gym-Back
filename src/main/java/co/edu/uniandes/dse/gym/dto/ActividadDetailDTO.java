@@ -11,4 +11,5 @@ import java.util.ArrayList;
 public class ActividadDetailDTO extends ActividadDTO{
     private RestriccionDTO restriccion;
     private List<SedeDTO> sedes = new ArrayList<>();   
+    private List<AtletaDTO> atletas = new ArrayList<>();   
 }

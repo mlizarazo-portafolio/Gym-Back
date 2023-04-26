@@ -53,7 +53,7 @@ public class DeportologoAtletaService {
 		if(deportologoEntity.isEmpty())
 			throw new EntityNotFoundException(ErrorMessage.DEPORTOLOGO_NOT_FOUND);
 		
-		return deportologoEntity.get().getValoracionAtletas();
+		return deportologoEntity.get().getAtletas();
 	}
 
 
@@ -71,7 +71,7 @@ public class DeportologoAtletaService {
 				
 		log.info("Termina proceso de consultar el atleta con id = {0} del deportologo con id = " + deportologoId, atletaId);
 		
-		if(!deportologoEntity.get().getValoracionAtletas().contains(atletaEntity.get()))
+		if(!deportologoEntity.get().getAtletas().contains(atletaEntity.get()))
 			throw new IllegalOperationException("The atleta is not associated to the deportologo");
 		
 		return atletaEntity.get();

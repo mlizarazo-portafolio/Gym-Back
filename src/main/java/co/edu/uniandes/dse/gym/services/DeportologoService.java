@@ -64,8 +64,6 @@ public class DeportologoService {
         }
 
         return deportologoRepository.save(deportologo);
-        // Optional < DeportologoEntity > deportologoExistente =
-        // deportologoRepository.findById(deportologo.getId());
 
     }
 
@@ -96,7 +94,7 @@ public class DeportologoService {
             deportologoActualizado.setExperiencia(deportologo.getExperiencia());
             deportologoActualizado.setFoto(deportologo.getFoto());
             deportologoActualizado.setSede(deportologo.getSede());
-            deportologoActualizado.setValoracionAtletas(deportologo.getValoracionAtletas());
+            deportologoActualizado.setAtletas(deportologo.getAtletas());
             return deportologoRepository.save(deportologoActualizado);
         } else {
             throw new EntityNotFoundException("No existe un deportologo con el id " + id);

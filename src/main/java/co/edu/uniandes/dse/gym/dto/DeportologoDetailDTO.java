@@ -11,6 +11,6 @@ import lombok.Setter;
 
 public class DeportologoDetailDTO extends DeportologoDTO {
 
-    private List<AtletaDTO> valoracionAtletas = new ArrayList<>();
+    private List<AtletaDTO> atletas = new ArrayList<>();
 
 }

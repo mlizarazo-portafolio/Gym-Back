@@ -20,8 +20,6 @@ import co.edu.uniandes.dse.gym.entities.AtletaEntity;
 import co.edu.uniandes.dse.gym.entities.DeportologoEntity;
 import co.edu.uniandes.dse.gym.exceptions.EntityNotFoundException;
 import co.edu.uniandes.dse.gym.exceptions.IllegalOperationException;
-import co.edu.uniandes.dse.gym.services.DeportologoAtletaService;
-import co.edu.uniandes.dse.gym.services.DeportologoService;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
@@ -68,7 +66,7 @@ class DeportologoAtletaServiceTest {
 			deportologosList.add(entity);
 			if (i == 0) {
 				atletasList.get(i).setDeportologo(entity);
-				entity.getValoracionAtletas().add(atletasList.get(i));
+				entity.getAtletas().add(atletasList.get(i));
 			}
 		}
 	}
@@ -131,7 +129,7 @@ class DeportologoAtletaServiceTest {
 		assertEquals(atletaEntity.getLogin(), response.getLogin());
 		assertEquals(atletaEntity.getPeso(), response.getPeso());
 		assertEquals(atletaEntity.getPlan(), response.getPlan());
-		assertEquals(atletaEntity.getActividadesInscritas(), response.getActividadesInscritas());
+		assertEquals(atletaEntity.getActividades(), response.getActividades());
 		assertEquals(atletaEntity.getSede(), response.getSede());
 	}
 	

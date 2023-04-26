@@ -49,7 +49,7 @@ public class AtletaDeportologoService {
 
 		Optional<DeportologoEntity> deportologoEntity = deportologoRepository
 				.findById(atletaEntity.get().getDeportologo().getId());
-		deportologoEntity.ifPresent(deportologo -> deportologo.getValoracionAtletas().remove(atletaEntity.get()));
+		deportologoEntity.ifPresent(deportologo -> deportologo.getAtletas().remove(atletaEntity.get()));
 
 		atletaEntity.get().setDeportologo(null);
 		log.info("Termina proceso de borrar el Deportologo del atleta con id = {0}", atletaId);
