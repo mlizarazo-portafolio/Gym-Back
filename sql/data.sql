@@ -1,0 +1,1 @@
+insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (1, 'Messi', 'imagen.com', 'newells, fc barcelona, psg');
