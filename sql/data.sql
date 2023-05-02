@@ -1,1 +1,1 @@
-insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (1, 'Messi', 'imagen.com', 'newells, fc barcelona, psg');
+insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (1, 'Messi', 'http://dummyimage.com/241x100.png/5fa2dd/ffffff', 'newells, fc barcelona, psg');
