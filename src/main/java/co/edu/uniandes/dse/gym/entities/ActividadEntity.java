@@ -24,7 +24,7 @@ public class ActividadEntity extends BaseEntity {
     private String tipo;
 
     @PodamExclude
-    @OneToOne(mappedBy = "actividad")
+    @OneToOne
     private EntrenadorEntity entrenador;
 
     @PodamExclude
