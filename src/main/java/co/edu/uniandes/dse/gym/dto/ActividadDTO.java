@@ -12,5 +12,6 @@ public class ActividadDTO {
     private Integer maxParticipantes;
     private String horario;
     private String tipo;
+    private EntrenadorDTO entrenador;
     
 }
