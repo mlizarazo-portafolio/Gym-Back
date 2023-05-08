@@ -1,4 +1,8 @@
 insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (1, 'Messi', 'https://www.armandorodriguez.com.ar/img.php?img=caricaturas-lio-messi.jpg&mode=cm&w=350&h=400', 'newells, fc barcelona, psg');
+insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (2, 'El bicho', 'https://im.rediff.com/sports/2014/mar/06ronaldo-portugal-record.jpg', 'sporting, manchester united, real madrid, juventus, machester united, al nassr :()');
+insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (3, 'Marco Mbapperez', 'https://www.elmundo.com/assets/uploads/files/36586-vladimir-hernandez.jpg', 'Junior');
+
+
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (1, 'Central', 'Calle 31 Norte #7-21', '7788918');
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (2, 'Occidental', 'Calle 15 Oeste #3-81', '9988112');
 insert into SERVICIO_ENTITY (id, servicio, disponible, sede_id) values (1, 'Pesas', True, 1);
