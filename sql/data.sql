@@ -50,11 +50,15 @@ insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (9, 
 
 insert into CONVENIO_ENTITY(id, nombre, descuento) values(1, 'Compensar', 10);
 
+insert into ATLETA_ENTITY(id, nombre, login ,tipoSangre, direccion, altura, peso) values(1,'Sandr','s.dante', 'A+', 'Calle 1', 1.70, 70);
+insert into DEPORTOLOGO_ENTITY(id, nombre, login, experiencia, foto) values(1,'Juan','j.lopez', 'Fisioterapeuta', 'http://dummyimage.com/241x100.png/5fa2dd/ffffff');
+
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (1, 'dgomezrey', 4, 'Es el mejor gimnasio al que he ido en toda mi vida, excelente servicio. Por favor saquenme de Colombia.', 1);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (2, 'jp.hernandez', 1, 'Pésimo gimnasio, Daniel tiene problemas. Pero efectivamente saquenme de Colombia.', 1);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (3, 'jorge1', 5, 'Messi debería venir es muy bueno.', 2);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (4, 'alberto69', 0, 'Mu malo no me lleven otra vez!', 2);
 
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (1,1)
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (1, 1);
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (2, 2);
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (3, 3);
