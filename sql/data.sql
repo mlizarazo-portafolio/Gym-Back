@@ -48,7 +48,6 @@ insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (7, 
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (8, 30, 'buena condición física', 8);
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (9, 42, 'ninguna restricción', 9);
 
-
 insert into CONVENIO_ENTITY(id, nombre, descuento) values(1, 'Compensar', 10);
 
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (1, 'dgomezrey', 4, 'Es el mejor gimnasio al que he ido en toda mi vida, excelente servicio. Por favor saquenme de Colombia.', 1);
