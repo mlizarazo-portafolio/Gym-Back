@@ -7,3 +7,5 @@ insert into PLAN_ENTRENAMIENTO_ENTITY(id, nombre, objetivo_Basico, descripcion, 
 insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (1, 'Yoga', 30, 'Lunes - 12:30 a 2:30', 'Grupal', 1);
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (1, 45, 'buena resistencia', 1);
 insert into CONVENIO_ENTITY(id, nombre,descuento) values(1,'Compensar', 10);
+insert into ATLETA_ENTITY(id, nombre, login ,tipoSangre, direccion, altura, peso) values(1,'Sandr','s.dante', 'A+', 'Calle 1', 1.70, 70);
+insert into DEPORTOLOGO_ENTITY(id, nombre, login, experiencia, foto) values(1,'Juan','j.lopez', 'Fisioterapeuta', 'http://dummyimage.com/241x100.png/5fa2dd/ffffff');
