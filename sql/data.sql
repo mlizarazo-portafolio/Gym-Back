@@ -24,6 +24,14 @@ insert into SERVICIO_ENTITY (id, servicio, disponible, sede_id) values (2, 'Masa
 insert into PLAN_ENTRENAMIENTO_ENTITY(id, nombre, objetivo_Basico, descripcion, direccion, duracion, costo) values(3, 'Fuerza I', 'Aumento de fuerza', 'Ejercicio basado en fuerza','Cra7',3,3000);
 
 insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (1, 'Yoga', 30, 'Lunes - 12:30 a 2:30', 'Grupal', 1);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (2, 'Pilates', 20, 'Martes - 10:00 a 11:00', 'Grupal', 2);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (3, 'Zumba', 25, 'Miércoles - 17:00 a 18:00', 'Grupal', 3);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (4, 'CrossFit', 15, 'Jueves - 19:30 a 21:00', 'Grupal', 4);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (5, 'Spinning', 25, 'Viernes - 15:00 a 16:00', 'Grupal', 5);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (6, 'Kickboxing', 20, 'Sábado - 9:00 a 10:30', 'Grupal', 6);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (7, 'Pilates', 15, 'Domingo - 16:00 a 17:00', 'Grupal', 7);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (8, 'Aeróbicos', 30, 'Lunes - 18:30 a 19:30', 'Grupal', 8);
+insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (9, 'Baile', 25, 'Miércoles - 10:30 a 12:00', 'Grupal', 9);
 
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (1, 45, 'buena resistencia', 1);
 
