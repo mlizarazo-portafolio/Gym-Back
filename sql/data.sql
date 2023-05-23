@@ -34,6 +34,15 @@ insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entre
 insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (9, 'Baile', 25, 'Miércoles - 10:30 a 12:00', 'Grupal', 9);
 
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (1, 45, 'buena resistencia', 1);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (2, 30, 'ninguna restricción', 2);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (3, 28, 'lesión en la rodilla', 3);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (4, 50, 'hipertensión', 4);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (5, 40, 'baja flexibilidad', 5);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (6, 35, 'ninguna restricción', 6);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (7, 55, 'problemas de espalda', 7);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (8, 30, 'buena condición física', 8);
+insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (9, 42, 'ninguna restricción', 9);
+
 
 insert into CONVENIO_ENTITY(id, nombre,descuento) values(1,'Compensar', 10);
 
