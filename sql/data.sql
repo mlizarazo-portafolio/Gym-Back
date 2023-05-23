@@ -8,7 +8,6 @@ insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (7, 'Jaylen
 insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (8, 'Jamal Murray', 'https://media.gettyimages.com/id/1256648448/es/foto/jamal-murray-of-the-denver-nuggets-dribbles-the-ball-during-game-three-of-the-western.jpg?s=612x612&w=gi&k=20&c=IjML8J8KprwrLcWlgbkNIC-vdVuqjGp-clAqtZ9szCE=', 'Denver');
 insert into ENTRENADOR_ENTITY (id, nombre, foto, trayectoria) values (9, 'Lamelo Ball', 'https://media.gettyimages.com/id/1247543953/es/foto/lamelo-ball-of-the-charlotte-hornets-looks-on-during-the-game-on-febuary-27-2023-at-spectrum.jpg?s=612x612&w=gi&k=20&c=EV8hlm5MXGwv6s9SvZnFmSg9mqKx_z48zfUfbJUurrY=', 'Charlotte');
 
-
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (1, 'Central', 'Calle 31 Norte #7-21', '7788918');
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (2, 'Occidental', 'Calle 15 Oeste #3-49', '9988112');
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (3, 'Pasoancho', 'Calle 14 Sur #1-23', '7208698');
@@ -18,8 +17,14 @@ insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (6, 'Amazonas',
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (7, 'Arauca', 'Calle 3 Sur #1-33', '7406985');
 insert into SEDE_ENTITY (id, nombre, direccion, telefono) values (8, 'Guaviare', 'Calle 7 Este #32-47', '2898560');
 
-insert into SERVICIO_ENTITY (id, servicio, disponible, sede_id) values (1, 'Pesas', True, 1);
-insert into SERVICIO_ENTITY (id, servicio, disponible, sede_id) values (2, 'Masajes', True, 2);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (1, 'Pesas', True, 1);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (2, 'Masajes', True, 2);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (3, 'Duchas', True, 3);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (4, 'Clases', True, 4);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (5, 'Lavandería', True, 5);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (6, 'Transporte', True, 6);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (7, 'Eventos en Vivo', True, 7);
+INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (8, 'Especialistas Invitados', True, 8);
 
 insert into PLAN_ENTRENAMIENTO_ENTITY(id, nombre, objetivo_Basico, descripcion, direccion, duracion, costo) values(3, 'Fuerza I', 'Aumento de fuerza', 'Ejercicio basado en fuerza','Cra7',3,3000);
 
@@ -27,11 +32,18 @@ insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entre
 
 insert into RESTRICCION_ENTITY (id, edad, cond_fisica, actividad_id) values (1, 45, 'buena resistencia', 1);
 
-insert into CONVENIO_ENTITY(id, nombre,descuento) values(1,'Compensar', 10);
+insert into CONVENIO_ENTITY(id, nombre, descuento) values(1, 'Compensar', 10);
 
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (1, 'dgomezrey', 4, 'Es el mejor gimnasio al que he ido en toda mi vida, excelente servicio. Por favor saquenme de Colombia.', 1);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (2, 'jp.hernandez', 1, 'Pésimo gimnasio, Daniel tiene problemas. Pero efectivamente saquenme de Colombia.', 1);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (3, 'jorge1', 5, 'Messi debería venir es muy bueno.', 2);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (4, 'alberto69', 0, 'Mu malo no me lleven otra vez!', 2);
 
-insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (1,1)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (1, 1)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (2, 2)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (3, 3)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (4, 4)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (5, 5)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (6, 6)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (7, 7)
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (8, 8)
