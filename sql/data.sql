@@ -15,3 +15,5 @@ insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values 
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (2, 'jp.hernandez', 1, 'Pésimo gimnasio, Daniel tiene problemas. Pero efectivamente saquenme de Colombia.', 1);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (3, 'jorge1', 5, 'Messi debería venir es muy bueno.', 2);
 insert into RESENIA_ENTITY(id, usuario, puntuacion, comentario, sede_id) values (4, 'alberto69', 0, 'Mu malo no me lleven otra vez!', 2);
+
+insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (1,1)
