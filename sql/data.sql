@@ -26,7 +26,7 @@ INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (6, 'Tran
 INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (7, 'Eventos en Vivo', True, 7);
 INSERT INTO SERVICIO_ENTITY (id, servicio, disponible, sede_id) VALUES (8, 'Especialistas Invitados', True, 8);
 
-insert into PLAN_ENTRENAMIENTO_ENTITY(id, nombre, objetivo_Basico, descripcion, direccion, duracion, costo) values(3, 'Fuerza I', 'Aumento de fuerza', 'Ejercicio basado en fuerza','Cra7',3,3000);
+insert into PLAN_ENTRENAMIENTO_ENTITY(id, nombre, objetivo_Basico, descripcion, direccion, duracion, costo) values(1, 'Fuerza I', 'Aumento de fuerza', 'Ejercicio basado en fuerza','Cra7',3,3000);
 
 insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (1, 'Yoga', 30, 'Lunes - 12:30 a 2:30', 'Grupal', 1);
 insert into ACTIVIDAD_ENTITY(id, nombre, max_Participantes, horario, tipo, entrenador_id) values (2, 'Pilates', 20, 'Martes - 10:00 a 11:00', 'Grupal', 2);
@@ -66,3 +66,5 @@ insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (5, 5);
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (6, 6);
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (7, 7);
 insert into ACTIVIDAD_ENTITY_SEDES(actividades_id, sedes_id) values (8, 8);
+
+insert into PLAN_ENTRENAMIENTO_ENTITY_SEDES(planes_id, sedes_id) values (1, 1);
